@@ -74,13 +74,10 @@ Result<void> Client<Port>::sendFrame(const CanFrame& frame) noexcept {
 
 template <CanPort Port>
 detail::MonitorSlot* Client<Port>::findSlot(uint8_t node) noexcept {
-  for (detail::MonitorSlot& slot : monitors_) {
-    // cppcheck-suppress useStlAlgorithm ; a pointer-returning search, clearer as a bounded loop
-    if (slot.used && (slot.node == node)) {
-      return &slot;
-    }
-  }
-  return nullptr;
+  const auto found = std::find_if(
+      monitors_.begin(), monitors_.end(),
+      [node](const detail::MonitorSlot& slot) { return slot.used && (slot.node == node); });
+  return (found != monitors_.end()) ? &*found : nullptr;
 }
 
 // --- NMT, SYNC, RPDO and unconfirmed SDO (every port)

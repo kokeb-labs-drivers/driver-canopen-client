@@ -13,6 +13,7 @@
 #ifndef CANOPEN_CLIENT_HPP
 #define CANOPEN_CLIENT_HPP
 
+#include <algorithm>
 #include <array>
 #include <cstddef>
 #include <cstdint>
