@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="541" viewBox="0 0 1200 541" role="img" aria-labelledby="chip-blocks-title chip-blocks-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-blocks-title">Inside the SN65HVD230</title>
+<desc id="chip-blocks-desc">Block diagram of the SN65HVD230: its function blocks, how they connect and which package pins reach each block.</desc>
+<defs><marker id="fk-arrow-rail" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8893A2"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="540" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#7A360E">HARDWARE</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#0E1726">Inside the SN65HVD230</text>
+<text x="32" y="103.8" font-size="15" fill="#566070">Function blocks and their links, from the datasheet's block diagram (10.2 Functional Block Diagram, p. 19). Pins on the edge carry their package</text>
+<text x="32" y="125.5" font-size="15" fill="#566070">number.</text>
+<rect x="32" y="141.6" width="1136" height="1" fill="#E2E7EE"/>
+<rect x="120" y="159.6" width="960" height="320" rx="14" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1.2"/>
+<path d="M127 263.6 L160 263.6" fill="none" stroke="#0B7A72" stroke-width="1.8"/>
+<path d="M127 287.6 L144 287.6 L144 335.6 L448 335.6 L448 287.6 L472 287.6" fill="none" stroke="#2563EB" stroke-width="1.8"/>
+<path d="M127 311.6 L128 311.6 L128 295.6 L120 295.6 L120 207.6 L440 207.6 L440 303.6 L472 303.6" fill="none" stroke="#2563EB" stroke-width="1.8"/>
+<path d="M127 399.6 L160 399.6" fill="none" stroke="#0B7A72" stroke-width="1.8"/>
+<path d="M1073 263.6 L1040 263.6" fill="none" stroke="#15803D" stroke-width="1.8"/>
+<path d="M1073 375.6 L1040 375.6" fill="none" stroke="#A21CAF" stroke-width="1.8"/>
+<path d="M1073 399.6 L1040 399.6" fill="none" stroke="#DB2752" stroke-width="1.8"/>
+<path d="M1073 423.6 L1040 423.6" fill="none" stroke="#64748B" stroke-width="1.8"/>
+<path d="M420 263.6 L468 263.6" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M732 263.6 L780 263.6" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M288 355.6 L288 315.6" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<rect x="160" y="223.6" width="256" height="88" rx="10" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="160" y="231.6" width="4" height="72" rx="2" fill="#2563EB"/>
+<rect x="472" y="223.6" width="256" height="88" rx="10" fill="#FFF5E3" stroke="#C26A05" stroke-width="1.4"/>
+<rect x="472" y="231.6" width="4" height="72" rx="2" fill="#C26A05"/>
+<rect x="784" y="223.6" width="256" height="88" rx="10" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<rect x="784" y="231.6" width="4" height="72" rx="2" fill="#0B7A72"/>
+<rect x="160" y="359.6" width="256" height="88" rx="10" fill="#F1F4F8" stroke="#64748B" stroke-width="1.4"/>
+<rect x="160" y="367.6" width="4" height="72" rx="2" fill="#64748B"/>
+<rect x="784" y="359.6" width="256" height="88" rx="10" fill="#FBEFE6" stroke="#9A4A17" stroke-width="1.4"/>
+<rect x="784" y="367.6" width="4" height="72" rx="2" fill="#9A4A17"/>
+<rect x="113" y="256.6" width="14" height="14" rx="3" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<rect x="113" y="280.6" width="14" height="14" rx="3" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="113" y="304.6" width="14" height="14" rx="3" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="113" y="392.6" width="14" height="14" rx="3" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<rect x="1073" y="256.6" width="14" height="14" rx="3" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<rect x="1073" y="368.6" width="14" height="14" rx="3" fill="#FDF0FF" stroke="#A21CAF" stroke-width="1.4"/>
+<rect x="1073" y="392.6" width="14" height="14" rx="3" fill="#FFEEF2" stroke="#DB2752" stroke-width="1.4"/>
+<rect x="1073" y="416.6" width="14" height="14" rx="3" fill="#F1F4F8" stroke="#64748B" stroke-width="1.4"/>
+<text x="136" y="184.6" font-size="13" font-weight="700" fill="#334155">SN65HVD230</text>
+<text x="242.4" y="184.6" font-size="12" fill="#334155">SOIC-8</text>
+<text x="180" y="250.3" font-size="15" font-weight="700" fill="#1E429F">Driver</text>
+<text x="180" y="275.1" font-size="13" fill="#2B3442">D to CANH and CANL, thermal</text>
+<text x="180" y="294" font-size="13" fill="#2B3442">shutdown</text>
+<text x="492" y="250.3" font-size="15" font-weight="700" fill="#8A3C0B">CAN bus pair</text>
+<text x="492" y="275.1" font-size="13" fill="#2B3442">CANH, CANL</text>
+<text x="804" y="250.3" font-size="15" font-weight="700" fill="#0B5F59">Receiver</text>
+<text x="804" y="275.1" font-size="13" fill="#2B3442">CANH and CANL to R</text>
+<text x="180" y="386.3" font-size="15" font-weight="700" fill="#334155">Mode select</text>
+<text x="180" y="411.1" font-size="13" fill="#2B3442">high speed, slope control,</text>
+<text x="180" y="430" font-size="13" fill="#2B3442">standby</text>
+<text x="804" y="386.3" font-size="15" font-weight="700" fill="#7A360E">Vref</text>
+<text x="804" y="411.1" font-size="13" fill="#2B3442">VCC / 2</text>
+<text x="106" y="268.1" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">D  1</text>
+<text x="106" y="292.1" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">CANH  7</text>
+<text x="106" y="316.1" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">CANL  6</text>
+<text x="106" y="404.1" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">RS  8</text>
+<text x="1094" y="268.1" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">R  4</text>
+<text x="1094" y="380.1" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">Vref  5</text>
+<text x="1094" y="404.1" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">VCC  3</text>
+<text x="1094" y="428.1" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">GND  2</text>
+<circle cx="160" cy="263.6" r="3" fill="#0B7A72"/>
+<circle cx="472" cy="287.6" r="3" fill="#2563EB"/>
+<circle cx="472" cy="303.6" r="3" fill="#2563EB"/>
+<circle cx="160" cy="399.6" r="3" fill="#0B7A72"/>
+<circle cx="1040" cy="263.6" r="3" fill="#15803D"/>
+<circle cx="1040" cy="375.6" r="3" fill="#A21CAF"/>
+<circle cx="1040" cy="399.6" r="3" fill="#DB2752"/>
+<circle cx="1040" cy="423.6" r="3" fill="#64748B"/>
+<rect x="32" y="494.9" width="14" height="14" rx="4" fill="#FFEEF2" stroke="#DB2752" stroke-width="1.4"/>
+<text x="54" y="506.6" font-size="12.5" fill="#566070">power</text>
+<rect x="117.6" y="494.9" width="14" height="14" rx="4" fill="#F1F4F8" stroke="#64748B" stroke-width="1.4"/>
+<text x="139.6" y="506.6" font-size="12.5" fill="#566070">ground</text>
+<rect x="208.5" y="494.9" width="14" height="14" rx="4" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<text x="230.5" y="506.6" font-size="12.5" fill="#566070">bus</text>
+<rect x="277.4" y="494.9" width="14" height="14" rx="4" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<text x="299.4" y="506.6" font-size="12.5" fill="#566070">digital in</text>
+<rect x="375.8" y="494.9" width="14" height="14" rx="4" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<text x="397.8" y="506.6" font-size="12.5" fill="#566070">digital out</text>
+<rect x="483.3" y="494.9" width="14" height="14" rx="4" fill="#FDF0FF" stroke="#A21CAF" stroke-width="1.4"/>
+<text x="505.3" y="506.6" font-size="12.5" fill="#566070">analog</text>
+<path d="M571.3 501.2L601.3 501.2" fill="none" stroke="#8893A2" stroke-width="1.6" marker-end="url(#fk-arrow-rail)"/>
+<text x="615.3" y="506.6" font-size="12.5" fill="#566070">signal or data between blocks</text>
+</svg>

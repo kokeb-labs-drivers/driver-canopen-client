@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1275" viewBox="0 0 1200 1275" role="img" aria-labelledby="driver-layers-title driver-layers-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="driver-layers-title">The layers, one of them yours</title>
+<desc id="driver-layers-desc">Layer diagram: your application calls the Client core, which sends CAN frames through the CAN port contract to the port class you write, which drives the CAN controller; the core and the contract are the same on every MCU.</desc>
+<defs><marker id="fk-arrow-rail" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8893A2"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="1274" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="46.8" font-size="16" font-weight="700" letter-spacing="1.2" fill="#7A360E">ARCHITECTURE</text>
+<text x="32" y="85.6" font-size="32" font-weight="700" fill="#0E1726">The layers, one of them yours</text>
+<text x="32" y="115.4" font-size="18" fill="#566070">Each arrow is a call. Only the port changes from one MCU to the next.</text>
+<rect x="32" y="131.4" width="1136" height="1" fill="#E2E7EE"/>
+<rect x="32" y="302.4" width="796" height="452.2" rx="16" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<path d="M430 242.4 L430 298.4" fill="none" stroke="#8893A2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M430 758.6 L430 814.6" fill="none" stroke="#8893A2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M430 911.6 L430 967.6" fill="none" stroke="#8893A2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M430 1063.6 L430 1119.6" fill="none" stroke="#8893A2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<rect x="32" y="149.4" width="796" height="89" rx="12" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<rect x="32" y="157.4" width="4" height="73" rx="2" fill="#0B7A72"/>
+<rect x="32" y="818.6" width="796" height="89" rx="12" fill="#FBEFE6" stroke="#9A4A17" stroke-width="1.4"/>
+<rect x="32" y="826.6" width="4" height="73" rx="2" fill="#9A4A17"/>
+<rect x="32" y="971.6" width="796" height="88" rx="12" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<rect x="32" y="979.6" width="4" height="72" rx="2" fill="#0B7A72"/>
+<rect x="32" y="1123.6" width="796" height="89" rx="12" fill="#F1F4F8" stroke="#64748B" stroke-width="1.4"/>
+<rect x="32" y="1131.6" width="4" height="73" rx="2" fill="#64748B"/>
+<rect x="868" y="302.4" width="300" height="128.3" rx="12" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<rect x="868" y="971.6" width="300" height="103.6" rx="12" fill="#E6F6F4" stroke="#A6DCD5" stroke-width="1"/>
+<text x="56" y="184.4" font-size="20" font-weight="700" fill="#0B5F59">Your application</text>
+<text x="56" y="215" font-size="17" fill="#2B3442">a handler, a manager or a test</text>
+<rect x="48" y="370.6" width="167" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="56" y="388.7" font-size="16" font-weight="700" fill="#7A360E">EnsureInitialized()</text>
+<rect x="223" y="370.6" width="120.6" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="231" y="388.7" font-size="16" font-weight="700" fill="#7A360E">Deinitialize()</text>
+<rect x="351.5" y="370.6" width="111.8" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="359.5" y="388.7" font-size="16" font-weight="700" fill="#7A360E">SetConfig()</text>
+<rect x="471.3" y="370.6" width="105.9" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="479.3" y="388.7" font-size="16" font-weight="700" fill="#7A360E">SendNmt()</text>
+<rect x="585.2" y="370.6" width="113.1" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="593.2" y="388.7" font-size="16" font-weight="700" fill="#7A360E">SendSync()</text>
+<rect x="48" y="404.6" width="114.2" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="56" y="422.7" font-size="16" font-weight="700" fill="#7A360E">SendRpdo()</text>
+<rect x="170.2" y="404.6" width="252.6" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="178.2" y="422.7" font-size="16" font-weight="700" fill="#7A360E">SdoDownloadUnconfirmed()</text>
+<rect x="430.8" y="404.6" width="158.9" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="438.8" y="422.7" font-size="16" font-weight="700" fill="#7A360E">SendRawFrame()</text>
+<rect x="597.7" y="404.6" width="158.3" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="605.7" y="422.7" font-size="16" font-weight="700" fill="#7A360E">ReadRawFrame()</text>
+<rect x="48" y="438.6" width="138.2" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="56" y="456.7" font-size="16" font-weight="700" fill="#7A360E">ReadRawSdo()</text>
+<rect x="194.2" y="438.6" width="141.8" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="202.2" y="456.7" font-size="16" font-weight="700" fill="#7A360E">WriteRawSdo()</text>
+<rect x="344" y="438.6" width="59.4" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="352" y="456.7" font-size="16" font-weight="700" fill="#7A360E">Poll()</text>
+<rect x="411.3" y="438.6" width="137.8" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="419.3" y="456.7" font-size="16" font-weight="700" fill="#7A360E">MonitorNode()</text>
+<rect x="557.1" y="438.6" width="160.4" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="565.1" y="456.7" font-size="16" font-weight="700" fill="#7A360E">UnmonitorNode()</text>
+<rect x="48" y="472.6" width="155.4" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="56" y="490.7" font-size="16" font-weight="700" fill="#7A360E">GetNodeStatus()</text>
+<rect x="211.4" y="472.6" width="134.1" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="219.4" y="490.7" font-size="16" font-weight="700" fill="#7A360E">ClearBootUp()</text>
+<rect x="353.5" y="472.6" width="123.6" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="361.5" y="490.7" font-size="16" font-weight="700" fill="#7A360E">GuardNode()</text>
+<rect x="485.2" y="472.6" width="156" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="493.2" y="490.7" font-size="16" font-weight="700" fill="#7A360E">SubscribeTpdo()</text>
+<rect x="48" y="506.6" width="177.4" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="56" y="524.7" font-size="16" font-weight="700" fill="#7A360E">UnsubscribeTpdo()</text>
+<rect x="233.4" y="506.6" width="113.7" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="241.4" y="524.7" font-size="16" font-weight="700" fill="#7A360E">ReadTpdo()</text>
+<rect x="355.1" y="506.6" width="119.6" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="363.1" y="524.7" font-size="16" font-weight="700" fill="#7A360E">SdoUpload()</text>
+<rect x="482.7" y="506.6" width="144.1" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="490.7" y="524.7" font-size="16" font-weight="700" fill="#7A360E">SdoDownload()</text>
+<rect x="634.8" y="506.6" width="126.2" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="642.8" y="524.7" font-size="16" font-weight="700" fill="#7A360E">SdoReadU8()</text>
+<rect x="48" y="540.6" width="133.5" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="56" y="558.7" font-size="16" font-weight="700" fill="#7A360E">SdoReadU16()</text>
+<rect x="189.5" y="540.6" width="136.8" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="197.5" y="558.7" font-size="16" font-weight="700" fill="#7A360E">SdoReadU32()</text>
+<rect x="334.3" y="540.6" width="129.9" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="342.3" y="558.7" font-size="16" font-weight="700" fill="#7A360E">SdoWriteU8()</text>
+<rect x="472.2" y="540.6" width="137.1" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="480.2" y="558.7" font-size="16" font-weight="700" fill="#7A360E">SdoWriteU16()</text>
+<rect x="617.3" y="540.6" width="140.4" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="625.3" y="558.7" font-size="16" font-weight="700" fill="#7A360E">SdoWriteU32()</text>
+<rect x="48" y="574.6" width="170.1" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="56" y="592.7" font-size="16" font-weight="700" fill="#7A360E">ReadDeviceType()</text>
+<rect x="226.1" y="574.6" width="181.3" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="234.1" y="592.7" font-size="16" font-weight="700" fill="#7A360E">ReadErrorRegister()</text>
+<rect x="415.4" y="574.6" width="274.8" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="423.4" y="592.7" font-size="16" font-weight="700" fill="#7A360E">WriteHeartbeatProducerTime()</text>
+<rect x="48" y="608.6" width="169.4" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="56" y="626.7" font-size="16" font-weight="700" fill="#7A360E">StoreParameters()</text>
+<rect x="225.4" y="608.6" width="163" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="233.4" y="626.7" font-size="16" font-weight="700" fill="#7A360E">RestoreDefaults()</text>
+<rect x="396.4" y="608.6" width="153.8" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="404.4" y="626.7" font-size="16" font-weight="700" fill="#7A360E">ConfigureSync()</text>
+<rect x="558.1" y="608.6" width="133.6" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="566.1" y="626.7" font-size="16" font-weight="700" fill="#7A360E">ServiceSync()</text>
+<rect x="48" y="642.6" width="144" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="56" y="660.7" font-size="16" font-weight="700" fill="#7A360E">ConfigurePdo()</text>
+<rect x="200" y="642.6" width="122.5" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="208" y="660.7" font-size="16" font-weight="700" fill="#7A360E">DisablePdo()</text>
+<rect x="330.5" y="642.6" width="158.2" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="338.5" y="660.7" font-size="16" font-weight="700" fill="#7A360E">ReadPdoConfig()</text>
+<rect x="496.7" y="642.6" width="166.4" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="504.7" y="660.7" font-size="16" font-weight="700" fill="#7A360E">ReadStatusword()</text>
+<rect x="48" y="676.6" width="158.1" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="56" y="694.7" font-size="16" font-weight="700" fill="#7A360E">ReadDriveState()</text>
+<rect x="214.1" y="676.6" width="128.9" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="222.1" y="694.7" font-size="16" font-weight="700" fill="#7A360E">DriveEnable()</text>
+<rect x="351" y="676.6" width="134.4" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="359" y="694.7" font-size="16" font-weight="700" fill="#7A360E">DriveDisable()</text>
+<rect x="493.4" y="676.6" width="159.4" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="501.4" y="694.7" font-size="16" font-weight="700" fill="#7A360E">DriveQuickStop()</text>
+<rect x="48" y="710.6" width="161" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="56" y="728.7" font-size="16" font-weight="700" fill="#7A360E">DriveResetFault()</text>
+<rect x="217" y="710.6" width="147.2" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="225" y="728.7" font-size="16" font-weight="700" fill="#7A360E">SetDriveMode()</text>
+<rect x="372.3" y="710.6" width="161.6" height="26" rx="13" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1"/>
+<text x="380.3" y="728.7" font-size="16" font-weight="700" fill="#7A360E">ReadDriveMode()</text>
+<text x="48" y="331.4" font-size="17" font-weight="700" fill="#7A360E">HARDWARE-AGNOSTIC CORE</text>
+<text x="48" y="354.6" font-size="16" fill="#7A360E">Client, inc/canopen_client.hpp</text>
+<rect x="405.4" y="258.4" width="49.1" height="24" rx="12" fill="#FFFFFF"/>
+<text x="430" y="276.2" font-size="16" font-weight="500" text-anchor="middle" fill="#566070">calls</text>
+<text x="56" y="853.6" font-size="20" font-weight="700" fill="#7A360E">Port contract</text>
+<text x="56" y="884.2" font-size="17" fill="#2B3442">CanInterface&lt;YourPort&gt;: checked at compile time, no virtual calls</text>
+<text x="56" y="1006.6" font-size="20" font-weight="700" fill="#0B5F59">Your port</text>
+<text x="56" y="1035.8" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#2B3442">EnsureInitialized()  Send()  Receive()  NowUs()</text>
+<text x="56" y="1158.6" font-size="20" font-weight="700" fill="#334155">Client</text>
+<text x="56" y="1189.2" font-size="17" fill="#2B3442">the CAN controller and transceiver, and the nodes on the bus</text>
+<rect x="292.3" y="774.6" width="275.3" height="24" rx="12" fill="#FFFFFF"/>
+<text x="430" y="792.4" font-size="16" font-weight="500" text-anchor="middle" fill="#566070">frames to send, frames received</text>
+<rect x="329.6" y="927.6" width="200.8" height="24" rx="12" fill="#FFFFFF"/>
+<text x="430" y="945.4" font-size="16" font-weight="500" text-anchor="middle" fill="#566070">forwards to your hooks</text>
+<rect x="374.7" y="1079.6" width="110.6" height="24" rx="12" fill="#FFFFFF"/>
+<text x="430" y="1097.4" font-size="16" font-weight="500" text-anchor="middle" fill="#566070">CAN frames</text>
+<text x="886" y="337.4" font-size="20" font-weight="700" fill="#7A360E">Shared</text>
+<text x="886" y="360.8" font-size="17" fill="#7A360E">The core and the contract are</text>
+<text x="886" y="385.5" font-size="17" fill="#7A360E">the same code on every MCU</text>
+<text x="886" y="410.1" font-size="17" fill="#7A360E">and on the host.</text>
+<text x="886" y="1006.6" font-size="20" font-weight="700" fill="#0B5F59">Yours</text>
+<text x="886" y="1030.1" font-size="17" fill="#0B5F59">One small class per MCU or</text>
+<text x="886" y="1054.7" font-size="17" fill="#0B5F59">board.</text>
+<rect x="32" y="1225" width="14" height="14" rx="4" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<text x="54" y="1239.6" font-size="16" fill="#566070">you write</text>
+<rect x="152.3" y="1225" width="14" height="14" rx="4" fill="#FBEFE6" stroke="#9A4A17" stroke-width="1.4"/>
+<text x="174.3" y="1239.6" font-size="16" fill="#566070">this library</text>
+<rect x="282.1" y="1225" width="14" height="14" rx="4" fill="#F1F4F8" stroke="#64748B" stroke-width="1.4"/>
+<text x="304.1" y="1239.6" font-size="16" fill="#566070">hardware</text>
+<path d="M404.1 1233L434.1 1233" fill="none" stroke="#8893A2" stroke-width="2.2" marker-end="url(#fk-arrow-rail)"/>
+<text x="448.1" y="1239.6" font-size="16" fill="#566070">calls</text>
+</svg>
