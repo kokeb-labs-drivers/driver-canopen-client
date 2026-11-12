@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="865" height="772" viewBox="0 0 865 772" role="img" aria-labelledby="chip-outline-title chip-outline-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-outline-title">SN65HVD230 package, SOIC-8</title>
+<desc id="chip-outline-desc">Outline of the SN65HVD230 in SOIC-8 drawn to scale from above: body 4.9 x 3.9 x 1.75 mm, pitch 1.27 mm, 8 pins.</desc>
+<rect x="0.5" y="0.5" width="864" height="771" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#F8D27A">HARDWARE</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#E8EDF3">SN65HVD230 package, SOIC-8</text>
+<text x="32" y="103.8" font-size="15" fill="#9AA6B5">Package body from above, to scale, pin 1 marked; arrows give the datasheet's dimensions. The pads are</text>
+<text x="32" y="125.5" font-size="15" fill="#9AA6B5">centred on each side at the stated pitch: the land pattern is in the datasheet. Datasheet: Package outline</text>
+<text x="32" y="147.3" font-size="15" fill="#9AA6B5">D0008A, p. 40.</text>
+<rect x="32" y="163.3" width="801" height="1" fill="#252F3C"/>
+<path d="M447.8 199.3 L493.8 199.3" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M447.8 499.3 L493.8 499.3" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M205 503.3 L205 549.3" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M443.8 503.3 L443.8 549.3" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M179 232.7 L153 232.7" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M179 310.4 L153 310.4" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M181 704.4 L467.8 704.4" fill="none" stroke="#6C7889" stroke-width="1.2"/>
+<path d="M447.8 597.3 L479.8 597.3" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M447.8 704.4 L479.8 704.4" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<rect x="205" y="199.3" width="238.8" height="300" rx="8" fill="#18202B" stroke="#D2DAE4" stroke-width="2"/>
+<rect x="183" y="212.7" width="22" height="40" rx="2" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="183" y="290.4" width="22" height="40" rx="2" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<rect x="183" y="368.2" width="22" height="40" rx="2" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="183" y="445.9" width="22" height="40" rx="2" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<rect x="443.8" y="212.7" width="22" height="40" rx="2" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="443.8" y="290.4" width="22" height="40" rx="2" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="443.8" y="368.2" width="22" height="40" rx="2" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="443.8" y="445.9" width="22" height="40" rx="2" fill="#2E1533" stroke="#F0ABFC" stroke-width="1.4"/>
+<circle cx="219" cy="213.3" r="6" fill="#D2DAE4"/>
+<path d="M487.8 199.3 L487.8 499.3" fill="none" stroke="#D2DAE4" stroke-width="1.2"/>
+<path d="M487.8 199.3 L490.8 206.3 L484.8 206.3 Z" fill="#D2DAE4"/>
+<path d="M487.8 499.3 L484.8 492.3 L490.8 492.3 Z" fill="#D2DAE4"/>
+<path d="M205 543.3 L443.8 543.3" fill="none" stroke="#D2DAE4" stroke-width="1.2"/>
+<path d="M205 543.3 L212 540.3 L212 546.3 Z" fill="#D2DAE4"/>
+<path d="M443.8 543.3 L436.8 546.3 L436.8 540.3 Z" fill="#D2DAE4"/>
+<path d="M147 232.7 L147 310.4" fill="none" stroke="#D2DAE4" stroke-width="1.2"/>
+<path d="M147 232.7 L150 239.7 L144 239.7 Z" fill="#D2DAE4"/>
+<path d="M147 310.4 L144 303.4 L150 303.4 Z" fill="#D2DAE4"/>
+<rect x="205" y="597.3" width="238.8" height="107.1" rx="2" fill="#18202B" stroke="#D2DAE4" stroke-width="2"/>
+<path d="M473.8 597.3 L473.8 704.4" fill="none" stroke="#D2DAE4" stroke-width="1.2"/>
+<path d="M473.8 597.3 L476.8 604.3 L470.8 604.3 Z" fill="#D2DAE4"/>
+<path d="M473.8 704.4 L470.8 697.4 L476.8 697.4 Z" fill="#D2DAE4"/>
+<text x="194" y="236.8" font-size="11.5" font-weight="700" text-anchor="middle" fill="#A7F3E6">1</text>
+<text x="194" y="314.6" font-size="11.5" font-weight="700" text-anchor="middle" fill="#E2E8F0">2</text>
+<text x="194" y="392.3" font-size="11.5" font-weight="700" text-anchor="middle" fill="#FECDD3">3</text>
+<text x="194" y="470.1" font-size="11.5" font-weight="700" text-anchor="middle" fill="#BBF7D0">4</text>
+<text x="454.8" y="236.8" font-size="11.5" font-weight="700" text-anchor="middle" fill="#A7F3E6">8</text>
+<text x="454.8" y="314.6" font-size="11.5" font-weight="700" text-anchor="middle" fill="#BFDBFE">7</text>
+<text x="454.8" y="392.3" font-size="11.5" font-weight="700" text-anchor="middle" fill="#BFDBFE">6</text>
+<text x="454.8" y="470.1" font-size="11.5" font-weight="700" text-anchor="middle" fill="#F5D0FE">5</text>
+<text x="324.4" y="341.3" font-size="20" font-weight="700" text-anchor="middle" fill="#E8EDF3">SN65HVD230</text>
+<text x="324.4" y="363.3" font-size="13" text-anchor="middle" fill="#9AA6B5">SOIC-8</text>
+<text x="497.8" y="353.8" font-size="12.5" font-weight="600" fill="#D2DAE4">4.9 mm</text>
+<text x="324.4" y="561.3" font-size="12.5" font-weight="600" text-anchor="middle" fill="#D2DAE4">3.9 mm</text>
+<text x="137" y="276" font-size="12.5" font-weight="600" text-anchor="end" fill="#D2DAE4">pitch 1.27 mm</text>
+<text x="483.8" y="655.4" font-size="12.5" font-weight="600" fill="#D2DAE4">1.75 mm</text>
+<text x="191" y="655.4" font-size="12.5" text-anchor="end" fill="#9AA6B5">Side view</text>
+<text x="612.5" y="221.3" font-size="22" font-weight="700" fill="#E8EDF3">4.9 x 3.9 x 1.75 mm</text>
+<text x="612.5" y="249.3" font-size="13.5" fill="#9AA6B5">SOIC-8, 8 pins</text>
+<text x="612.5" y="271.3" font-size="13.5" fill="#9AA6B5">Leads reach out of the body</text>
+<text x="612.5" y="293.3" font-size="13.5" fill="#9AA6B5">Pitch 1.27 mm</text>
+<rect x="32" y="725.8" width="14" height="14" rx="4" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<text x="54" y="737.4" font-size="12.5" fill="#9AA6B5">power</text>
+<rect x="117.6" y="725.8" width="14" height="14" rx="4" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<text x="139.6" y="737.4" font-size="12.5" fill="#9AA6B5">ground</text>
+<rect x="208.5" y="725.8" width="14" height="14" rx="4" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<text x="230.5" y="737.4" font-size="12.5" fill="#9AA6B5">bus</text>
+<rect x="277.4" y="725.8" width="14" height="14" rx="4" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<text x="299.4" y="737.4" font-size="12.5" fill="#9AA6B5">digital in</text>
+<rect x="375.8" y="725.8" width="14" height="14" rx="4" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<text x="397.8" y="737.4" font-size="12.5" fill="#9AA6B5">digital out</text>
+<rect x="483.3" y="725.8" width="14" height="14" rx="4" fill="#2E1533" stroke="#F0ABFC" stroke-width="1.4"/>
+<text x="505.3" y="737.4" font-size="12.5" fill="#9AA6B5">analog</text>
+</svg>

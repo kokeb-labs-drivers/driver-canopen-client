@@ -1,0 +1,336 @@
+---
+# The documents this driver was written against (handbook ADR-0019), and where the driver relies on them.
+# Never commit a copy: `sha256` identifies the exact file that was used, so a reader can confirm they hold the same
+# revision.
+#
+# WHAT THE DRIVER FOLLOWS: CANopen's own specifications, CiA 301 (the application layer and communication profile)
+# and CiA 402 (the drive profile), are published by CAN in Automation behind a registration or a purchase. They were
+# NOT obtained, and no copy was downloaded or requested. The driver's behaviour is taken from the public sources
+# below: an encyclopaedia article and a vendor tutorial for the protocol overview, the open-source CANopenNode (C,
+# Apache-2.0) and python-canopen (MIT) projects for the byte layouts, the order of operations and the CiA 402 masks,
+# and one transceiver datasheet for the physical layer. Where a public source and the specification could differ,
+# this driver is conservative (see docs/contract.md, "What is not verified"). What was compared: the SDO abort codes
+# against the list in CO_SDOserver.h, the statusword masks and controlwords against the table in p402.py. The
+# source files are read, never copied into this repository.
+#
+# Each file was downloaded once into a scratch folder outside the repository and kept as downloaded; its SHA-256 is
+# below. The two web pages were saved as HTML. `pdf` is set only for the transceiver datasheet, which the vendor
+# publishes at a stable link; the printed page numbers equal the PDF page numbers (`page_offset: 0`). The source
+# files have no pages: `page: 1` stands for "the file". `date` is the revision month the file names, otherwise the
+# month it was downloaded. One more file, python-canopen `pdo/map.py`, returned "404: Not Found" and is not listed.
+#
+# The README card, docs/datasheet.md and the "Datasheet" box on each page are generated from this file by
+# tools/docs/generators/datasheet.py (`kokeb-docs gen`).
+documents:
+  - id: ti
+    vendor: Texas Instruments
+    title: "SN65HVD23x 3.3-V CAN Bus Transceivers"
+    kind: Datasheet
+    number: "SN65HVD230, SN65HVD231, SN65HVD232 (SLOS346)"
+    revision: "O"
+    date: "2018-04"
+    url: https://www.ti.com/product/SN65HVD230
+    pdf: https://www.ti.com/lit/ds/symlink/sn65hvd230.pdf
+    page_offset: 0
+    sha256: "e98fc0c59168c035d7958111924dae7e21e46ab45bdfd6400aef048299d6d716"
+  - id: wiki
+    vendor: Wikipedia contributors
+    title: "CANopen"
+    kind: Reference
+    number: "Wikipedia article (oldid 1373604442)"
+    revision: "last edited September 2026"
+    date: "2026-09"
+    url: https://en.wikipedia.org/wiki/CANopen
+    pdf: null
+    page_offset: 0
+    sha256: "83686c7763189d65235685d3fc3a1f683b9dd20409233b7b519aa47f89910631"
+  - id: css
+    vendor: CSS Electronics
+    title: "CANopen Explained - A Simple Intro"
+    kind: Reference
+    number: "canopen-tutorial-simple-intro"
+    revision: "2026 edition"
+    date: "2026"
+    url: https://www.csselectronics.com/pages/canopen-tutorial-simple-intro
+    pdf: null
+    page_offset: 0
+    sha256: "1b23efffd099308d401a189bf561f60a4258c4c8bd5f0bb8bdc6799febbabf48"
+  - id: cn-sdo
+    vendor: CANopenNode project
+    title: "CANopenNode 301/CO_SDOserver.h"
+    kind: Source
+    number: "CO_SDOserver.h"
+    revision: "master as downloaded"
+    date: "2026-11"
+    url: https://github.com/CANopenNode/CANopenNode/blob/master/301/CO_SDOserver.h
+    pdf: null
+    page_offset: 0
+    sha256: "1679a82fb5b41114c2c9353b445cf4e408a2aa48082ad65f41da208c3bf5b2c3"
+  - id: cn-emcy
+    vendor: CANopenNode project
+    title: "CANopenNode 301/CO_Emergency.h"
+    kind: Source
+    number: "CO_Emergency.h"
+    revision: "master as downloaded"
+    date: "2026-11"
+    url: https://github.com/CANopenNode/CANopenNode/blob/master/301/CO_Emergency.h
+    pdf: null
+    page_offset: 0
+    sha256: "ebfb8fb2d635f869bd89b25856adc82945a875754683c2b85d3b778acc437791"
+  - id: cn-hb
+    vendor: CANopenNode project
+    title: "CANopenNode 301/CO_HBconsumer.c"
+    kind: Source
+    number: "CO_HBconsumer.c"
+    revision: "master as downloaded"
+    date: "2026-11"
+    url: https://github.com/CANopenNode/CANopenNode/blob/master/301/CO_HBconsumer.c
+    pdf: null
+    page_offset: 0
+    sha256: "8507404f1fcf5e66680699cb3f698ea805d337a6f5c01e7688a780ac54ca0a8e"
+  - id: cn-sync
+    vendor: CANopenNode project
+    title: "CANopenNode 301/CO_SYNC.h"
+    kind: Source
+    number: "CO_SYNC.h"
+    revision: "master as downloaded"
+    date: "2026-11"
+    url: https://github.com/CANopenNode/CANopenNode/blob/master/301/CO_SYNC.h
+    pdf: null
+    page_offset: 0
+    sha256: "3e9ae95c5b548a645f691829913e2bd118bf8d1857a6e2b8fbb9288eccc954a6"
+  - id: cn-store
+    vendor: CANopenNode project
+    title: "CANopenNode storage/CO_storage.c"
+    kind: Source
+    number: "CO_storage.c"
+    revision: "master as downloaded"
+    date: "2026-11"
+    url: https://github.com/CANopenNode/CANopenNode/blob/master/storage/CO_storage.c
+    pdf: null
+    page_offset: 0
+    sha256: "bae1ea996ec3eb29b7105be012135f1d10c41b902224f71b06ad80408489c3eb"
+  - id: py-sdoc
+    vendor: christiansandberg
+    title: "canopen/sdo/client.py"
+    kind: Source
+    number: "python-canopen sdo/client.py"
+    revision: "master as downloaded"
+    date: "2026-11"
+    url: https://github.com/christiansandberg/canopen/blob/master/canopen/sdo/client.py
+    pdf: null
+    page_offset: 0
+    sha256: "ce45ea768a5cfa04e28824322fb18aeee7a19b022b1a2f5d0b99d65e5b8e6abb"
+  - id: py-sdok
+    vendor: christiansandberg
+    title: "canopen/sdo/constants.py"
+    kind: Source
+    number: "python-canopen sdo/constants.py"
+    revision: "master as downloaded"
+    date: "2026-11"
+    url: https://github.com/christiansandberg/canopen/blob/master/canopen/sdo/constants.py
+    pdf: null
+    page_offset: 0
+    sha256: "480522e2c5207ae82194f462ce9f5a3bb0f13f3c9e919b5cfabac9f1e92a8a25"
+  - id: py-sdob
+    vendor: christiansandberg
+    title: "canopen/sdo/base.py"
+    kind: Source
+    number: "python-canopen sdo/base.py"
+    revision: "master as downloaded"
+    date: "2026-11"
+    url: https://github.com/christiansandberg/canopen/blob/master/canopen/sdo/base.py
+    pdf: null
+    page_offset: 0
+    sha256: "a11fd2f7bc5258fcc703d18aafbfe31cdfe2bcb440471cb81f21ce0cb322c675"
+  - id: py-nmt
+    vendor: christiansandberg
+    title: "canopen/nmt.py"
+    kind: Source
+    number: "python-canopen nmt.py"
+    revision: "master as downloaded"
+    date: "2026-11"
+    url: https://github.com/christiansandberg/canopen/blob/master/canopen/nmt.py
+    pdf: null
+    page_offset: 0
+    sha256: "6dffe9247952c1693d187d97639eff40e30380583577e60d68f53852584fb08a"
+  - id: py-emcy
+    vendor: christiansandberg
+    title: "canopen/emcy.py"
+    kind: Source
+    number: "python-canopen emcy.py"
+    revision: "master as downloaded"
+    date: "2026-11"
+    url: https://github.com/christiansandberg/canopen/blob/master/canopen/emcy.py
+    pdf: null
+    page_offset: 0
+    sha256: "2990c42ac72f4b658a636d217cbf5b54527c53da337e90370adb130d32df511d"
+  - id: py-net
+    vendor: christiansandberg
+    title: "canopen/network.py"
+    kind: Source
+    number: "python-canopen network.py"
+    revision: "master as downloaded"
+    date: "2026-11"
+    url: https://github.com/christiansandberg/canopen/blob/master/canopen/network.py
+    pdf: null
+    page_offset: 0
+    sha256: "ea80e7b5c140c036fbccba90c3dbd0bc15f22ac43c26b00d1929afcd435a9e3f"
+  - id: py-pdo
+    vendor: christiansandberg
+    title: "canopen/pdo/base.py"
+    kind: Source
+    number: "python-canopen pdo/base.py"
+    revision: "master as downloaded"
+    date: "2026-11"
+    url: https://github.com/christiansandberg/canopen/blob/master/canopen/pdo/base.py
+    pdf: null
+    page_offset: 0
+    sha256: "9d42f59de85b0437c7b2b0c98b515ca3862978dbdd154126c206a06ac806ef43"
+  - id: py-402
+    vendor: christiansandberg
+    title: "canopen/profiles/p402.py"
+    kind: Source
+    number: "python-canopen profiles/p402.py"
+    revision: "master as downloaded"
+    date: "2026-11"
+    url: https://github.com/christiansandberg/canopen/blob/master/canopen/profiles/p402.py
+    pdf: null
+    page_offset: 0
+    sha256: "ad2dcb773364636fb2ad085620a8b2b8f2df950a5e3fe05f3db129c4b66786eb"
+
+# One row per thing the driver takes from a document: the section (or the file, for a source), the page, the driver API
+# that implements it, and the docs pages that explain it (file names in docs/).
+topics:
+  - topic: Pre-defined connection set (COB-IDs)
+    doc: wiki
+    section: "Pre-defined connection set"
+    page: 1
+    driver: "`kCobId*`, `SdoRequestId()`, `HeartbeatId()`, `EmcyId()`"
+    docs: [hardware, architecture, contract]
+  - topic: Object dictionary and communication objects
+    doc: css
+    section: "Object dictionary"
+    page: 1
+    driver: "`ReadDeviceType()`, `ReadErrorRegister()`, `SdoReadU32()`"
+    docs: [api-guide, contract]
+  - topic: NMT commands and states
+    doc: py-nmt
+    section: "NMT commands and state codes"
+    page: 1
+    driver: "`SendNmt()`, `NmtCommand`, `NmtState`"
+    docs: [api-guide, contract, quickstart]
+  - topic: NMT master frame (identifier 0, command then node)
+    doc: wiki
+    section: "Network management (NMT)"
+    page: 1
+    driver: "`MakeNmtFrame()`, `SendNmt()`"
+    docs: [api-guide, contract]
+  - topic: SDO expedited and segmented transfer
+    doc: py-sdoc
+    section: "SdoClient: initiate, upload, download, segments"
+    page: 1
+    driver: "`SdoUpload()`, `SdoDownload()`, `MakeSdo*()`"
+    docs: [api-guide, contract, architecture]
+  - topic: SDO command specifiers and abort codes
+    doc: py-sdok
+    section: "SDO constants"
+    page: 1
+    driver: "`SdoAbortCode`, `AbortCodeName()`, `ParseSdoReply()`"
+    docs: [api-guide, contract, troubleshooting]
+  - topic: "SDO server behaviour: toggle bit, size, abort"
+    doc: cn-sdo
+    section: "CO_SDOserver.h: transfer sequence and abort codes"
+    page: 1
+    driver: "`GetLastAbort()`, toggle checks, `BufferTooSmall`"
+    docs: [contract, troubleshooting, testing, configuration]
+  - topic: SDO object access and data types
+    doc: py-sdob
+    section: "SdoBase: variable access"
+    page: 1
+    driver: "`SdoReadU8()` to `SdoWriteU32()`"
+    docs: [api-guide]
+  - topic: Heartbeat consumer
+    doc: cn-hb
+    section: "CO_HBconsumer.c"
+    page: 1
+    driver: "`MonitorNode()`, `GetNodeStatus()`, `Poll()`"
+    docs: [api-guide, contract, troubleshooting]
+  - topic: Node guarding toggle bit
+    doc: py-nmt
+    section: "NMT guarding reply"
+    page: 1
+    driver: "`GuardNode()`"
+    docs: [api-guide, contract, troubleshooting]
+  - topic: Emergency message layout
+    doc: cn-emcy
+    section: "CO_Emergency.h: EMCY frame"
+    page: 1
+    driver: "`ParseEmcy()`, `PopEmcy()`, `EmcyEvent`"
+    docs: [api-guide, contract]
+  - topic: Emergency message consumer
+    doc: py-emcy
+    section: "EmcyConsumer"
+    page: 1
+    driver: "`PopEmcy()`"
+    docs: [api-guide]
+  - topic: SYNC producer and counter
+    doc: cn-sync
+    section: "CO_SYNC.h: SYNC frame and counter"
+    page: 1
+    driver: "`SendSync()`, `ConfigureSync()`, `ServiceSync()`"
+    docs: [api-guide, contract]
+  - topic: Network-level services
+    doc: py-net
+    section: "Network: send, subscribe"
+    page: 1
+    driver: "`Client::Poll()`"
+    docs: [architecture]
+  - topic: PDO communication and mapping parameters
+    doc: py-pdo
+    section: "PDO map and communication records"
+    page: 1
+    driver: "`ConfigurePdo()`, `ReadPdoConfig()`, `EncodePdoMapEntry()`"
+    docs: [api-guide, contract]
+  - topic: Store and restore parameters
+    doc: cn-store
+    section: "CO_storage.c: signatures and sub-indices"
+    page: 1
+    driver: "`StoreParameters()`, `RestoreDefaults()`"
+    docs: [api-guide, contract]
+  - topic: CiA 402 state machine and controlword
+    doc: py-402
+    section: "BaseNode402: states, masks, transitions"
+    page: 1
+    driver: "`DecodeStatusword()`, `DriveEnable()`, `DriveDisable()`, `DriveResetFault()`"
+    docs: [api-guide, contract, troubleshooting]
+  - topic: CiA 402 modes of operation
+    doc: py-402
+    section: "Operation modes"
+    page: 1
+    driver: "`OperationMode`, `SetDriveMode()`"
+    docs: [api-guide]
+  - topic: "CAN node: transceiver and controller wiring"
+    doc: ti
+    section: "11.2 Typical Application"
+    page: 26
+    driver: "`CanInterface`, `Send()`, `Receive()`"
+    docs: [hardware, quickstart, porting]
+  - topic: Pin configuration
+    doc: ti
+    section: "7 Pin Configuration and Functions"
+    page: 5
+    driver: "`CanInterface`"
+    docs: [hardware]
+  - topic: Supply voltage and mode select (RS)
+    doc: ti
+    section: "8.3 Recommended Operating Conditions; 5 Description (continued)"
+    page: 6
+    driver: "`CanInterface::EnsureInitialized()`"
+    docs: [hardware, porting]
+  - topic: Bus termination
+    doc: ti
+    section: "11.2.1.1 CAN Termination"
+    page: 26
+    driver: "`CanInterface::Receive()`, `RxStatus::Error`"
+    docs: [hardware, troubleshooting]

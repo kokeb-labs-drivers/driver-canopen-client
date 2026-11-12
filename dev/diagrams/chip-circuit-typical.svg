@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1272" height="588" viewBox="0 0 1272 588" role="img" aria-labelledby="chip-circuit-typical-title chip-circuit-typical-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-circuit-typical-title">SN65HVD230: A CAN node</title>
+<desc id="chip-circuit-typical-desc">Schematic of the SN65HVD230 a can node: the chip with U2 MCU with CAN controller, C1 capacitor 100 nF, R1 resistor 120 Ω, J1 CAN bus; the MCU wires carry the port hooks Receive(CanFrame&amp;, timeout_us), Send(const CanFrame&amp;).</desc>
+<rect x="0.5" y="0.5" width="1271" height="587" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#7A360E">HARDWARE</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#0E1726">SN65HVD230: A CAN node</text>
+<text x="32" y="103.8" font-size="15" fill="#566070">The transceiver between the MCU's CAN controller (TX and RX) and the bus, RS tied to ground for high speed, the bus terminated with 120 Ω at its ends (the</text>
+<text x="32" y="125.5" font-size="15" fill="#566070">resistor is fitted only on the two end nodes). Above each MCU wire: the port hook that drives it. Datasheet: 11.2 Typical Application, p. 26.</text>
+<rect x="32" y="141.6" width="1208" height="1" fill="#E2E7EE"/>
+<path d="M728 207.6 L728 295.6" fill="none" stroke="#2B3442" stroke-width="1.5"/>
+<path d="M728 231.6 L776 231.6" fill="none" stroke="#2B3442" stroke-width="1.5"/>
+<path d="M904 415.6 L992 415.6" fill="none" stroke="#2B3442" stroke-width="1.5"/>
+<path d="M992 391.6 L1000 391.6" fill="none" stroke="#2B3442" stroke-width="1.5"/>
+<path d="M992 391.6 L992 415.6" fill="none" stroke="#2B3442" stroke-width="1.5"/>
+<path d="M1000 367.6 L1048 367.6" fill="none" stroke="#2B3442" stroke-width="1.5"/>
+<path d="M1000 367.6 L1000 391.6" fill="none" stroke="#2B3442" stroke-width="1.5"/>
+<path d="M904 391.6 L944 391.6" fill="none" stroke="#2B3442" stroke-width="1.5"/>
+<path d="M944 391.6 L944 407.6" fill="none" stroke="#2B3442" stroke-width="1.5"/>
+<path d="M944 407.6 L1048 407.6" fill="none" stroke="#2B3442" stroke-width="1.5"/>
+<path d="M1048 391.6 L1048 407.6" fill="none" stroke="#2B3442" stroke-width="1.5"/>
+<path d="M1032 415.6 L1048 415.6" fill="none" stroke="#2B3442" stroke-width="1.5"/>
+<path d="M1032 415.6 L1032 423.6" fill="none" stroke="#2B3442" stroke-width="1.5"/>
+<path d="M904 439.6 L928 439.6" fill="none" stroke="#2B3442" stroke-width="1.5"/>
+<path d="M928 439.6 L928 455.6" fill="none" stroke="#2B3442" stroke-width="1.5"/>
+<path d="M352 407.6 L640 407.6" fill="none" stroke="#2B3442" stroke-width="1.5"/>
+<path d="M352 383.6 L640 383.6" fill="none" stroke="#2B3442" stroke-width="1.5"/>
+<rect x="664" y="319.6" width="216" height="168" rx="4" fill="#FFFFFF" stroke="#9A4A17" stroke-width="1.8"/>
+<path d="M664 383.6 L640 383.6" fill="none" stroke="#0B7A72" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M664 407.6 L640 407.6" fill="none" stroke="#15803D" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M880 351.6 L904 351.6" fill="none" stroke="#A21CAF" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M880 391.6 L904 391.6" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M880 415.6 L904 415.6" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M880 439.6 L904 439.6" fill="none" stroke="#0B7A72" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M728 319.6 L728 295.6" fill="none" stroke="#DB2752" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M776 487.6 L776 511.6" fill="none" stroke="#64748B" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="32" y="335.6" width="296" height="104" rx="4" fill="#F5F7FA" stroke="#2B3442" stroke-width="1.8"/>
+<path d="M328 383.6 L352 383.6" fill="none" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M328 407.6 L352 407.6" fill="none" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M304 335.6 L304 311.6" fill="none" stroke="#DB2752" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M304 439.6 L304 463.6" fill="none" stroke="#64748B" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M728 207.6 L728 196.6" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M719 196.6 L737 196.6" fill="none" stroke="#DB2752" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M776 231.6 L776 252.1" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M776 259.1 L776 279.6" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M766 252.1 L786 252.1" fill="none" stroke="#0E1726" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M766 259.1 L786 259.1" fill="none" stroke="#0E1726" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M776 279.6 L776 287.6" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M768 287.6 L784 287.6" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M771 291.1 L781 291.1" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M774 294.6 L778 294.6" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M776 511.6 L776 519.5" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M768 519.5 L784 519.5" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M771 523 L781 523" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M774 526.5 L778 526.5" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M304 311.6 L304 300.6" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M295 300.6 L313 300.6" fill="none" stroke="#DB2752" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M304 463.6 L304 471.6" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M296 471.6 L312 471.6" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M299 475.1 L309 475.1" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M302 478.6 L306 478.6" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M992 391.6 L979 391.6" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M957 391.6 L944 391.6" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M979 396.6 L957 396.6 L957 386.6 L979 386.6 Z" fill="#FFFFFF" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M928 455.6 L928 463.6" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M920 463.6 L936 463.6" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M923 467.1 L933 467.1" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M926 470.6 L930 470.6" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1072" y="319.6" width="152" height="120" rx="4" fill="#F5F7FA" stroke="#2B3442" stroke-width="1.8"/>
+<path d="M1072 367.6 L1048 367.6" fill="none" stroke="#64748B" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1072 391.6 L1048 391.6" fill="none" stroke="#64748B" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1072 415.6 L1048 415.6" fill="none" stroke="#64748B" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1032 423.6 L1032 431.6" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1024 431.6 L1040 431.6" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1027 435.1 L1037 435.1" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1030 438.6 L1034 438.6" fill="none" stroke="#0E1726" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M900 355.6 L908 347.6" fill="none" stroke="#566070" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M900 347.6 L908 355.6" fill="none" stroke="#566070" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="670" y="388.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">D</text>
+<text x="660" y="379.6" font-size="11" text-anchor="end" fill="#566070">1</text>
+<text x="670" y="412.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">R</text>
+<text x="660" y="403.6" font-size="11" text-anchor="end" fill="#566070">4</text>
+<text x="874" y="356.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">Vref</text>
+<text x="884" y="347.6" font-size="11" fill="#566070">5</text>
+<text x="874" y="396.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">CANL</text>
+<text x="884" y="387.6" font-size="11" fill="#566070">6</text>
+<text x="874" y="420.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">CANH</text>
+<text x="884" y="411.6" font-size="11" fill="#566070">7</text>
+<text x="874" y="444.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">RS</text>
+<text x="884" y="435.6" font-size="11" fill="#566070">8</text>
+<text x="728" y="335.6" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#0E1726">VCC</text>
+<text x="732" y="313.6" font-size="11" fill="#566070">3</text>
+<text x="776" y="480.6" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#0E1726">GND</text>
+<text x="780" y="502.4" font-size="11" fill="#566070">2</text>
+<text x="772" y="400.6" font-size="15" font-weight="700" text-anchor="middle" fill="#7A360E">SN65HVD230</text>
+<text x="772" y="418.6" font-size="12" text-anchor="middle" fill="#566070">U1</text>
+<text x="322" y="388.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">CAN TX</text>
+<text x="322" y="412.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">CAN RX</text>
+<text x="304" y="351.6" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#0E1726">VDD</text>
+<text x="304" y="432.6" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#0E1726">GND</text>
+<text x="44" y="357.6" font-size="15" font-weight="700" fill="#0E1726">MCU with CAN controller</text>
+<text x="44" y="375.6" font-size="12" fill="#566070">U2</text>
+<text x="728" y="190.6" font-size="12" font-weight="700" text-anchor="middle" fill="#9F1239">+3V3</text>
+<text x="791" y="252.6" font-size="12" font-weight="700" fill="#0E1726">C1</text>
+<text x="791" y="267" font-size="12" fill="#566070">100 nF</text>
+<text x="304" y="294.6" font-size="12" font-weight="700" text-anchor="middle" fill="#9F1239">+3V3</text>
+<text x="360" y="377.6" font-size="12" font-weight="500" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#5B21B6">Send(const CanFrame&amp;)</text>
+<text x="360" y="401.6" font-size="12" font-weight="500" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#5B21B6">Receive(CanFrame&amp;, timeout_us)</text>
+<text x="968" y="381.6" font-size="12" font-weight="600" text-anchor="middle" fill="#2B3442">R1  120 Ω</text>
+<text x="1078" y="372.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">CANH</text>
+<text x="1078" y="396.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">CANL</text>
+<text x="1078" y="420.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">GND</text>
+<text x="1084" y="341.6" font-size="15" font-weight="700" fill="#0E1726">CAN bus</text>
+<text x="1084" y="359.6" font-size="12" fill="#566070">J1</text>
+<circle cx="728" cy="231.6" r="3.2" fill="#2B3442"/>
+<circle cx="992" cy="391.6" r="3.2" fill="#2B3442"/>
+<circle cx="944" cy="391.6" r="3.2" fill="#2B3442"/>
+<rect x="32" y="541.9" width="14" height="14" rx="4" fill="#F3EEFF" stroke="#7C3AED" stroke-width="1.4"/>
+<text x="54" y="553.5" font-size="12.5" fill="#566070">other hook</text>
+</svg>

@@ -1,0 +1,99 @@
+---
+# The reference CAN node hardware in one file: the transceiver package, its pins, the driver hook each pin serves,
+# the blocks inside and the reference circuit. `kokeb-docs figures` draws the pinout, the package outline, the block
+# diagram and the circuit from it, `kokeb-docs gen` writes the chip card of the README and the tables of
+# docs/hardware.md, `kokeb-docs hardware --check` validates it and
+# `kokeb-docs hardware --kicad-netlist OUT --circuit ID` exports the circuit for a schematic or PCB tool.
+#
+# This driver is not a chip driver: it speaks CANopen over a classic CAN frame port the application supplies, so the
+# hardware it needs is a CAN controller and a transceiver. The 3.3 V transceiver whose datasheet was obtained, the
+# Texas Instruments SN65HVD230 (document `ti` in docs/datasheets.yml), stands for that part here. Any ISO 11898-2
+# transceiver with the same four signals (TXD, RXD, CANH, CANL) serves; the controller and the transceiver's own
+# pins are the application's, the driver reaches them only through the port's Send() and Receive().
+schema: 1
+chip: SN65HVD230
+
+refs:
+  pinout: {doc: ti, section: "7 Pin Configuration and Functions", page: 5}
+  supply: {doc: ti, section: "8.3 Recommended Operating Conditions", page: 6}
+  mode: {doc: ti, section: "10.4 Device Functional Modes", page: 20}
+  vref: {doc: ti, section: "10.3.1 Vref Voltage Reference", page: 20}
+  blocks: {doc: ti, section: "10.2 Functional Block Diagram", page: 19}
+  app: {doc: ti, section: "11.2 Typical Application", page: 26}
+  term: {doc: ti, section: "11.2.1.1 CAN Termination", page: 26}
+  outline: {doc: ti, section: "Package outline D0008A", page: 40}
+  order: {doc: ti, section: "Device Information, orderable addendum", page: 1}
+
+package:
+  type: SOIC-8
+  pins: 8
+  ref: pinout
+  outline: {length_mm: 4.9, width_mm: 3.9, height_mm: 1.75, pitch_mm: 1.27, ref: outline}
+
+supply:
+  - {name: VCC, min_v: 3.0, max_v: 3.6, ref: supply}
+
+hooks:
+  - {id: send, call: "Send(const CanFrame&)", kind: other}
+  - {id: receive, call: "Receive(CanFrame&, timeout_us)", kind: other}
+
+pins:
+  - {number: 1, name: D, type: digital-in, domain: VCC,
+     function: "CAN transmit data (TXD): low is dominant, high is recessive", hook: send, ref: pinout}
+  - {number: 2, name: GND, type: ground, domain: GND, function: Ground, ref: pinout}
+  - {number: 3, name: VCC, type: power, domain: VCC, function: "Transceiver 3.3 V supply", ref: supply}
+  - {number: 4, name: R, type: digital-out, domain: VCC,
+     function: "CAN receive data (RXD): low is dominant, high is recessive", hook: receive, ref: pinout}
+  - {number: 5, name: Vref, type: analog, domain: VCC, function: "VCC / 2 reference output",
+     unused: Leave open, ref: vref}
+  - {number: 6, name: CANL, type: bus, domain: VCC, function: "Low-level CAN bus line", ref: pinout}
+  - {number: 7, name: CANH, type: bus, domain: VCC, function: "High-level CAN bus line", ref: pinout}
+  - {number: 8, name: RS, type: digital-in, domain: VCC,
+     function: "Mode select: pull-down to GND is high speed, pull-up to VCC is low power, 10 kΩ to 100 kΩ is slope control",
+     unused: "Tie to GND for high speed", ref: mode}
+
+block_diagram:
+  ref: blocks
+  blocks:
+    - {id: drv, label: Driver, detail: "D to CANH and CANL, thermal shutdown", at: [0, 0], tone: blue, pins: [D]}
+    - {id: bus, label: CAN bus pair, detail: "CANH, CANL", at: [1, 0], tone: amber, pins: [CANH, CANL]}
+    - {id: rcv, label: Receiver, detail: "CANH and CANL to R", at: [2, 0], tone: teal, pins: [R]}
+    - {id: mode, label: Mode select, detail: "high speed, slope control, standby", at: [0, 1], tone: slate, pins: [RS]}
+    - {id: ref, label: Vref, detail: "VCC / 2", at: [2, 1], pins: [Vref, VCC, GND]}
+  links:
+    - {from: drv, to: bus}
+    - {from: bus, to: rcv}
+    - {from: mode, to: drv}
+
+circuits:
+  - id: typical
+    title: A CAN node
+    description: >-
+      The transceiver between the MCU's CAN controller (TX and RX) and the bus, RS tied to ground for high speed,
+      the bus terminated with 120 Ω at its ends (the resistor is fitted only on the two end nodes).
+    ref: app
+    parts:
+      - {id: U1, kind: chip}
+      - id: U2
+        kind: mcu
+        label: MCU with CAN controller
+        pins:
+          - {name: TX, label: CAN TX}
+          - {name: RX, label: CAN RX}
+          - VDD
+          - GND
+      - {id: C1, kind: capacitor, value: 100 nF, ref: supply}
+      - {id: R1, kind: resistor, value: 120 Ω, ref: term}
+      - id: J1
+        kind: connector
+        label: CAN bus
+        pins: [CANH, CANL, GND]
+    nets:
+      - {name: "+3V3", kind: supply, nodes: [U1.VCC, C1.1, U2.VDD]}
+      - {name: GND, kind: ground, nodes: [U1.GND, U1.RS, C1.2, U2.GND, J1.GND]}
+      - {name: TXD, nodes: [U1.D, U2.TX]}
+      - {name: RXD, nodes: [U1.R, U2.RX]}
+      - {name: CANH, nodes: [U1.CANH, R1.1, J1.CANH]}
+      - {name: CANL, nodes: [U1.CANL, R1.2, J1.CANL]}
+    unused:
+      - U1.Vref
