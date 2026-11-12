@@ -1107,7 +1107,7 @@
 <!-- /generated -->
 
 <p>The driver calls hooks on a class you derive from <code>canopen_client::CanInterface&lt;Self&gt;</code> (in
-<a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/bf0c3b3cd52b421dcb3f326a311aabc60b3934a8/inc/canopen_client_can_interface.hpp"><code>inc/canopen_client_can_interface.hpp</code></a>). The base declares no hook; the
+<a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/88c344eda4ee37162cd78edb36444fb44c727656/inc/canopen_client_can_interface.hpp"><code>inc/canopen_client_can_interface.hpp</code></a>). The base declares no hook; the
 driver template is constrained by the <code>canopen_client::CanPort</code> concept (and <code>CanRxPort</code> for the calls that need a
 reply), so a missing or misdeclared hook is a compile error.</p>
 <h2 id="what-you-implement">What you implement<a class="headerlink" href="#what-you-implement" title="Permanent link">&para;</a></h2>
@@ -1229,7 +1229,7 @@ only ever sees a classic frame. Report a bus-off or stopped controller as <code>
 </span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="p">}</span>
 </span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">};</span>
 </span></code></pre></div>
-<p>The ESP32 example uses <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/bf0c3b3cd52b421dcb3f326a311aabc60b3934a8/examples/esp32/main/esp32_canopen_client_port.hpp"><code>esp32_canopen_client_port.hpp</code></a> (the
+<p>The ESP32 example uses <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/88c344eda4ee37162cd78edb36444fb44c727656/examples/esp32/main/esp32_canopen_client_port.hpp"><code>esp32_canopen_client_port.hpp</code></a> (the
 TWAI driver at 500 kbit/s).</p>
 <h2 id="bit-rate-and-filters">Bit rate and filters<a class="headerlink" href="#bit-rate-and-filters" title="Permanent link">&para;</a></h2>
 <p>The driver does not set the bit rate: <code>EnsureInitialized()</code> of the port does. Accept all 11-bit identifiers in the

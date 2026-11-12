@@ -1119,55 +1119,55 @@ gates, on every pull request.</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/bf0c3b3cd52b421dcb3f326a311aabc60b3934a8/tests/test_protocol.cpp"><code>tests/test_protocol.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/88c344eda4ee37162cd78edb36444fb44c727656/tests/test_protocol.cpp"><code>tests/test_protocol.cpp</code></a></td>
 <td>The frame codecs: NMT, SDO, heartbeat, EMCY, SYNC, PDO, statusword, and their rejects</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/bf0c3b3cd52b421dcb3f326a311aabc60b3934a8/tests/test_sdo.cpp"><code>tests/test_sdo.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/88c344eda4ee37162cd78edb36444fb44c727656/tests/test_sdo.cpp"><code>tests/test_sdo.cpp</code></a></td>
 <td>Expedited and segmented transfers, abort codes, replies that lie, timeouts</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/bf0c3b3cd52b421dcb3f326a311aabc60b3934a8/tests/test_rx.cpp"><code>tests/test_rx.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/88c344eda4ee37162cd78edb36444fb44c727656/tests/test_rx.cpp"><code>tests/test_rx.cpp</code></a></td>
 <td>NMT, heartbeat, guarding, EMCY, SYNC and TPDO on the receive path</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/bf0c3b3cd52b421dcb3f326a311aabc60b3934a8/tests/test_pdo.cpp"><code>tests/test_pdo.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/88c344eda4ee37162cd78edb36444fb44c727656/tests/test_pdo.cpp"><code>tests/test_pdo.cpp</code></a></td>
 <td>PDO configuration in the profile's order, failure leaves the PDO invalid</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/bf0c3b3cd52b421dcb3f326a311aabc60b3934a8/tests/test_drive.cpp"><code>tests/test_drive.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/88c344eda4ee37162cd78edb36444fb44c727656/tests/test_drive.cpp"><code>tests/test_drive.cpp</code></a></td>
 <td>The CiA 402 state machine, safety retries, remapped objects</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/bf0c3b3cd52b421dcb3f326a311aabc60b3934a8/tests/test_lifecycle.cpp"><code>tests/test_lifecycle.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/88c344eda4ee37162cd78edb36444fb44c727656/tests/test_lifecycle.cpp"><code>tests/test_lifecycle.cpp</code></a></td>
 <td><code>NotInitialized</code>, <code>InvalidArgument</code> sends nothing, the send-only port, every <code>Error</code> returned</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/bf0c3b3cd52b421dcb3f326a311aabc60b3934a8/tests/test_faults.cpp"><code>tests/test_faults.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/88c344eda4ee37162cd78edb36444fb44c727656/tests/test_faults.cpp"><code>tests/test_faults.cpp</code></a></td>
 <td>A send or receive failure injected at every step of every call</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/bf0c3b3cd52b421dcb3f326a311aabc60b3934a8/tests/test_boundaries.cpp"><code>tests/test_boundaries.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/88c344eda4ee37162cd78edb36444fb44c727656/tests/test_boundaries.cpp"><code>tests/test_boundaries.cpp</code></a></td>
 <td>Both sides of every numeric limit</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/bf0c3b3cd52b421dcb3f326a311aabc60b3934a8/tests/test_hardening.cpp"><code>tests/test_hardening.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/88c344eda4ee37162cd78edb36444fb44c727656/tests/test_hardening.cpp"><code>tests/test_hardening.cpp</code></a></td>
 <td>The review fixes: raw access, switch-off with a failing receive side, time-bound drive waits, toggle and size checks, node range limits, PDO bounds</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/bf0c3b3cd52b421dcb3f326a311aabc60b3934a8/tests/fuzz/fuzz_canopen_client.cpp"><code>tests/fuzz/</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/88c344eda4ee37162cd78edb36444fb44c727656/tests/fuzz/fuzz_canopen_client.cpp"><code>tests/fuzz/</code></a></td>
 <td>The fuzz target; CTest replays its corpus (<code>canopen_client_fuzz_canopen_client_corpus</code>), see below</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/bf0c3b3cd52b421dcb3f326a311aabc60b3934a8/tests/mock_canopen_client.hpp"><code>tests/mock_canopen_client.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/88c344eda4ee37162cd78edb36444fb44c727656/tests/mock_canopen_client.hpp"><code>tests/mock_canopen_client.hpp</code></a></td>
 <td>The bus, the node and drive models and the mock ports, written from the protocol and not from the driver's codecs</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/bf0c3b3cd52b421dcb3f326a311aabc60b3934a8/tests/compile_fail/not_a_port.cpp"><code>tests/compile_fail/</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/88c344eda4ee37162cd78edb36444fb44c727656/tests/compile_fail/not_a_port.cpp"><code>tests/compile_fail/</code></a></td>
 <td>Ports and calls that must not compile</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/bf0c3b3cd52b421dcb3f326a311aabc60b3934a8/tests/check_install.cmake"><code>tests/check_install.cmake</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/88c344eda4ee37162cd78edb36444fb44c727656/tests/check_install.cmake"><code>tests/check_install.cmake</code></a></td>
 <td><code>find_package(canopen_client)</code> from an installed package</td>
 </tr>
 </tbody>
@@ -1175,7 +1175,7 @@ gates, on every pull request.</p>
 <p>The tests build with <code>-fno-exceptions -fno-rtti</code> and warnings as errors, on GCC and Clang.</p>
 <h2 id="fuzz-tests">Fuzz tests<a class="headerlink" href="#fuzz-tests" title="Permanent link">&para;</a></h2>
 <p>Everything the driver reads is what arrives on the bus, so the frames, their timing and the port's failures are what
-a hostile or broken node controls. <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/bf0c3b3cd52b421dcb3f326a311aabc60b3934a8/tests/fuzz/fuzz_canopen_client.cpp"><code>tests/fuzz/fuzz_canopen_client.cpp</code></a> lets
+a hostile or broken node controls. <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/88c344eda4ee37162cd78edb36444fb44c727656/tests/fuzz/fuzz_canopen_client.cpp"><code>tests/fuzz/fuzz_canopen_client.cpp</code></a> lets
 libFuzzer choose a configuration, then up to 400 driver calls, and for each frame the port sends or receives whether it
 fails, times out, is injected or is answered by the node model. After every call it checks the driver's promises and
 aborts, naming the line, when one breaks:</p>
@@ -1195,14 +1195,14 @@ aborts, naming the line, when one breaks:</p>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>./build-fuzz/tests/fuzz/fuzz_canopen_client<span class="w"> </span>-max_total_time<span class="o">=</span><span class="m">120</span><span class="w"> </span>tests/fuzz/corpus/fuzz_canopen_client
 </span></code></pre></div>
 <p>The same file also builds without libFuzzer as <code>fuzz_replay_fuzz_canopen_client</code>, and CTest replays every input in
-<a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/tree/bf0c3b3cd52b421dcb3f326a311aabc60b3934a8/tests/fuzz/corpus/fuzz_canopen_client"><code>tests/fuzz/corpus/fuzz_canopen_client/</code></a> on GCC and Clang
+<a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/tree/88c344eda4ee37162cd78edb36444fb44c727656/tests/fuzz/corpus/fuzz_canopen_client"><code>tests/fuzz/corpus/fuzz_canopen_client/</code></a> on GCC and Clang
 (<code>canopen_client_fuzz_canopen_client_corpus</code>): the seeds, and every input that ever broke a promise (name it
 <code>regress-*</code>), so a fixed bug stays fixed. CI fuzzes for 120 s on every pull request, from the seeds plus a corpus it
 keeps between runs (job <code>Host quality / fuzz</code>).</p>
 <h2 id="quality-gates">Quality gates<a class="headerlink" href="#quality-gates" title="Permanent link">&para;</a></h2>
 <p>The <code>Host quality</code> job measures the library code, <code>inc/</code> and <code>src/</code> only (tests and examples are left out), and
 fails when a value is over the limits of this repository's assurance level, <code>high</code> (set in
-<a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/bf0c3b3cd52b421dcb3f326a311aabc60b3934a8/.kokeb/handbook.yml"><code>.kokeb/handbook.yml</code></a>, defined by the handbook's ADR-0020):</p>
+<a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/88c344eda4ee37162cd78edb36444fb44c727656/.kokeb/handbook.yml"><code>.kokeb/handbook.yml</code></a>, defined by the handbook's ADR-0020):</p>
 <table>
 <thead>
 <tr>
@@ -1268,10 +1268,10 @@ fails when a value is over the limits of this repository's assurance level, <cod
 </span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build-san<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>ctest<span class="w"> </span>--test-dir<span class="w"> </span>build-san<span class="w"> </span>--output-on-failure
 </span></code></pre></div>
 <p>The fuzz gate runs locally as shown in <a href="#fuzz-tests">Fuzz tests</a>.</p>
-<p>clang-tidy 20 (<a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/bf0c3b3cd52b421dcb3f326a311aabc60b3934a8/_config/.clang-tidy"><code>_config/.clang-tidy</code></a>: bugprone, CERT, clang-analyzer,
+<p>clang-tidy 20 (<a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/88c344eda4ee37162cd78edb36444fb44c727656/_config/.clang-tidy"><code>_config/.clang-tidy</code></a>: bugprone, CERT, clang-analyzer,
 cppcoreguidelines, modernize, performance, portability and readability, each disabled check with its reason) and
 cppcheck (strict) run in the <code>C++ lint</code> and <code>Repository checks</code> jobs and fail on any finding.</p>
-<p>The <code>MISRA</code> job (<a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/bf0c3b3cd52b421dcb3f326a311aabc60b3934a8/.github/workflows/ci-misra.yml"><code>ci-misra.yml</code></a>) runs the shared <code>ru-misra</code> workflow of
+<p>The <code>MISRA</code> job (<a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/88c344eda4ee37162cd78edb36444fb44c727656/.github/workflows/ci-misra.yml"><code>ci-misra.yml</code></a>) runs the shared <code>ru-misra</code> workflow of
 ci-tools at level <code>high</code>: it traces a host build and the Cortex-M build (<code>canopen_client_optimised_build</code>) of every
 translation unit, checks them against MISRA C++:2023 and the handbook's C++20 profile (the CodeQL coding-standards
 and profile packs, plus the validated clang-tidy and cppcheck checks), and reports each finding against the
@@ -1280,7 +1280,7 @@ its deviation on the line before it (<code>// codeql::misra_deviation_next_line(
 of <code>inc/canopen_client.hpp</code>). Until the repository is public the job runs with <code>open_source_prerelease: true</code>, the
 declaration that the code is released under the licence in <code>LICENSE</code> and is to be published.</p>
 <h2 id="ci-workflows">CI workflows<a class="headerlink" href="#ci-workflows" title="Permanent link">&para;</a></h2>
-<p>Everything runs from <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/bf0c3b3cd52b421dcb3f326a311aabc60b3934a8/.github/workflows/ci.yml"><code>ci.yml</code></a>, which calls one workflow file per check and ends in
+<p>Everything runs from <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/88c344eda4ee37162cd78edb36444fb44c727656/.github/workflows/ci.yml"><code>ci.yml</code></a>, which calls one workflow file per check and ends in
 the <code>CI gate</code> job, the single required check (<code>CI gate / gate</code>).</p>
 <table>
 <thead>
