@@ -1,0 +1,28 @@
+# The ESP32 example build of ru-build.yml (native ESP-IDF install) on a workstation: the base CI image plus the
+# ESP-IDF release the workflows build with and the toolchain of the one target the examples use. Built by
+# `tools/preflight.sh --container` on first use. Native on arm64 and on x86-64: Espressif publishes both.
+#
+# CI clones the tip of release/v5.5 each run; this image pins the commit that was the tip when it was written
+# (the one the CI logs print as "ESP-IDF release/v5.5 is <sha>"). Bump IDF_COMMIT and IDF_VERSION together
+# (docs/testing.md, "Bumping the pins").
+ARG BASE=kokeb-ci:local
+FROM ${BASE}
+ARG IDF_VERSION=release/v5.5
+ARG IDF_COMMIT=56b130f5cab7cca36bf1d729b7539be02ef99986
+ARG IDF_TARGET=esp32c6
+ENV DEBIAN_FRONTEND=noninteractive IDF_PATH=/opt/esp-idf IDF_TOOLS_PATH=/opt/espressif
+# What install.sh and idf.py need beyond the base image (the ESP-IDF getting-started prerequisites).
+RUN apt-get update -q && apt-get install -y -q --no-install-recommends \
+      wget flex bison gperf libffi-dev libssl-dev dfu-util libusb-1.0-0 ccache jq \
+    && rm -rf /var/lib/apt/lists/*
+# The same sources as `git clone --depth 1 -b release/v5.5 --recursive --shallow-submodules`, checked against the pin.
+RUN set -eux; git init -q "$IDF_PATH"; \
+    git -C "$IDF_PATH" fetch -q --depth 1 https://github.com/espressif/esp-idf "$IDF_COMMIT"; \
+    git -C "$IDF_PATH" checkout -q FETCH_HEAD; \
+    git -C "$IDF_PATH" remote add origin https://github.com/espressif/esp-idf; \
+    git -C "$IDF_PATH" submodule update -q --init --recursive --depth 1 --jobs 8; \
+    test "$(git -C "$IDF_PATH" rev-parse HEAD)" = "$IDF_COMMIT"
+# The tools of the one target (Espressif's installer checks each download against the hash in tools.json). The base image
+# puts its own virtual environment first on PATH and the installer refuses to run inside one, so it runs with the system PATH.
+RUN PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin "$IDF_PATH/install.sh" "$IDF_TARGET" && rm -rf "$IDF_TOOLS_PATH/dist" && du -sh "$IDF_PATH" "$IDF_TOOLS_PATH"
+ENV KOKEB_ESP32=1 IDF_TARGET=${IDF_TARGET} IDF_VERSION=${IDF_VERSION}

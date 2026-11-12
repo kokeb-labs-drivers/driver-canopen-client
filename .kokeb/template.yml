@@ -1,0 +1,19 @@
+---
+# How this repository was made from kokeb-labs/driver-template. The template's drift check
+# (tools/scaffold.py --check-drift, CI: kokeb-labs/ci-tools ru-template-drift) scaffolds the template again
+# with these arguments and compares the files it manages. List a file under `local` only when it differs on
+# purpose, with the reason.
+template: unknown
+kind: "driver"
+name: "canopen_client"
+bus: "none"
+namespace: "canopen_client"
+description: "A generic, product-agnostic CANopen client: NMT master, SDO client, heartbeat, EMCY, SYNC, PDO helpers and a CiA 402 drive state machine over a classic CAN frame port."
+include_root: null
+org: "kokeb-labs-drivers"
+repo: "driver-canopen-client"
+author: "The driver-canopen-client authors"
+license: "MIT"
+datasheet: null
+platforms: [host, esp32]
+local: []

@@ -1,0 +1,45 @@
+# Kconfig for the CANopen client driver. The root CMakeLists.txt registers it with ESP-IDF
+# (idf_component_register(... KCONFIG _config/Kconfig)). The values reach the code only
+# through inc/canopen_client_kconfig.hpp.
+menuconfig CANOPEN_CLIENT
+    bool "CANopen client"
+    default y
+    help
+      Defaults for canopen_client::KconfigDefaults(). Outside ESP-IDF they come from Config{}.
+
+if CANOPEN_CLIENT
+
+config CANOPEN_CLIENT_SDO_TIMEOUT_MS
+    int "Wait for each SDO reply, in milliseconds"
+    range 1 60000
+    default 200
+
+config CANOPEN_CLIENT_GUARD_TIMEOUT_MS
+    int "Wait for a node-guarding reply, in milliseconds"
+    range 1 10000
+    default 100
+
+config CANOPEN_CLIENT_DRIVE_TIMEOUT_MS
+    int "Wait for a drive state change, in milliseconds"
+    range 1 60000
+    default 2000
+
+config CANOPEN_CLIENT_DRIVE_POLL_INTERVAL_MS
+    int "Pause between statusword reads, in milliseconds"
+    range 1 1000
+    default 10
+
+config CANOPEN_CLIENT_SAFETY_ATTEMPTS
+    int "Sends of a stop or disable command before it gives up"
+    range 1 8
+    default 3
+
+config CANOPEN_CLIENT_ABORT_ON_TIMEOUT
+    bool "Send an SDO abort to the node after a timeout"
+    default y
+
+config CANOPEN_CLIENT_STRICT_SDO_LENGTH
+    bool "Require every SDO frame to carry 8 data bytes"
+    default y
+
+endif

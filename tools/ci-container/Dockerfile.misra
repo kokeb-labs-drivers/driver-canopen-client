@@ -1,0 +1,45 @@
+# The MISRA scan of ru-misra.yml on a workstation: CodeQL, the coding-standards pack, the Arm toolchain and the
+# scripts, each at the version and SHA-256 that tools/misra/toolchain.json of the pinned ci-tools commit names (its
+# install.py downloads from the official GitHub releases and refuses an archive whose hash differs). Built by
+# `tools/preflight.sh --container` on first use; the base image (Dockerfile) is not needed.
+#
+# This image is linux/amd64 on purpose: the CodeQL CLI bundle and the Arm GNU toolchain pinned by the scan are
+# x86-64 only (GitHub publishes no arm64 CodeQL CLI). On an arm64 host Docker emulates it, which is slower; the
+# result is the same as CI's. Pins move when the ci-tools or handbook commit the CI workflow uses moves
+# (docs/testing.md, "Bumping the pins").
+ARG MISRA_BASE=ubuntu:24.04
+FROM --platform=linux/amd64 ${MISRA_BASE}
+ENV DEBIAN_FRONTEND=noninteractive LANG=C.UTF-8
+# The runner's packages of toolchain.json "host.apt", plus what a bare image lacks.
+RUN apt-get update -q && apt-get install -y -q --no-install-recommends \
+      ca-certificates curl git make cmake ninja-build python3 python3-venv zstd xz-utils unzip \
+      g++-14 clang-18 g++ cppcheck \
+    && rm -rf /var/lib/apt/lists/*
+# The scripts and pins CI checks out (ru-misra.yml: ci-tools at the workflow's commit, handbook at handbook_ref).
+ARG CI_TOOLS_REF=21b61e245f63eae1034f57ffd954f4998f8e29f2
+ARG HANDBOOK_REF=db2cdd0f75cdf998797d535565966b60e97f8c8d
+RUN set -eux; mkdir -p /opt/ru-misra; \
+    for spec in "ci-tools:${CI_TOOLS_REF}" "handbook:${HANDBOOK_REF}"; do \
+      n="${spec%%:*}"; r="${spec##*:}"; d="/opt/ru-misra/$n"; \
+      git init -q "$d"; git -C "$d" fetch -q --depth 1 "https://github.com/kokeb-labs/$n" "$r"; \
+      git -C "$d" checkout -q FETCH_HEAD; test "$(git -C "$d" rev-parse HEAD)" = "$r"; rm -rf "$d/.git"; \
+    done
+# PyYAML and clang-tidy, hash-checked by pip (install.py python).
+RUN python3 /opt/ru-misra/ci-tools/tools/misra/install.py python --venv /opt/ru-misra/venv --with-clang-tidy
+# CodeQL CLI bundle, the MISRA pack and the deviation script: SHA-256 checked before extraction. The archives
+# are removed in the same layer; the CodeQL licence text stays (/opt/ru-misra/codeql/LICENSE.md).
+RUN python3 /opt/ru-misra/ci-tools/tools/misra/install.py codeql --cache /opt/ru-misra/cache --dest /opt/ru-misra/tools \
+      --github-env /opt/ru-misra/env \
+    && rm -f /opt/ru-misra/cache/*.zst /opt/ru-misra/cache/*.zip
+# The Arm GNU toolchain of the Cortex-M scan.
+RUN python3 /opt/ru-misra/ci-tools/tools/misra/install.py arm --cache /opt/ru-misra/cache --dest /opt/ru-misra/tools \
+      --github-env /opt/ru-misra/env \
+    && rm -f /opt/ru-misra/cache/*.xz
+RUN echo "${HANDBOOK_REF}" > /opt/ru-misra/handbook.ref && git config --global --add safe.directory "*"
+# What install.py exports to the workflow's environment (/opt/ru-misra/env lists them).
+ENV KOKEB_MISRA=1 RU_MISRA=/opt/ru-misra PATH=/opt/ru-misra/venv/bin:$PATH \
+    CODEQL=/opt/ru-misra/tools/codeql/codeql MISRA_PACK=/opt/ru-misra/tools/misra-pack \
+    CS_SCRIPT=/opt/ru-misra/cache/process_coding_standards_config.py ARM_BIN=/opt/ru-misra/tools/arm/bin
+RUN cat /opt/ru-misra/env && test -x "$CODEQL" && test -f "$CS_SCRIPT" && test -x "$ARM_BIN/arm-none-eabi-g++" \
+    && "$CODEQL" version --format=terse
+WORKDIR /src

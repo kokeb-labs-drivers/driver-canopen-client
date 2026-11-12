@@ -1,0 +1,48 @@
+---
+# CANOPEN_CLIENT ESP32 examples: the app matrix read by the build scripts, the CI and the docs Examples page.
+version: "1.0"
+
+metadata:
+  project: "ESP32 CANOPEN_CLIENT Driver Examples"
+  default_app: "canopen_client_basic_example"
+  target: "esp32c6"
+  idf_versions: ["release/v5.5"]
+  build_types: [["Debug", "Release"]]
+
+apps:
+  canopen_client_basic_example:
+    description: "Start the CANopen client from menuconfig values, start node 5 and log its heartbeat and emergency messages"
+    source_file: "canopen_client_basic_example.cpp"
+    category: "example"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: true
+    hardware_required: true
+    features:
+      - "ESP-IDF TWAI port (Send, Receive, NowUs) with the optional Log hook"
+      - "Config from Kconfig (menuconfig) through canopen_client_kconfig.hpp"
+      - "Every Result checked and logged by name; heartbeat and EMCY handling"
+
+build_config:
+  build_types:
+    Debug:
+      description: "Debug build"
+      cmake_build_type: "Debug"
+      optimization: "-O0"
+      debug_level: "-g3"
+      defines: ["DEBUG"]
+    Release:
+      description: "Release build"
+      cmake_build_type: "Release"
+      optimization: "-O2"
+      debug_level: "-g0"
+      defines: ["NDEBUG"]
+  build_directory_pattern: "build-app-{app_type}-type-{build_type}-target-{target}-idf-{idf_version}"
+  project_name_pattern: "esp32_canopen_client_{app_type}_app"
+
+ci_config:
+  timeout_minutes: 30
+  fail_fast: false
+  exclude_combinations: []
+  special_apps: []
