@@ -23,14 +23,14 @@ Drawn from:
 
 - [`docs/hardware.yml`](../hardware.yml)
 
-## What the SN65HVD230 does
+## What the driver does
 
 <!-- figure: chip-capabilities -->
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="chip-capabilities.dark.svg">
   <img src="chip-capabilities.svg"
-    alt="Capability map of the SN65HVD230: Start and stop nodes (supported): Sends the NMT commands that
-    start, stop, pre-operate and reset one node or all of them; Read and write objects (supported):
+    alt="Capability map of the driver's protocol: Start and stop nodes (supported): Sends the NMT commands
+    that start, stop, pre-operate and reset one node or all of them; Read and write objects (supported):
     Reads and writes object dictionary entries, in one frame or in segments, with the node's abort code;
     Heartbeat, guarding and emergencies (supported): Watches node heartbeats and guarding replies, and
     queues the emergency messages nodes send; SYNC producer (supported): Sends the SYNC frame, once or

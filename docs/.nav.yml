@@ -10,6 +10,7 @@ nav:
   - Concepts:
       - Architecture: architecture.md
       - Contract: contract.md
+      - Ambiguities: ambiguities.md
   - Guides:
       - API guide: api-guide.md
       - Configuration: configuration.md

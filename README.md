@@ -33,8 +33,8 @@ The site at <https://kokeb-labs-drivers.github.io/driver-canopen-client/> opens 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/chip-capabilities.dark.svg">
   <img src="docs/diagrams/chip-capabilities.svg"
-    alt="Capability map of the SN65HVD230: Start and stop nodes (supported): Sends the NMT commands that
-    start, stop, pre-operate and reset one node or all of them; Read and write objects (supported):
+    alt="Capability map of the driver's protocol: Start and stop nodes (supported): Sends the NMT commands
+    that start, stop, pre-operate and reset one node or all of them; Read and write objects (supported):
     Reads and writes object dictionary entries, in one frame or in segments, with the node's abort code;
     Heartbeat, guarding and emergencies (supported): Watches node heartbeats and guarding replies, and
     queues the emergency messages nodes send; SYNC producer (supported): Sends the SYNC frame, once or
@@ -58,7 +58,8 @@ The site at <https://kokeb-labs-drivers.github.io/driver-canopen-client/> opens 
 - Telecom and basestation control and status
 - CAN bus standards such as CANopen, DeviceNet and CAN Kingdom
 
-Uses named by the datasheet (1 Features, 2 Applications, 3 Description, [p. 1](https://www.ti.com/lit/ds/symlink/sn65hvd230.pdf#page=1)).
+Uses named by the datasheet (1 Features, 2 Applications, 3 Description, [p.
+1](https://www.ti.com/lit/ds/symlink/sn65hvd230.pdf#page=1)).
 <!-- /generated -->
 
 ## Inside the device
@@ -139,24 +140,24 @@ until it has succeeded, and no call starts the port on its own.
 ## Driver coverage
 
 <!-- generated: chip-coverage -->
-| Capability | What the chip does | Driver API | Registers | Status | Datasheet |
-| --- | --- | --- | --- | --- | --- |
-| [Start and stop nodes](docs/api-guide.md) | Sends the NMT commands that start, stop, pre-operate and reset one node or all of them | `SendNmt` | `PreOperational`, `ResetNode`, `ResetCommunication` | Supported | Network management (NMT), p. 1 |
-| [Read and write objects](docs/api-guide.md) | Reads and writes object dictionary entries, in one frame or in segments, with the node's abort code | `SdoUpload`, `SdoDownload`, `SdoReadU8`, `SdoReadU16`, `SdoReadU32`, `SdoWriteU8`, `SdoWriteU16`, `SdoWriteU32`, `SdoDownloadUnconfirmed` | - | Supported | SdoClient: initiate, upload, download, segments, p. 1 |
-| [Heartbeat, guarding and emergencies](docs/api-guide.md) | Watches node heartbeats and guarding replies, and queues the emergency messages nodes send | `MonitorNode`, `UnmonitorNode`, `GetNodeStatus`, `ClearBootUp`, `GuardNode`, `Poll`, `PopEmcy` | - | Supported | CO_HBconsumer.c, p. 1 |
-| [SYNC producer](docs/api-guide.md) | Sends the SYNC frame, once or on a period with the optional counter byte | `SendSync`, `ConfigureSync`, `ServiceSync` | - | Supported | CO_SYNC.h: SYNC frame and counter, p. 1 |
-| [Process data](docs/api-guide.md) | Maps and enables a node's PDOs in the order the profile asks, reads TPDO samples and sends RPDOs | `ConfigurePdo`, `DisablePdo`, `ReadPdoConfig`, `SubscribeTpdo`, `UnsubscribeTpdo`, `ReadTpdo`, `SendRpdo` | - | Supported | PDO map and communication records, p. 1 |
-| [CiA 402 drive control](docs/api-guide.md) | Reads the drive state and walks it to enabled, disabled, quick stop or fault reset, and sets the mode (disable and quick stop are never refused for the drive state) | `ReadDriveState`, `ReadStatusword`, `DriveEnable`, `DriveDisable`, `DriveQuickStop`, `DriveResetFault`, `SetDriveMode`, `ReadDriveMode` | `ProfilePosition`, `Velocity`, `ProfileVelocity`, `CyclicSynchronousPosition` | Supported | BaseNode402: states, masks, transitions, p. 1 |
-| [Node identity and settings](docs/api-guide.md) | Reads a node's device type and error register, sets its heartbeat time, stores or restores its parameters | `ReadDeviceType`, `ReadErrorRegister`, `WriteHeartbeatProducerTime`, `StoreParameters`, `RestoreDefaults` | - | Supported | CO_storage.c: signatures and sub-indices, p. 1 |
-| [Raw frames](docs/api-guide.md) | Sends and reads any classic CAN frame and returns the raw reply of an SDO request | `SendRawFrame`, `ReadRawFrame`, `ReadRawSdo`, `WriteRawSdo` | - | Supported | Pre-defined connection set (COB-IDs), p. 1 |
-| [Block transfer, FD and LSS](docs/contract.md) | Block transfer, CAN FD, 29-bit identifiers, LSS, an NMT slave and an SDO server are not implemented | - | - | Not covered | Service Data Object (SDO) protocol, p. 1 |
+| Capability | What the protocol does | Driver API | Objects | Status | Host test | Datasheet |
+| --- | --- | --- | --- | --- | --- | --- |
+| [Start and stop nodes](docs/api-guide.md) | Sends the NMT commands that start, stop, pre-operate and reset one node or all of them | `SendNmt` | `PreOperational`, `ResetNode`, `ResetCommunication` | Supported | [`test_lifecycle.cpp`](tests/test_lifecycle.cpp) | Network management (NMT), p. 1 |
+| [Read and write objects](docs/api-guide.md) | Reads and writes object dictionary entries, in one frame or in segments, with the node's abort code | `SdoUpload`, `SdoDownload`, `SdoReadU8`, `SdoReadU16`, `SdoReadU32`, `SdoWriteU8`, `SdoWriteU16`, `SdoWriteU32`, `SdoDownloadUnconfirmed` | - | Supported | [`test_sdo.cpp`](tests/test_sdo.cpp) | SdoClient: initiate, upload, download, segments, p. 1 |
+| [Heartbeat, guarding and emergencies](docs/api-guide.md) | Watches node heartbeats and guarding replies, and queues the emergency messages nodes send | `MonitorNode`, `UnmonitorNode`, `GetNodeStatus`, `ClearBootUp`, `GuardNode`, `Poll`, `PopEmcy` | - | Supported | [`test_rx.cpp`](tests/test_rx.cpp), [`test_faults.cpp`](tests/test_faults.cpp) | CO_HBconsumer.c, p. 1 |
+| [SYNC producer](docs/api-guide.md) | Sends the SYNC frame, once or on a period with the optional counter byte | `SendSync`, `ConfigureSync`, `ServiceSync` | - | Supported | [`test_rx.cpp`](tests/test_rx.cpp) | CO_SYNC.h: SYNC frame and counter, p. 1 |
+| [Process data](docs/api-guide.md) | Maps and enables a node's PDOs in the order the profile asks, reads TPDO samples and sends RPDOs | `ConfigurePdo`, `DisablePdo`, `ReadPdoConfig`, `SubscribeTpdo`, `UnsubscribeTpdo`, `ReadTpdo`, `SendRpdo` | - | Supported | [`test_pdo.cpp`](tests/test_pdo.cpp) | PDO map and communication records, p. 1 |
+| [CiA 402 drive control](docs/api-guide.md) | Reads the drive state and walks it to enabled, disabled, quick stop or fault reset, and sets the mode (disable and quick stop are never refused for the drive state) | `ReadDriveState`, `ReadStatusword`, `DriveEnable`, `DriveDisable`, `DriveQuickStop`, `DriveResetFault`, `SetDriveMode`, `ReadDriveMode` | `ProfilePosition`, `Velocity`, `ProfileVelocity`, `CyclicSynchronousPosition` | Supported | [`test_drive.cpp`](tests/test_drive.cpp) | BaseNode402: states, masks, transitions, p. 1 |
+| [Node identity and settings](docs/api-guide.md) | Reads a node's device type and error register, sets its heartbeat time, stores or restores its parameters | `ReadDeviceType`, `ReadErrorRegister`, `WriteHeartbeatProducerTime`, `StoreParameters`, `RestoreDefaults` | - | Supported | [`test_sdo.cpp`](tests/test_sdo.cpp) | CO_storage.c: signatures and sub-indices, p. 1 |
+| [Raw frames](docs/api-guide.md) | Sends and reads any classic CAN frame and returns the raw reply of an SDO request | `SendRawFrame`, `ReadRawFrame`, `ReadRawSdo`, `WriteRawSdo` | - | Supported | [`test_hardening.cpp`](tests/test_hardening.cpp) | Pre-defined connection set (COB-IDs), p. 1 |
+| [Block transfer, FD and LSS](docs/contract.md) | Block transfer, CAN FD, 29-bit identifiers, LSS, an NMT slave and an SDO server are not implemented | - | - | Not covered | - | Service Data Object (SDO) protocol, p. 1 |
 
-**Supported**: the driver covers it and a host test checks it; **Not covered**: the chip has it and the driver leaves it
-alone.
+**Supported**: the driver implements it and the named host test checks it; **Not covered**: the protocol defines it and
+the driver leaves it out.
 
 From [`docs/hardware.yml`](docs/hardware.yml); `kokeb-docs hardware --check` confirms that every API name is in
-`inc/canopen_client.hpp`, `inc/canopen_client_types.hpp` and every register in `inc/canopen_client_types.hpp`,
-`inc/canopen_client_protocol.hpp`.
+`inc/canopen_client.hpp`, `inc/canopen_client_types.hpp` and every object in `inc/canopen_client_types.hpp`,
+`inc/canopen_client_protocol.hpp` and every named test exists.
 <!-- /generated -->
 
 A generic, product-agnostic CANopen client: NMT master, SDO client, heartbeat, EMCY, SYNC, PDO helpers and a CiA 402
@@ -196,6 +197,7 @@ and reads a microsecond clock, and it does the rest on any MCU.
 | [Troubleshooting](docs/troubleshooting.md) | Find the cause of an error or a silent node |
 | [Contract](docs/contract.md) | Know exactly what the driver promises, needs and returns |
 | [Datasheet map](docs/datasheet.md) | Find the source document behind each part of the driver |
+| [Ambiguities](docs/ambiguities.md) | See what the secondary sources cannot settle until CiA 301 and CiA 402 are obtained |
 | [API reference](docs/api-reference.md) | Look up a class or member (Doxygen; built by CI and locally) |
 
 ## Datasheet

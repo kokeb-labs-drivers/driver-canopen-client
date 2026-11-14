@@ -7,37 +7,37 @@
 <text x="32" y="115.4" font-size="18" fill="#566070">What you connect by hand, with the driver hook on each MCU wire. The full schematic, with every part and value, is on the</text>
 <text x="32" y="141.5" font-size="18" fill="#566070">Hardware page. Datasheet: 11.2 Typical Application, p. 26.</text>
 <rect x="32" y="157.5" width="1136" height="1" fill="#E2E7EE"/>
-<path d="M245.9 269.5 L577.2 269.5" fill="none" stroke="#0B7A72" stroke-width="2.2"/>
-<path d="M245.9 333.5 L577.2 333.5" fill="none" stroke="#15803D" stroke-width="2.2"/>
-<path d="M845.2 269.5 L982.1 269.5" fill="none" stroke="#2563EB" stroke-width="2.2"/>
-<path d="M845.2 333.5 L982.1 333.5" fill="none" stroke="#2563EB" stroke-width="2.2"/>
-<rect x="591.2" y="175.5" width="240" height="208" rx="10" fill="#F5F7FA" stroke="#2B3442" stroke-width="2.2"/>
-<rect x="45.9" y="175.5" width="200" height="208" rx="12" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
-<rect x="982.1" y="237.5" width="172" height="128" rx="12" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<path d="M252.2 269.5 L583.5 269.5" fill="none" stroke="#0B7A72" stroke-width="2.2"/>
+<path d="M252.2 333.5 L583.5 333.5" fill="none" stroke="#15803D" stroke-width="2.2"/>
+<path d="M851.5 269.5 L975.8 269.5" fill="none" stroke="#2563EB" stroke-width="2.2"/>
+<path d="M851.5 333.5 L975.8 333.5" fill="none" stroke="#2563EB" stroke-width="2.2"/>
+<rect x="597.5" y="175.5" width="240" height="208" rx="10" fill="#F5F7FA" stroke="#2B3442" stroke-width="2.2"/>
+<rect x="52.2" y="175.5" width="200" height="208" rx="12" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="975.8" y="237.5" width="172" height="128" rx="12" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
 <rect x="32" y="411.5" width="1136" height="79" rx="12" fill="#FFEEF2" stroke="#F5BECB" stroke-width="1"/>
 <rect x="32" y="504.5" width="1136" height="79" rx="12" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
-<text x="711.2" y="210.5" font-size="20" font-weight="700" text-anchor="middle" fill="#0E1726">SN65HVD230</text>
-<text x="711.2" y="232.9" font-size="16" text-anchor="middle" fill="#566070">U1</text>
-<text x="63.9" y="210.5" font-size="20" font-weight="700" fill="#1E429F">MCU with CAN controller</text>
-<text x="63.9" y="232.9" font-size="16" fill="#1E429F">U2</text>
-<text x="227.9" y="275.3" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#1E429F">CAN TX</text>
-<text x="613.2" y="275.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">D</text>
-<rect x="577.2" y="263.5" width="14" height="12" rx="2" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
-<text x="411.5" y="259.5" font-size="16" font-weight="600" text-anchor="middle" fill="#2B3442">TXD  pin 1</text>
-<text x="411.5" y="292.3" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#566070">Send(const CanFrame&amp;)</text>
-<text x="227.9" y="339.3" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#1E429F">CAN RX</text>
-<text x="613.2" y="339.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">R</text>
-<rect x="577.2" y="327.5" width="14" height="12" rx="2" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
-<text x="411.5" y="323.5" font-size="16" font-weight="600" text-anchor="middle" fill="#2B3442">RXD  pin 4</text>
-<text x="411.5" y="356.3" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#566070">Receive(CanFrame&amp;, timeout_us)</text>
-<text x="982.1" y="227.5" font-size="16" font-weight="700" fill="#0B5F59">CAN bus</text>
-<text x="809.2" y="275.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">CANH</text>
-<rect x="831.2" y="263.5" width="14" height="12" rx="2" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
-<text x="1000.1" y="275.3" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0B5F59">CANH</text>
+<text x="717.5" y="210.5" font-size="20" font-weight="700" text-anchor="middle" fill="#0E1726">SN65HVD230</text>
+<text x="717.5" y="232.9" font-size="16" text-anchor="middle" fill="#566070">U1</text>
+<text x="70.2" y="210.5" font-size="20" font-weight="700" fill="#1E429F">MCU with CA…</text>
+<text x="70.2" y="232.9" font-size="16" fill="#1E429F">U2</text>
+<text x="234.2" y="275.3" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#1E429F">CAN TX</text>
+<text x="619.5" y="275.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">D</text>
+<rect x="583.5" y="263.5" width="14" height="12" rx="2" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<text x="417.8" y="259.5" font-size="16" font-weight="600" text-anchor="middle" fill="#2B3442">TXD  pin 1</text>
+<text x="417.8" y="292.3" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#566070">Send(const CanFrame&amp;)</text>
+<text x="234.2" y="339.3" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#1E429F">CAN RX</text>
+<text x="619.5" y="339.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">R</text>
+<rect x="583.5" y="327.5" width="14" height="12" rx="2" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<text x="417.8" y="323.5" font-size="16" font-weight="600" text-anchor="middle" fill="#2B3442">RXD  pin 4</text>
+<text x="417.8" y="356.3" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#566070">Receive(CanFrame&amp;, timeout_us)</text>
+<text x="975.8" y="227.5" font-size="16" font-weight="700" fill="#0B5F59">CAN bus</text>
+<text x="815.5" y="275.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">CANH</text>
+<rect x="837.5" y="263.5" width="14" height="12" rx="2" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<text x="993.8" y="275.3" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0B5F59">CANH</text>
 <text x="913.6" y="259.5" font-size="16" font-weight="600" text-anchor="middle" fill="#2B3442">CANH  pin 7</text>
-<text x="809.2" y="339.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">CANL</text>
-<rect x="831.2" y="327.5" width="14" height="12" rx="2" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
-<text x="1000.1" y="339.3" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0B5F59">CANL</text>
+<text x="815.5" y="339.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">CANL</text>
+<rect x="837.5" y="327.5" width="14" height="12" rx="2" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<text x="993.8" y="339.3" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0B5F59">CANL</text>
 <text x="913.6" y="323.5" font-size="16" font-weight="600" text-anchor="middle" fill="#2B3442">CANL  pin 6</text>
 <text x="50" y="446.5" font-size="20" font-weight="700" fill="#9F1239">Supplies and ground</text>
 <text x="50" y="469.9" font-size="17" fill="#9F1239">+3V3: VCC; also U2.VDD · GND: GND, RS; also U2.GND, J1.GND</text>
