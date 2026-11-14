@@ -10,12 +10,34 @@
       "docs/hardware.yml"
     ]
   },
+  "chip-capabilities": {
+    "title": "What the SN65HVD230 does",
+    "alt": "Capability map of the SN65HVD230: Start and stop nodes (supported): Sends the NMT commands that start, stop, pre-operate and reset one node or all of them; Read and write objects (supported): Reads and writes object dictionary entries, in one frame or in segments, with the node's abort code; Heartbeat, guarding and emergencies (supported): Watches node heartbeats and guarding replies, and queues the emergency messages nodes send; SYNC producer (supported): Sends the SYNC frame, once or on a period with the optional counter byte; Process data (supported): Maps and enables a node's PDOs in the order the profile asks, reads TPDO samples and sends RPDOs; CiA 402 drive control (supported): Reads the drive state and walks it to enabled, disabled, quick stop or fault reset, and sets the mode; Node identity and settings (supported): Reads a node's device type and error register, sets its heartbeat time, stores or restores its parameters; Raw frames (supported): Sends and reads any classic CAN frame and returns the raw reply of an SDO request; Block transfer, FD and LSS (not covered): Block transfer, CAN FD, 29-bit identifiers, LSS, an NMT slave and an SDO server are not implemented.",
+    "description": "Each card is one function of the SN65HVD230: an icon, its name and what it does for the application. The filled pill says how this driver covers it (legend below); the outlined pills are the chip registers behind it. The coverage table in the README gives the driver calls and the datasheet section of each card.",
+    "profile": "overview",
+    "width": 1200,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml"
+    ]
+  },
   "chip-circuit-typical": {
     "title": "SN65HVD230: A CAN node",
     "alt": "Schematic of the SN65HVD230 a can node: the chip with U2 MCU with CAN controller, C1 capacitor 100 nF, R1 resistor 120 Ω, J1 CAN bus; the MCU wires carry the port hooks Receive(CanFrame&, timeout_us), Send(const CanFrame&).",
     "description": "A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.",
     "profile": "detail",
     "width": 1272,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml"
+    ]
+  },
+  "chip-hero": {
+    "title": "SN65HVD230",
+    "alt": "Overview of the SN65HVD230, a 3.3 V CAN transceiver, the reference physical layer of a CANopen node: it turns a CAN controller's TXD and RXD into the differential CANH and CANL signals of an ISO 11898-2 bus, and this driver speaks CANopen to the nodes on that bus. A MCU talks to it over CAN controller TXD and RXD; it drives CAN bus pair; it reads back Bus level. Headline figures: 3.0 to 3.6 V single supply; 1 Mbit/s data rate, up to; 120 nodes on one bus; 16 kV bus pin ESD, HBM; 370 µA standby current, typical.",
+    "description": "The SN65HVD230 in the middle, drawn as its SOIC-8 package. On the left the MCU that runs the driver, joined to it by CAN controller TXD and RXD. To the right, what the chip drives, in the order the power flows. Below it, what the chip reads back. The tiles at the bottom are the headline numbers, each with the datasheet section and page it comes from.",
+    "profile": "overview",
+    "width": 1200,
     "source": "docs/hardware.yml",
     "sources": [
       "docs/hardware.yml"
@@ -38,6 +60,17 @@
     "description": "The SN65HVD230 seen from the top, in its SOIC-8 package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver.",
     "profile": "detail",
     "width": 1046,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml"
+    ]
+  },
+  "chip-wiring-typical": {
+    "title": "Wiring: A CAN node",
+    "alt": "Wiring of the SN65HVD230 for the A CAN node: MCU with CAN controller CAN TX to D (Send(const CanFrame&)); MCU with CAN controller CAN RX to R (Receive(CanFrame&, timeout_us)); CANH to CAN bus CANH; CANL to CAN bus CANL. Supplies, grounds and the support parts are listed under the drawing.",
+    "description": "The MCU with CAN controller on the left, the SN65HVD230 in the middle, the blocks it drives on the right. Each wire is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hook that uses it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.",
+    "profile": "overview",
+    "width": 1200,
     "source": "docs/hardware.yml",
     "sources": [
       "docs/hardware.yml"

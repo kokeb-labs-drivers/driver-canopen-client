@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1002" viewBox="0 0 1200 1002" role="img" aria-labelledby="chip-capabilities-title chip-capabilities-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-capabilities-title">What the SN65HVD230 does</title>
+<desc id="chip-capabilities-desc">Capability map of the SN65HVD230: Start and stop nodes (supported): Sends the NMT commands that start, stop, pre-operate and reset one node or all of them; Read and write objects (supported): Reads and writes object dictionary entries, in one frame or in segments, with the node's abort code; Heartbeat, guarding and emergencies (supported): Watches node heartbeats and guarding replies, and queues the emergency messages nodes send; SYNC producer (supported): Sends the SYNC frame, once or on a period with the optional counter byte; Process data (supported): Maps and enables a node's PDOs in the order the profile asks, reads TPDO samples and sends RPDOs; CiA 402 drive control (supported): Reads the drive state and walks it to enabled, disabled, quick stop or fault reset, and sets the mode; Node identity and settings (supported): Reads a node's device type and error register, sets its heartbeat time, stores or restores its parameters; Raw frames (supported): Sends and reads any classic CAN frame and returns the raw reply of an SDO request; Block transfer, FD and LSS (not covered): Block transfer, CAN FD, 29-bit identifiers, LSS, an NMT slave and an SDO server are not implemented.</desc>
+<rect x="0.5" y="0.5" width="1199" height="1001" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="46.8" font-size="16" font-weight="700" letter-spacing="1.2" fill="#F8D27A">CAPABILITIES</text>
+<text x="32" y="85.6" font-size="32" font-weight="700" fill="#E8EDF3">What the SN65HVD230 does</text>
+<text x="32" y="115.4" font-size="18" fill="#9AA6B5">One card per function of the chip, with how this driver covers it and the registers behind it.</text>
+<rect x="32" y="131.4" width="1136" height="1" fill="#252F3C"/>
+<rect x="32" y="149.4" width="365.3" height="249.9" rx="12" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<rect x="417.3" y="149.4" width="365.3" height="249.9" rx="12" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<rect x="802.7" y="149.4" width="365.3" height="249.9" rx="12" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<rect x="32" y="419.3" width="365.3" height="283.9" rx="12" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<rect x="417.3" y="419.3" width="365.3" height="283.9" rx="12" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<rect x="802.7" y="419.3" width="365.3" height="283.9" rx="12" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<rect x="32" y="723.3" width="365.3" height="215.9" rx="12" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<rect x="417.3" y="723.3" width="365.3" height="215.9" rx="12" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<rect x="802.7" y="723.3" width="365.3" height="215.9" rx="12" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<circle cx="78" cy="195.4" r="28" fill="#2A2113" stroke="#6B5424" stroke-width="1.2"/>
+<path d="M80.2 182.4 L69.3 197.6 L77.3 197.6 L75.8 208.4 L86.7 193.2 L78.7 193.2 Z" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="120" y="201.4" font-size="20" font-weight="700" fill="#E8EDF3">Start and stop nodes</text>
+<text x="50" y="249.8" font-size="17" fill="#D2DAE4">Sends the NMT commands that start,</text>
+<text x="50" y="274.5" font-size="17" fill="#D2DAE4">stop, pre-operate and reset one node</text>
+<text x="50" y="299.1" font-size="17" fill="#D2DAE4">or all of them</text>
+<rect x="50" y="317.7" width="103.4" height="26" rx="13" fill="#BBF7D0"/>
+<text x="58" y="335.8" font-size="16" font-weight="700" fill="#0E131A">Supported</text>
+<rect x="161.4" y="317.7" width="140.8" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="169.4" y="335.8" font-size="16" font-weight="700" fill="#E2E8F0">PreOperational</text>
+<rect x="50" y="351.7" width="107.2" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="58" y="369.8" font-size="16" font-weight="700" fill="#E2E8F0">ResetNode</text>
+<rect x="165.2" y="351.7" width="194.3" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="173.2" y="369.8" font-size="16" font-weight="700" fill="#E2E8F0">ResetCommunication</text>
+<circle cx="463.3" cy="195.4" r="28" fill="#2A2113" stroke="#6B5424" stroke-width="1.2"/>
+<path d="M451.8 183.8 L463.3 183.8 L474.9 195.4 L463.3 207 L451.8 195.4 Z" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="458.3" cy="190.3" r="2.3" fill="#F4B942"/>
+<text x="505.3" y="201.4" font-size="20" font-weight="700" fill="#E8EDF3">Read and write objects</text>
+<text x="435.3" y="249.8" font-size="17" fill="#D2DAE4">Reads and writes object dictionary</text>
+<text x="435.3" y="274.5" font-size="17" fill="#D2DAE4">entries, in one frame or in segments,</text>
+<text x="435.3" y="299.1" font-size="17" fill="#D2DAE4">with the node's abort code</text>
+<rect x="435.3" y="317.7" width="103.4" height="26" rx="13" fill="#BBF7D0"/>
+<text x="443.3" y="335.8" font-size="16" font-weight="700" fill="#0E131A">Supported</text>
+<circle cx="848.7" cy="195.4" r="28" fill="#2A2113" stroke="#6B5424" stroke-width="1.2"/>
+<path d="M848.7 183.1 L862.4 207 L834.9 207 Z" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M848.7 191.8 L848.7 198.3" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="848.7" cy="202.6" r="2" fill="#F4B942"/>
+<text x="890.7" y="188.4" font-size="20" font-weight="700" fill="#E8EDF3">Heartbeat, guarding and</text>
+<text x="890.7" y="214.4" font-size="20" font-weight="700" fill="#E8EDF3">emergencies</text>
+<text x="820.7" y="249.8" font-size="17" fill="#D2DAE4">Watches node heartbeats and</text>
+<text x="820.7" y="274.5" font-size="17" fill="#D2DAE4">guarding replies, and queues the</text>
+<text x="820.7" y="299.1" font-size="17" fill="#D2DAE4">emergency messages nodes send</text>
+<rect x="820.7" y="317.7" width="103.4" height="26" rx="13" fill="#BBF7D0"/>
+<text x="828.7" y="335.8" font-size="16" font-weight="700" fill="#0E131A">Supported</text>
+<circle cx="78" cy="465.3" r="28" fill="#2A2113" stroke="#6B5424" stroke-width="1.2"/>
+<circle cx="78" cy="465.3" r="13" fill="none" stroke="#F4B942" stroke-width="2.5"/>
+<path d="M78 458.1 L78 465.3 L83.1 468.2" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="120" y="471.3" font-size="20" font-weight="700" fill="#E8EDF3">SYNC producer</text>
+<text x="50" y="519.8" font-size="17" fill="#D2DAE4">Sends the SYNC frame, once or on a</text>
+<text x="50" y="544.4" font-size="17" fill="#D2DAE4">period with the optional counter byte</text>
+<rect x="50" y="563" width="103.4" height="26" rx="13" fill="#BBF7D0"/>
+<text x="58" y="581.1" font-size="16" font-weight="700" fill="#0E131A">Supported</text>
+<circle cx="463.3" cy="465.3" r="28" fill="#2A2113" stroke="#6B5424" stroke-width="1.2"/>
+<path d="M448.9 461 L456.1 461 L456.1 469.7 L448.9 469.7 Z" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M459.7 461 L466.9 461 L466.9 469.7 L459.7 469.7 Z" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M470.6 461 L477.8 461 L477.8 469.7 L470.6 469.7 Z" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M456.1 465.3 L459.7 465.3" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M466.9 465.3 L470.6 465.3" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="505.3" y="471.3" font-size="20" font-weight="700" fill="#E8EDF3">Process data</text>
+<text x="435.3" y="519.8" font-size="17" fill="#D2DAE4">Maps and enables a node's PDOs in</text>
+<text x="435.3" y="544.4" font-size="17" fill="#D2DAE4">the order the profile asks, reads TPDO</text>
+<text x="435.3" y="569.1" font-size="17" fill="#D2DAE4">samples and sends RPDOs</text>
+<rect x="435.3" y="587.6" width="103.4" height="26" rx="13" fill="#BBF7D0"/>
+<text x="443.3" y="605.8" font-size="16" font-weight="700" fill="#0E131A">Supported</text>
+<circle cx="848.7" cy="465.3" r="28" fill="#2A2113" stroke="#6B5424" stroke-width="1.2"/>
+<path d="M848.7 455.2 A10.1 10.1 0 0 1 858.8 465.3" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M858.8 465.3 A10.1 10.1 0 0 1 848.7 475.5" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M848.7 475.5 A10.1 10.1 0 0 1 838.5 465.3" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M834.9 461.7 L838.5 466.1 L842.6 462.2" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="890.7" y="471.3" font-size="20" font-weight="700" fill="#E8EDF3">CiA 402 drive control</text>
+<text x="820.7" y="519.8" font-size="17" fill="#D2DAE4">Reads the drive state and walks it to</text>
+<text x="820.7" y="544.4" font-size="17" fill="#D2DAE4">enabled, disabled, quick stop or fault</text>
+<text x="820.7" y="569.1" font-size="17" fill="#D2DAE4">reset, and sets the mode</text>
+<rect x="820.7" y="587.6" width="103.4" height="26" rx="13" fill="#BBF7D0"/>
+<text x="828.7" y="605.8" font-size="16" font-weight="700" fill="#0E131A">Supported</text>
+<rect x="932" y="587.6" width="137.6" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="940" y="605.8" font-size="16" font-weight="700" fill="#E2E8F0">ProfilePosition</text>
+<rect x="820.7" y="621.6" width="84.8" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="828.7" y="639.8" font-size="16" font-weight="700" fill="#E2E8F0">Velocity</text>
+<rect x="913.4" y="621.6" width="139.1" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="921.4" y="639.8" font-size="16" font-weight="700" fill="#E2E8F0">ProfileVelocity</text>
+<rect x="820.7" y="655.6" width="245.9" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="828.7" y="673.8" font-size="16" font-weight="700" fill="#E2E8F0">CyclicSynchronousPosition</text>
+<circle cx="78" cy="769.3" r="28" fill="#2A2113" stroke="#6B5424" stroke-width="1.2"/>
+<path d="M66.4 762.1 L89.6 762.1" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="73.7" cy="762.1" r="3.2" fill="none" stroke="#F4B942" stroke-width="2.5"/>
+<path d="M66.4 769.3 L89.6 769.3" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="82.3" cy="769.3" r="3.2" fill="none" stroke="#F4B942" stroke-width="2.5"/>
+<path d="M66.4 776.5 L89.6 776.5" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="71.5" cy="776.5" r="3.2" fill="none" stroke="#F4B942" stroke-width="2.5"/>
+<text x="120" y="762.3" font-size="20" font-weight="700" fill="#E8EDF3">Node identity and</text>
+<text x="120" y="788.3" font-size="20" font-weight="700" fill="#E8EDF3">settings</text>
+<text x="50" y="823.8" font-size="17" fill="#D2DAE4">Reads a node's device type and error</text>
+<text x="50" y="848.4" font-size="17" fill="#D2DAE4">register, sets its heartbeat time, stores</text>
+<text x="50" y="873" font-size="17" fill="#D2DAE4">or restores its parameters</text>
+<rect x="50" y="891.6" width="103.4" height="26" rx="13" fill="#BBF7D0"/>
+<text x="58" y="909.7" font-size="16" font-weight="700" fill="#0E131A">Supported</text>
+<circle cx="463.3" cy="769.3" r="28" fill="#2A2113" stroke="#6B5424" stroke-width="1.2"/>
+<path d="M451.8 775.1 A11.6 11.6 0 0 1 474.9 775.1" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M463.3 775.1 L469.8 766.4" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="463.3" cy="775.1" r="2.6" fill="#F4B942"/>
+<path d="M450.3 780.1 L476.4 780.1" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="505.3" y="775.3" font-size="20" font-weight="700" fill="#E8EDF3">Raw frames</text>
+<text x="435.3" y="823.8" font-size="17" fill="#D2DAE4">Sends and reads any classic CAN</text>
+<text x="435.3" y="848.4" font-size="17" fill="#D2DAE4">frame and returns the raw reply of an</text>
+<text x="435.3" y="873" font-size="17" fill="#D2DAE4">SDO request</text>
+<rect x="435.3" y="891.6" width="103.4" height="26" rx="13" fill="#BBF7D0"/>
+<text x="443.3" y="909.7" font-size="16" font-weight="700" fill="#0E131A">Supported</text>
+<circle cx="848.7" cy="769.3" r="28" fill="#1B232E" stroke="#3A4656" stroke-width="1.2"/>
+<path d="M840 767.9 L857.3 767.9 L857.3 780.9 L840 780.9 Z" fill="none" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M843.6 767.9 L843.6 763.5" fill="none" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M843.6 763.5 A5.1 5.1 0 0 1 853.7 763.5" fill="none" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M853.7 763.5 L853.7 767.9" fill="none" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="848.7" cy="774.4" r="2.2" fill="#94A3B8"/>
+<text x="890.7" y="762.3" font-size="20" font-weight="700" fill="#E8EDF3">Block transfer, FD and</text>
+<text x="890.7" y="788.3" font-size="20" font-weight="700" fill="#E8EDF3">LSS</text>
+<text x="820.7" y="823.8" font-size="17" fill="#D2DAE4">Block transfer, CAN FD, 29-bit</text>
+<text x="820.7" y="848.4" font-size="17" fill="#D2DAE4">identifiers, LSS, an NMT slave and an</text>
+<text x="820.7" y="873" font-size="17" fill="#D2DAE4">SDO server are not implemented</text>
+<rect x="820.7" y="891.6" width="117.9" height="26" rx="13" fill="#E2E8F0"/>
+<text x="828.7" y="909.7" font-size="16" font-weight="700" fill="#0E131A">Not covered</text>
+<rect x="32" y="951.6" width="14" height="14" rx="4" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<text x="54" y="966.2" font-size="16" fill="#9AA6B5">Supported: the driver covers it and a host test checks it</text>
+<rect x="522.3" y="951.6" width="14" height="14" rx="4" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<text x="544.3" y="966.2" font-size="16" fill="#9AA6B5">Not covered: the chip has it and the driver leaves it alone</text>
+</svg>

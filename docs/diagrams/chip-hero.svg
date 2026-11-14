@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="745" viewBox="0 0 1200 745" role="img" aria-labelledby="chip-hero-title chip-hero-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-hero-title">SN65HVD230</title>
+<desc id="chip-hero-desc">Overview of the SN65HVD230, a 3.3 V CAN transceiver, the reference physical layer of a CANopen node: it turns a CAN controller's TXD and RXD into the differential CANH and CANL signals of an ISO 11898-2 bus, and this driver speaks CANopen to the nodes on that bus. A MCU talks to it over CAN controller TXD and RXD; it drives CAN bus pair; it reads back Bus level. Headline figures: 3.0 to 3.6 V single supply; 1 Mbit/s data rate, up to; 120 nodes on one bus; 16 kV bus pin ESD, HBM; 370 µA standby current, typical.</desc>
+<defs><marker id="fk-arrow-amber-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#C26A05"/></marker><marker id="fk-arrow-blue-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2563EB"/></marker><marker id="fk-arrow-teal-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0B7A72"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="744" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="46.8" font-size="16" font-weight="700" letter-spacing="1.2" fill="#7A360E">CAN TRANSCEIVER</text>
+<text x="32" y="85.6" font-size="32" font-weight="700" fill="#0E1726">SN65HVD230</text>
+<text x="32" y="115.4" font-size="18" fill="#566070">What talks to it, what it drives and what it reads back, with its headline numbers. Datasheet: 1, p. 1.</text>
+<rect x="32" y="131.4" width="1136" height="1" fill="#E2E7EE"/>
+<path d="M246 262.4 L528 262.4" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-blue-strong)" marker-start="url(#fk-arrow-blue-strong)"/>
+<path d="M790 262.4 L842 262.4" fill="none" stroke="#0B7A72" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-teal-strong)"/>
+<path d="M659 427.4 L659 371.4" fill="none" stroke="#C26A05" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-amber-strong)"/>
+<rect x="532" y="195.1" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="532" y="237.6" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="532" y="280.1" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="532" y="322.6" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="774" y="195.1" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="774" y="237.6" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="774" y="280.1" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="774" y="322.6" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="544" y="157.4" width="230" height="210" rx="10" fill="#F5F7FA" stroke="#2B3442" stroke-width="2.2"/>
+<circle cx="564" cy="177.4" r="6" fill="#2B3442"/>
+<rect x="32" y="205.4" width="210" height="114" rx="12" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="32" y="213.4" width="4" height="98" rx="2" fill="#2563EB"/>
+<rect x="846" y="205.4" width="260" height="114" rx="12" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<rect x="846" y="213.4" width="4" height="98" rx="2" fill="#0B7A72"/>
+<rect x="479" y="431.4" width="360" height="89" rx="12" fill="#FFF5E3" stroke="#C26A05" stroke-width="1.4"/>
+<rect x="479" y="439.4" width="4" height="73" rx="2" fill="#C26A05"/>
+<rect x="32" y="560.4" width="214.4" height="153.9" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="262.4" y="560.4" width="214.4" height="153.9" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="492.8" y="560.4" width="214.4" height="153.9" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="723.2" y="560.4" width="214.4" height="153.9" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="953.6" y="560.4" width="214.4" height="153.9" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
+<text x="659" y="256.4" font-size="27" font-weight="700" text-anchor="middle" fill="#0E1726">SN65HVD230</text>
+<text x="659" y="286.4" font-size="17" text-anchor="middle" fill="#566070">SOIC-8</text>
+<text x="659" y="310.4" font-size="16" text-anchor="middle" fill="#566070">8 pins</text>
+<text x="56" y="240.4" font-size="20" font-weight="700" fill="#1E429F">MCU</text>
+<text x="56" y="271" font-size="17" fill="#2B3442">your firmware and</text>
+<text x="56" y="295.7" font-size="17" fill="#2B3442">this driver</text>
+<rect x="264.1" y="250.4" width="245.9" height="24" rx="12" fill="#FFFFFF"/>
+<text x="387" y="268.2" font-size="16" font-weight="500" text-anchor="middle" fill="#566070">CAN controller TXD and RXD</text>
+<text x="870" y="240.4" font-size="20" font-weight="700" fill="#0B5F59">CAN bus pair</text>
+<text x="870" y="271" font-size="17" fill="#2B3442">CANH and CANL,</text>
+<text x="870" y="295.7" font-size="17" fill="#2B3442">differential</text>
+<text x="503" y="466.4" font-size="20" font-weight="700" fill="#8A3C0B">Reads back</text>
+<text x="503" y="497" font-size="17" fill="#2B3442">Bus level (CANH and CANL to RXD)</text>
+<text x="48" y="608.4" font-size="30" font-weight="700" fill="#0E1726">3.0 to 3.6 V</text>
+<text x="48" y="638" font-size="17" fill="#2B3442">single supply</text>
+<text x="48" y="696.3" font-size="16" fill="#566070">8.3, p. 6</text>
+<text x="278.4" y="608.4" font-size="30" font-weight="700" fill="#0E1726">1 Mbit/s</text>
+<text x="278.4" y="638" font-size="17" fill="#2B3442">data rate, up to</text>
+<text x="278.4" y="696.3" font-size="16" fill="#566070">1, p. 1</text>
+<text x="508.8" y="608.4" font-size="30" font-weight="700" fill="#0E1726">120 nodes</text>
+<text x="508.8" y="638" font-size="17" fill="#2B3442">on one bus</text>
+<text x="508.8" y="696.3" font-size="16" fill="#566070">1, p. 1</text>
+<text x="739.2" y="608.4" font-size="30" font-weight="700" fill="#0E1726">16 kV</text>
+<text x="739.2" y="638" font-size="17" fill="#2B3442">bus pin ESD, HBM</text>
+<text x="739.2" y="696.3" font-size="16" fill="#566070">1, p. 1</text>
+<text x="969.6" y="608.4" font-size="30" font-weight="700" fill="#0E1726">370 µA</text>
+<text x="969.6" y="638" font-size="17" fill="#2B3442">standby current,</text>
+<text x="969.6" y="661" font-size="17" fill="#2B3442">typical</text>
+<text x="969.6" y="696.3" font-size="16" fill="#566070">1, p. 1</text>
+</svg>
