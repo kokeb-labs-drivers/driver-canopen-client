@@ -19,6 +19,7 @@ copyright: Copyright (c) 2026 The driver-canopen-client authors
 docs_dir: ../docs
 # Repository knowledge pages, managed by the template: read in the repository, linked from the skills, not in the site.
 not_in_nav: |
+  /agent-context.md
   /knowledge-index.md
   /mechanization-policy.md
   /recurring-defects.md
