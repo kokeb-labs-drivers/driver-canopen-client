@@ -1,0 +1,2 @@
+header_only:
+  canopen_client_protocol: constants and inline or constexpr functions only, nothing to compile separately
