@@ -1029,6 +1029,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#rd-34-unspecified-evaluation-order-in-a-test-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RD-34 Unspecified evaluation order in a test check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#rd-24-missing-gitlink-for-the-scripts-submodule" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1493,6 +1504,13 @@ and until it lands the level below it (test, then review) is what protects the d
 <td>lint</td>
 <td>lint</td>
 </tr>
+<tr>
+<td>RD-34</td>
+<td>Unspecified evaluation order in a test check</td>
+<td>3</td>
+<td>lint</td>
+<td>lint</td>
+</tr>
 </tbody>
 </table>
 <h2 id="chip-protocol-and-safety-classes">Chip-protocol and safety classes<a class="headerlink" href="#chip-protocol-and-safety-classes" title="Permanent link">&para;</a></h2>
@@ -1689,6 +1707,27 @@ m9: no
 no-write-in-doubt invariant). 3 drivers.
 Detection: <code>test</code>: mutate the invariant check in the harness; <code>review</code>: question "which safety rule does the fuzz
 target assert, and what input would break each?"</p>
+<h3 id="rd-34-unspecified-evaluation-order-in-a-test-check">RD-34 Unspecified evaluation order in a test check<a class="headerlink" href="#rd-34-unspecified-evaluation-order-in-a-test-check" title="Permanent link">&para;</a></h3>
+<p>Rule: a call in a test or fuzz target takes, as separate arguments, no operation that changes state together with a
+read of that state (<code>sent()</code>, <code>Transfers()</code>, <code>pending()</code>, a flag, a counter, a clock). The order of the arguments of a
+call, of the operands of <code>+ - == &lt;</code> and of the two sides of an assignment is unspecified; GCC on x86-64 evaluates
+arguments right to left, Clang and GCC on aarch64 left to right. Braced-init lists, <code>&amp;&amp;</code>, <code>||</code>, <code>?:</code> and <code>,</code> are
+sequenced. Two reads of the fuzzer's input (<code>in.Byte()</code>, <code>FuzzConfig(in)</code>) in one expression count as well: they
+advance the input, so the same corpus file decodes into different calls per compiler.</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">// bad: x86-64 GCC reads sent() before the call, so it is always 0 here</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">Check</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="n">v</span><span class="p">),</span><span class="w"> </span><span class="n">was_up</span><span class="p">,</span><span class="w"> </span><span class="n">sent</span><span class="p">());</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1">// good: the result first, then the read; or pass the probe and read it inside the helper, after the call</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">Check</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">was_up</span><span class="p">,</span><span class="w"> </span><span class="n">sent</span><span class="p">());</span>
+</span></code></pre></div>
+<p>Hurts: the check passes, or aborts, on one CI runner only. A "nothing was sent" promise becomes vacuous, and a
+positive promise (<code>sent &gt;= 1</code>) aborts on a correct driver; neither shows on an Apple-silicon or aarch64 rehearsal.
+Seen: dynamixel (first CI, <code>sent &gt;= 1</code> aborted on x86-64 GCC only), pcal9555 (three fuzz cases, latent), tle92466ed
+(16 fuzz cases, vacuous; 6 more with two input reads), the template's own fuzz target (5 cases).
+3 drivers, all copies of the same pattern.
+Detection: <code>lint</code> (<code>enforced</code>): <code>tools/eval_order_check.py</code>, the <code>eval-order</code> preflight step, scans <code>tests/</code> and
+<code>examples/</code>. <code>test</code>: the fuzz replay with a one-edit mutant that must abort (<code>mutant_replay_*</code>, kept out of the
+<code>fuzz_*</code> names so the libFuzzer job does not pick it up).</p>
 <h3 id="rd-24-missing-gitlink-for-the-scripts-submodule">RD-24 Missing gitlink for the scripts submodule<a class="headerlink" href="#rd-24-missing-gitlink-for-the-scripts-submodule" title="Permanent link">&para;</a></h3>
 <p>Seen: sfm (review3 M-B), mcp9700 first push (the ESP32 examples job fails: no such directory). 2 drivers.
 Detection: <code>lint</code> (<code>enforced</code>): the gate runs <code>git ls-files -s | grep ^160000</code> after setting the pinned commit.</p>
@@ -1706,16 +1745,16 @@ a configure-only database; check the log names the tidy file count).</p>
 <h2 id="ci-only-checks-misra-scan-esp-idf-compile-fail">CI-only checks (MISRA scan, ESP-IDF, compile-fail)<a class="headerlink" href="#ci-only-checks-misra-scan-esp-idf-compile-fail" title="Permanent link">&para;</a></h2>
 <h3 id="rd-11-header-outside-the-library-subset">RD-11 Header outside the library subset<a class="headerlink" href="#rd-11-header-outside-the-library-subset" title="Permanent link">&para;</a></h3>
 <p>Rule: <code>#include &lt;...&gt;</code> in <code>inc/</code> and <code>src/</code> is only from the driver subset of the handbook (KB-CPP-012).</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;numeric&gt;</span><span class="w">   </span><span class="c1">// bad: not in the subset; std::accumulate -&gt; write the OR out</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string_view&gt;</span>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;numeric&gt;</span><span class="w">   </span><span class="c1">// bad: not in the subset; std::accumulate -&gt; write the OR out</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string_view&gt;</span>
 </span></code></pre></div>
 <p>Seen: fdo2 (<code>reports/fdo2-ci2.txt</code>, <code>&lt;string_view&gt;</code>), tmc5160 (review4 B1, <code>&lt;numeric&gt;</code>). 2 drivers; the second hit makes
 it a lint. Detection: <code>lint</code> (<code>enforced</code> in handbook_check; the preflight must also run the include scan or grep).</p>
 <h3 id="rd-12-rule-703-character-arithmetic">RD-12 Rule 7.0.3 character arithmetic<a class="headerlink" href="#rd-12-rule-703-character-arithmetic" title="Permanent link">&para;</a></h3>
 <p>Rule: no arithmetic or comparison on a <code>char</code> value, including <code>c - '0'</code> and <code>c == 'x'</code>.</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">'0'</span><span class="p">;</span><span class="w">                 </span><span class="c1">// bad</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">'A'</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">                 </span><span class="c1">// bad</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DigitValue</span><span class="p">(</span><span class="n">c</span><span class="p">);</span><span class="w">     </span><span class="c1">// good: lookup in a constexpr digit array via std::find</span>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">'0'</span><span class="p">;</span><span class="w">                 </span><span class="c1">// bad</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">'A'</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">                 </span><span class="c1">// bad</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DigitValue</span><span class="p">(</span><span class="n">c</span><span class="p">);</span><span class="w">     </span><span class="c1">// good: lookup in a constexpr digit array via std::find</span>
 </span></code></pre></div>
 <p>Seen: fdo2 (<code>reports/fdo2-ci-misra.txt</code>, <code>reports/fdo2-ci2.txt</code>: the bare comparisons too), alicat (review2:
 about 30 computations predicted; review3 R3-M1, six conversions; m-10, tests), pf1550 (review4 m-4: a template
@@ -1724,8 +1763,8 @@ Detection: <code>lint</code>: <code>misra_lint</code> rule 7.0.3 (planned): char
 examples</code>. Until then: grep <code>'.'</code> next to <code>-</code>, <code>+</code>, <code>==</code>, <code>!=</code>.</p>
 <h3 id="rd-13-rule-801-missing-parentheses">RD-13 Rule 8.0.1 missing parentheses<a class="headerlink" href="#rd-13-rule-801-missing-parentheses" title="Permanent link">&para;</a></h3>
 <p>Rule: a binary operand that is itself a binary expression of higher precedence is parenthesised, in <code>static_assert</code> too.</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">static_assert</span><span class="p">(</span><span class="n">kA</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">kB</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w">           </span><span class="c1">// bad</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">static_assert</span><span class="p">((</span><span class="n">kA</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">kB</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">));</span><span class="w">       </span><span class="c1">// good</span>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">static_assert</span><span class="p">(</span><span class="n">kA</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">kB</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w">           </span><span class="c1">// bad</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">static_assert</span><span class="p">((</span><span class="n">kA</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">kB</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">));</span><span class="w">       </span><span class="c1">// good</span>
 </span></code></pre></div>
 <p>Seen: ads9324 (<code>reports/ads9324-ci-misra.txt</code>, three lines), pf1550 (review4 m-1: <code>static_assert</code>s). 2 drivers.
 Detection: <code>lint</code>: <code>misra_lint</code> rule 8.0.1 (planned): parenthesis-depth scan of <code>inc src tests</code>.</p>

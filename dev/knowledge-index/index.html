@@ -801,6 +801,10 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../agent-context/">Agent context</a></td>
+<td>You start any task: the flow, the skill per step, the local checks, the layout, the rules, the pitfalls, when to stop</td>
+</tr>
+<tr>
 <td><a href="../recurring-defects/">Recurring defects</a></td>
 <td>You review, fix or design anything: the defect classes (RD-nn) that reached reviewers or CI, with the check for each</td>
 </tr>
@@ -838,7 +842,19 @@
 </tr>
 <tr>
 <td><code>first-push</code> skill</td>
-<td>A new driver is about to be pushed for the first time: rehearsal, review rounds, evidence</td>
+<td>A new driver is about to be published for the first time: rehearsal, review rounds, evidence</td>
+</tr>
+<tr>
+<td><code>plan-driver</code> skill</td>
+<td>A chip is requested: new driver, extension of a family or duplicate; the API shape; <code>placement.md</code></td>
+</tr>
+<tr>
+<td><code>publish-driver</code> skill</td>
+<td>A driver passed <code>first-push</code>: backup, one clean commit, scans, public repository, CI, Pages, release candidate</td>
+</tr>
+<tr>
+<td><code>hardware-validation</code> skill</td>
+<td>You state, raise or word the hardware level (H0, H1, H2), write a rig document or a candidate's release text</td>
 </tr>
 <tr>
 <td><code>add-driver-feature</code>, <code>add-port</code> skills</td>
@@ -858,9 +874,10 @@
 </tr>
 </tbody>
 </table>
-<p>Order for a new driver: build with <code>new-driver-from-template</code>, <code>datasheet-conformance</code> and <code>add-driver-feature</code>;
-host tests and <code>verify</code>; the gate (see the policy); <code>review-round</code> until the stop rule holds; <code>first-push</code>; <code>release</code>.</p>
-<p>These three pages and the skills are managed by the template: <code>scaffold.py --check-drift --fix</code> ships them to every
+<p>Order for a new driver: <code>plan-driver</code>; build with <code>new-driver-from-template</code>, <code>datasheet-conformance</code> and
+<code>add-driver-feature</code>; host tests and <code>verify</code>; the gate (see the policy); <code>review-round</code> until the stop rule holds;
+<code>first-push</code>; <code>publish-driver</code>; the release candidate (<code>release</code>); <code>hardware-validation</code>.</p>
+<p>These pages and the skills are managed by the template: <code>scaffold.py --check-drift --fix</code> ships them to every
 driver, <code>_config/mkdocs.yml</code> keeps the pages out of the site navigation (<code>not_in_nav</code>), and the skills link to them
 by relative path, so the links resolve in the repository.</p>
 
