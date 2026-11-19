@@ -49,6 +49,7 @@ and until it lands the level below it (test, then review) is what protects the d
 | RD-31 | Clear-on-read flags lost by a diagnostic read | 2 | review | test |
 | RD-32 | Docs style: line length, merged bullets, stale text | 3 | lint | lint |
 | RD-33 | Another project's name or dated history | 1 | lint | lint |
+| RD-34 | Unspecified evaluation order in a test check | 3 | lint | lint |
 
 ## Chip-protocol and safety classes
 
@@ -317,6 +318,32 @@ m9: no
 no-write-in-doubt invariant). 3 drivers.
 Detection: `test`: mutate the invariant check in the harness; `review`: question "which safety rule does the fuzz
 target assert, and what input would break each?"
+
+### RD-34 Unspecified evaluation order in a test check
+
+Rule: a call in a test or fuzz target takes, as separate arguments, no operation that changes state together with a
+read of that state (`sent()`, `Transfers()`, `pending()`, a flag, a counter, a clock). The order of the arguments of a
+call, of the operands of `+ - == <` and of the two sides of an assignment is unspecified; GCC on x86-64 evaluates
+arguments right to left, Clang and GCC on aarch64 left to right. Braced-init lists, `&&`, `||`, `?:` and `,` are
+sequenced. Two reads of the fuzzer's input (`in.Byte()`, `FuzzConfig(in)`) in one expression count as well: they
+advance the input, so the same corpus file decodes into different calls per compiler.
+
+```cpp
+// bad: x86-64 GCC reads sent() before the call, so it is always 0 here
+Check(d.Write(v), was_up, sent());
+// good: the result first, then the read; or pass the probe and read it inside the helper, after the call
+const auto r = d.Write(v);
+Check(r, was_up, sent());
+```
+
+Hurts: the check passes, or aborts, on one CI runner only. A "nothing was sent" promise becomes vacuous, and a
+positive promise (`sent >= 1`) aborts on a correct driver; neither shows on an Apple-silicon or aarch64 rehearsal.
+Seen: dynamixel (first CI, `sent >= 1` aborted on x86-64 GCC only), pcal9555 (three fuzz cases, latent), tle92466ed
+(16 fuzz cases, vacuous; 6 more with two input reads), the template's own fuzz target (5 cases).
+3 drivers, all copies of the same pattern.
+Detection: `lint` (`enforced`): `tools/eval_order_check.py`, the `eval-order` preflight step, scans `tests/` and
+`examples/`. `test`: the fuzz replay with a one-edit mutant that must abort (`mutant_replay_*`, kept out of the
+`fuzz_*` names so the libFuzzer job does not pick it up).
 
 ### RD-24 Missing gitlink for the scripts submodule
 

@@ -93,6 +93,22 @@ fi
 # MISRA C++:2023 defect classes the CI scan reported on earlier drivers (tools/misra_lint.py): not skippable.
 step misra-lint-selftest python3 tools/misra_lint.py --selftest
 step misra-lint python3 tools/misra_lint.py --quiet --root . --ci-tools "$CI_TOOLS"
+# Unspecified evaluation order in a test or fuzz check (RD-34): a call must not take a driver operation and a read of the
+# state it changes as separate arguments (GCC on x86-64 reads the arguments right to left; no other rehearsal sees it).
+step eval-order-selftest python3 -I tools/eval_order_check.py --selftest
+step eval-order python3 -I tools/eval_order_check.py --quiet --root .
+# The agent context: every skill is linked from docs/agent-context.md, has front matter and names files that exist; one
+# source per header and SDK code only in src/boundary/; the hardware level, badge and evidence agree.
+step skills-selftest python3 -I tools/check_skills.py --selftest
+step skills python3 -I tools/check_skills.py --quiet
+step layout-selftest python3 -I tools/check_layout.py --selftest
+step layout python3 -I tools/check_layout.py --quiet
+step hardware-selftest python3 -I tools/check_hardware.py --selftest
+step hardware python3 -I tools/check_hardware.py --quiet
+# The C++ standard is declared once in driver.yml (`language:`) and agrees with the CMake files, clang-format, the
+# -std flags, the workflows and the README (docs/language-standard.md).
+step language-selftest python3 -I tools/check_language.py --selftest
+step language python3 -I tools/check_language.py --quiet
 # The first-push gitlink: after `git add -A`, examples/esp32/scripts is a gitlink (mode 160000), not a missing or
 # empty folder (checked on a scratch copy of the index, the working tree's index is left alone).
 gitlink() {
@@ -115,7 +131,7 @@ if [ -n "$FMT" ]; then
 else skip clang-format "no clang-format"; fi
 if [ "$quick" = 0 ] && [ -n "$TIDY" ] && [ -n "$first" ]; then
   tidy() {  # every unit of the host build and every header alone (CI lints each file); fail on a file CI lints
-    local units=() f
+    local units=() f t0=$SECONDS
     while IFS= read -r f; do units+=("$f"); done < <(
       python3 -c 'import json,sys; print("\n".join(sorted({e["file"] for e in json.load(open(sys.argv[1]))})))' \
         "$first/compile_commands.json" | grep -E '/(tests|examples/host)/' | grep -v '/tests/compile_fail/'
@@ -141,7 +157,9 @@ if [ "$quick" = 0 ] && [ -n "$TIDY" ] && [ -n "$first" ]; then
       grep -vE "^$root/(build|docs|_site|examples/esp32|tools/scaffold|tests/compile_fail)/" >"$work/tidy.findings"
     if [ -s "$work/tidy.findings" ]; then cat "$work/tidy.findings"; return 1; fi
     # clang-tidy itself failing (a file it could not open or parse) is a failure too, not a clean run.
-    ! grep -qE "^Error while processing|error: no such file|LLVM ERROR" "$work/tidy.out"
+    ! grep -qE "^Error while processing|error: no such file|LLVM ERROR" "$work/tidy.out" || return 1
+    # CI stops the C++ lint job at 20 minutes: a third of that on this machine is a warning CI will time out.
+    [ $((SECONDS - t0)) -le 400 ] || { echo "clang-tidy took $((SECONDS - t0)) s (limit 400 s): fewer or smaller test units"; return 1; }
   }
   step clang-tidy tidy
 else skip clang-tidy "quick, or no clang-tidy"; fi
