@@ -3,7 +3,7 @@
 # (tools/scaffold.py --check-drift, CI: kokeb-labs/ci-tools ru-template-drift) scaffolds the template again
 # with these arguments and compares the files it manages. List a file under `local` only when it differs on
 # purpose, with the reason.
-template: a730fa8cbb17e023d5cfbe87e2b505e4fcc9899a
+template: e22bd0d0143fdd81c27087dc406c4fe22404dcec
 kind: "driver"
 name: "canopen_client"
 bus: "none"
