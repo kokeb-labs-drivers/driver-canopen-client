@@ -1,4 +1,38 @@
 {
+  "can-timing": {
+    "title": "One dominant bit through the transceiver",
+    "alt": "CAN timing through the SN65HVD230: the controller pulls D low, the transceiver drives the bus dominant with CANH high and CANL low, and R follows after the loop delay, with the voltages and delays of the datasheet.",
+    "description": "The four lanes are D, CANH, CANL and R, left to right in time. While D is high the bus is recessive and both lines rest near the middle; D low makes the bus dominant, CANH rising and CANL falling, and R, the receiver output to the controller, goes low after the loop delay. D high returns the bus to recessive and R follows after the second loop delay.",
+    "profile": "phone",
+    "width": 640,
+    "source": "docs/model/can-timing.timing.yml",
+    "sources": [
+      "docs/model/can-timing.timing.yml"
+    ],
+    "kind": "timing",
+    "palette": 2,
+    "print": "landscape",
+    "adaptive": true,
+    "twin": true,
+    "font": ""
+  },
+  "can-topology": {
+    "title": "CANopen nodes on one CAN bus",
+    "alt": "A CAN bus on which the MCU running this driver and the CANopen nodes share the CANH and CANL lines, each node with its own node ID, and a 120 Ω terminating resistor at each end of the pair.",
+    "description": "The MCU with its CAN controller and transceiver on top and the CANopen nodes under it connect to the rails CANH and CANL on the right; the dashed card stands for the nodes in between. A terminator at each end of the pair matches the cable.",
+    "profile": "phone",
+    "width": 640,
+    "source": "docs/model/can-topology.topology.yml",
+    "sources": [
+      "docs/model/can-topology.topology.yml"
+    ],
+    "kind": "topology",
+    "palette": 2,
+    "print": "landscape",
+    "adaptive": true,
+    "twin": false,
+    "font": ""
+  },
   "chip-blocks": {
     "title": "Inside the SN65HVD230",
     "alt": "Block diagram of the SN65HVD230: its function blocks, how they connect and which package pins reach each block.",

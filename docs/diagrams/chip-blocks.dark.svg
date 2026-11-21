@@ -5,7 +5,7 @@
 <rect x="0.5" y="0.5" width="1199" height="540" rx="16" fill="#0E131A" stroke="#283241"/>
 <text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#F8D27A">HARDWARE</text>
 <text x="32" y="77.3" font-size="26" font-weight="700" fill="#E8EDF3">Inside the SN65HVD230</text>
-<text x="32" y="103.8" font-size="15" fill="#9AA6B5">Function blocks and their links, from the datasheet's block diagram (Service Data Object (SDO) protocol, p. 1). Pins on the edge carry their package</text>
+<text x="32" y="103.8" font-size="15" fill="#9AA6B5">Function blocks and their links, from the datasheet's block diagram (10.2 Functional Block Diagram, p. 19). Pins on the edge carry their package</text>
 <text x="32" y="125.5" font-size="15" fill="#9AA6B5">number.</text>
 <rect x="32" y="141.6" width="1136" height="1" fill="#252F3C"/>
 <rect x="120" y="159.6" width="960" height="320" rx="14" fill="#1B232E" stroke="#3A4656" stroke-width="1.2"/>

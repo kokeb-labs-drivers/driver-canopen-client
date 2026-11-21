@@ -34,7 +34,11 @@ refs:
   drive: {doc: py-402, section: "BaseNode402: states, masks, transitions", page: 1}
   store: {doc: cn-store, section: "CO_storage.c: signatures and sub-indices", page: 1}
   cobid: {doc: wiki, section: "Pre-defined connection set (COB-IDs)", page: 1}
-  blocks: {doc: wiki, section: "Service Data Object (SDO) protocol", page: 1}
+  sdoblock: {doc: wiki, section: "Service Data Object (SDO) protocol", page: 1}
+  drvel: {doc: ti, section: "8.5 Electrical Characteristics: Driver", page: 7}
+  loop: {doc: ti, section: "8.9 Switching Characteristics: Device", page: 8}
+  nodes: {doc: ti, section: "11.2.1.3 Bus Loading, Length and Number of Nodes", page: 28}
+  nodeid: {doc: wiki, section: "Communication objects", page: 1}
 
 package:
   type: SOIC-8
@@ -119,7 +123,7 @@ capabilities:
   - {id: raw, title: Raw frames, icon: gauge, status: supported, ref: cobid, docs: api-guide.md,
      what: "Sends and reads any classic CAN frame and returns the raw reply of an SDO request",
      api: [SendRawFrame, ReadRawFrame, ReadRawSdo, WriteRawSdo], tests: [tests/test_hardening.cpp]}
-  - {id: block, title: "Block transfer, FD and LSS", icon: lock, status: not-covered, ref: blocks, docs: contract.md,
+  - {id: block, title: "Block transfer, FD and LSS", icon: lock, status: not-covered, ref: sdoblock, docs: contract.md,
      what: "Block transfer, CAN FD, 29-bit identifiers, LSS, an NMT slave and an SDO server are not implemented"}
 
 hooks:

@@ -6,6 +6,41 @@ Every figure on this site is drawn by a Python module from facts extracted from 
 not redrawn, when the code changes. CI runs `kokeb-docs figures --check` and fails when a
 committed figure no longer matches the code. Each figure below lists the files it is drawn from.
 
+## One dominant bit through the transceiver
+
+<!-- figure: can-timing -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="can-timing.dark.svg">
+  <img src="can-timing.svg"
+    alt="CAN timing through the SN65HVD230: the controller pulls D low, the transceiver drives the bus
+    dominant with CANH high and CANL low, and R follows after the loop delay, with the voltages and
+    delays of the datasheet.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/model/can-timing.timing.yml`](../model/can-timing.timing.yml)
+
+Drawn from:
+
+- [`docs/model/can-timing.timing.yml`](../model/can-timing.timing.yml)
+
+## CANopen nodes on one CAN bus
+
+<!-- figure: can-topology -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="can-topology.dark.svg">
+  <img src="can-topology.svg"
+    alt="A CAN bus on which the MCU running this driver and the CANopen nodes share the CANH and CANL lines,
+    each node with its own node ID, and a 120 Ω terminating resistor at each end of the pair.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/model/can-topology.topology.yml`](../model/can-topology.topology.yml)
+
+Drawn from:
+
+- [`docs/model/can-topology.topology.yml`](../model/can-topology.topology.yml)
+
 ## Inside the SN65HVD230
 
 <!-- figure: chip-blocks -->

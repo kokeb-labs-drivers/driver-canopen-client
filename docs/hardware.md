@@ -7,10 +7,12 @@ datasheet was obtained for this repository.
 <!-- generated: datasheet-refs -->
 ??? abstract "Datasheet sections this page relies on"
 
+    - Data rate up to 1 Mbit/s, up to 120 nodes: Texas Instruments SN65HVD230, SN65HVD231, SN65HVD232 (SLOS346) O, 1 Features, [p. 1](https://www.ti.com/lit/ds/symlink/sn65hvd230.pdf#page=1)
     - Pin configuration: Texas Instruments SN65HVD230, SN65HVD231, SN65HVD232 (SLOS346) O, 7 Pin Configuration and Functions, [p. 5](https://www.ti.com/lit/ds/symlink/sn65hvd230.pdf#page=5)
     - Supply voltage and mode select (RS): Texas Instruments SN65HVD230, SN65HVD231, SN65HVD232 (SLOS346) O, 8.3 Recommended Operating Conditions; 5 Description (continued), [p. 6](https://www.ti.com/lit/ds/symlink/sn65hvd230.pdf#page=6)
     - CAN node: transceiver and controller wiring: Texas Instruments SN65HVD230, SN65HVD231, SN65HVD232 (SLOS346) O, 11.2 Typical Application, [p. 26](https://www.ti.com/lit/ds/symlink/sn65hvd230.pdf#page=26)
     - Bus termination: Texas Instruments SN65HVD230, SN65HVD231, SN65HVD232 (SLOS346) O, 11.2.1.1 CAN Termination, [p. 26](https://www.ti.com/lit/ds/symlink/sn65hvd230.pdf#page=26)
+    - Bus length, stubs and number of nodes: Texas Instruments SN65HVD230, SN65HVD231, SN65HVD232 (SLOS346) O, 11.2.1.3 Bus Loading, Length and Number of Nodes, [p. 28](https://www.ti.com/lit/ds/symlink/sn65hvd230.pdf#page=28)
     - Pre-defined connection set (COB-IDs): Wikipedia contributors Wikipedia article (oldid 1373604442) last edited September 2026, Pre-defined connection set, p. 1
 
     All of them, with the driver API for each: [Datasheet map](datasheet.md).
