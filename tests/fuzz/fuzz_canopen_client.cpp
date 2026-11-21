@@ -297,9 +297,13 @@ private:
     case 5:
       n.supports_segmented = !n.supports_segmented;
       break;
-    case 6:
-      port_.bus.Emcy(n.id, in_.Word(), in_.Byte());
+    case 6: {
+      const uint16_t code =
+          in_.Word(); // one argument per statement: a fixed order of the input reads
+      const uint8_t reg = in_.Byte();
+      port_.bus.Emcy(n.id, code, reg);
       break;
+    }
     default:
       n.drive.state = static_cast<canopen_client_test::SimDrive::State>(in_.Byte() % 8U);
       n.drive.pending = n.drive.state;
@@ -361,9 +365,12 @@ private:
       }
       break;
     }
-    case 10:
-      call([&] { return client_.SubscribeTpdo(in_.Word() % 0x600U, in_.Byte() % 10U); });
+    case 10: {
+      const auto cob = static_cast<uint16_t>(in_.Word() % 0x600U);
+      const auto tpdo = static_cast<uint8_t>(in_.Byte() % 10U);
+      call([&] { return client_.SubscribeTpdo(cob, tpdo); });
       break;
+    }
     case 11:
       call([&] { return client_.UnsubscribeTpdo(in_.Word() % 0x600U); });
       break;
@@ -401,24 +408,39 @@ private:
       });
       break;
     }
-    case 15:
-      call([&] { return client_.SdoReadU8(pickNode(), in_.Word(), in_.Byte() % 3U); });
-      break;
-    case 16:
-      call([&] { return client_.SdoReadU16(pickNode(), in_.Word(), in_.Byte() % 3U); });
-      break;
-    case 17:
-      call([&] { return client_.SdoReadU32(pickNode(), in_.Word(), in_.Byte() % 3U); });
-      break;
-    case 18:
-      call(
-          [&] { return client_.SdoWriteU32(pickNode(), in_.Word(), in_.Byte() % 3U, in_.Quad()); });
-      break;
+    case 15: {
+      const auto node = pickNode();
+      const uint16_t index = in_.Word();
+      const auto sub = static_cast<uint8_t>(in_.Byte() % 3U);
+      call([&] { return client_.SdoReadU8(node, index, sub); });
+    } break;
+    case 16: {
+      const auto node = pickNode();
+      const uint16_t index = in_.Word();
+      const auto sub = static_cast<uint8_t>(in_.Byte() % 3U);
+      call([&] { return client_.SdoReadU16(node, index, sub); });
+    } break;
+    case 17: {
+      const auto node = pickNode();
+      const uint16_t index = in_.Word();
+      const auto sub = static_cast<uint8_t>(in_.Byte() % 3U);
+      call([&] { return client_.SdoReadU32(node, index, sub); });
+    } break;
+    case 18: {
+      const auto node = pickNode();
+      const uint16_t index = in_.Word();
+      const auto sub = static_cast<uint8_t>(in_.Byte() % 3U);
+      const uint32_t value = in_.Quad();
+      call([&] { return client_.SdoWriteU32(node, index, sub, value); });
+    } break;
     case 19: {
       const std::array<uint8_t, 4> d{in_.Byte(), in_.Byte(), in_.Byte(), in_.Byte()};
       const std::size_t n = in_.Byte() % 6U;
+      const auto node = pickNode();
+      const uint16_t index = in_.Word();
+      const auto sub = static_cast<uint8_t>(in_.Byte() % 3U);
       call([&] {
-        return client_.SdoDownloadUnconfirmed(pickNode(), in_.Word(), in_.Byte() % 3U,
+        return client_.SdoDownloadUnconfirmed(node, index, sub,
                                               std::span<const uint8_t>(d.data(), n));
       });
       break;
@@ -485,9 +507,12 @@ private:
     case 36:
       call([&] { return client_.ReadRawFrame(in_.Byte() * 100U); });
       break;
-    case 37:
-      call([&] { return client_.ReadRawSdo(pickNode(), in_.Word(), in_.Byte() % 3U); });
-      break;
+    case 37: {
+      const auto node = pickNode();
+      const uint16_t index = in_.Word();
+      const auto sub = static_cast<uint8_t>(in_.Byte() % 3U);
+      call([&] { return client_.ReadRawSdo(node, index, sub); });
+    } break;
     default: {
       const auto r = client_.Deinitialize();
       Check(r.ok());
