@@ -1,0 +1,47 @@
+---
+# Model of the figure 'can-timing'. Edit this file; `kokeb-docs figures` draws it. Never edit the SVGs.
+# Every number is a param with the datasheet section and page it comes from (refs in docs/hardware.yml). The
+# numbers are those of the reference transceiver, the SN65HVD230 (document `ti`), in high-speed mode (RS at 0 V).
+# No CAN bit-timing figure: the CiA documents that would give bit timing for CANopen were not obtained.
+kind: timing
+id: can-timing
+title: One dominant bit through the transceiver
+kicker: On the bus
+alt: >-
+  CAN timing through the SN65HVD230: the controller pulls D low, the transceiver drives the bus dominant with CANH
+  high and CANL low, and R follows after the loop delay, with the voltages and delays of the datasheet.
+reads: >-
+  The four lanes are D, CANH, CANL and R, left to right in time. While D is high the bus is recessive and both lines
+  rest near the middle; D low makes the bus dominant, CANH rising and CANL falling, and R, the receiver output to the
+  controller, goes low after the loop delay. D high returns the bus to recessive and R follows after the second loop
+  delay.
+print: landscape
+sources:
+  - docs/model/can-timing.timing.yml
+bus: can
+signals:
+  - {id: d, label: D, wave: "110.....1....", tone: blue}
+  - {id: canh, label: CANH, wave: "zzz1.....z...", tone: amber}
+  - {id: canl, label: CANL, wave: "zzz0.....z...", tone: amber}
+  - {id: r, label: R, wave: "11110.....1..", tone: teal}
+groups:
+  - {from: 0, to: 3, label: recessive}
+  - {from: 3, to: 9, label: dominant}
+  - {from: 9, to: 13, label: recessive}
+params:
+  - {id: rate, symbol: rate, label: Data rate, max: 1, unit: Mbit/s, ref: feat}
+  - {id: loop1, symbol: t(LOOP1), label: "Total loop delay, D to R, recessive to dominant", typ: 70, max: 115,
+     unit: ns, ref: loop}
+  - {id: loop2, symbol: t(LOOP2), label: "Total loop delay, D to R, dominant to recessive", typ: 100, max: 135,
+     unit: ns, ref: loop}
+  - {id: vohh, symbol: VOH CANH, label: "Bus output voltage, dominant, CANH", min: 2.45, unit: V, ref: drvel}
+  - {id: vohl, symbol: VOH CANL, label: "Bus output voltage, dominant, CANL", min: 0.5, max: 1.25, unit: V,
+     ref: drvel}
+  - {id: vol, symbol: VOL, label: "Bus output voltage, recessive, CANH and CANL", typ: 2.3, unit: V, ref: drvel}
+  - {id: vodd, symbol: VOD(D), label: "Differential output voltage, dominant, 60 Ω load", min: 1.5, typ: 2, max: 3,
+     unit: V, ref: drvel}
+marks:
+  - {param: loop1, signal: r, from: 2, to: 4}
+  - {param: loop2, signal: r, from: 8, to: 10}
+notes:
+  - {text: "Delays with RS at 0 V; a resistor from RS to ground slows the edges and lengthens them.", ref: loop}

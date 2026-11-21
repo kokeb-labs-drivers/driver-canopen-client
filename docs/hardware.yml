@@ -23,6 +23,22 @@ refs:
   term: {doc: ti, section: "11.2.1.1 CAN Termination", page: 26}
   outline: {doc: ti, section: "Package outline D0008A", page: 40}
   order: {doc: ti, section: "Device Information, orderable addendum", page: 1}
+  feat: {doc: ti, section: "1 Features", page: 1}
+  uses: {doc: ti, section: "1 Features, 2 Applications, 3 Description", page: 1}
+  nmt: {doc: wiki, section: "Network management (NMT)", page: 1}
+  sdo: {doc: py-sdoc, section: "SdoClient: initiate, upload, download, segments", page: 1}
+  hb: {doc: cn-hb, section: "CO_HBconsumer.c", page: 1}
+  emcy: {doc: cn-emcy, section: "CO_Emergency.h: EMCY frame", page: 1}
+  sync: {doc: cn-sync, section: "CO_SYNC.h: SYNC frame and counter", page: 1}
+  pdo: {doc: py-pdo, section: "PDO map and communication records", page: 1}
+  drive: {doc: py-402, section: "BaseNode402: states, masks, transitions", page: 1}
+  store: {doc: cn-store, section: "CO_storage.c: signatures and sub-indices", page: 1}
+  cobid: {doc: wiki, section: "Pre-defined connection set (COB-IDs)", page: 1}
+  sdoblock: {doc: wiki, section: "Service Data Object (SDO) protocol", page: 1}
+  drvel: {doc: ti, section: "8.5 Electrical Characteristics: Driver", page: 7}
+  loop: {doc: ti, section: "8.9 Switching Characteristics: Device", page: 8}
+  nodes: {doc: ti, section: "11.2.1.3 Bus Loading, Length and Number of Nodes", page: 28}
+  nodeid: {doc: wiki, section: "Communication objects", page: 1}
 
 package:
   type: SOIC-8
@@ -32,6 +48,83 @@ package:
 
 supply:
   - {name: VCC, min_v: 3.0, max_v: 3.6, ref: supply}
+
+# The chip-first README. This driver is not tied to one chip: the part drawn here is the reference CAN transceiver
+# whose datasheet was obtained, and the capabilities are what the driver does with CANopen over it. CANopen's own
+# specifications were not obtained (see docs/datasheets.yml). The bus is a stream of short frames with no variable-
+# length packet to draw, so there is no `frames` entry.
+overview:
+  summary: >-
+    a 3.3 V CAN transceiver, the reference physical layer of a CANopen node: it turns a CAN controller's TXD and RXD
+    into the differential CANH and CANL signals of an ISO 11898-2 bus, and this driver speaks CANopen to the nodes on
+    that bus
+  category: CAN transceiver
+  ref: uses
+  applications:
+    - {label: "Industrial automation, control, sensors and drive systems"}
+    - {label: "Motor and robotic control"}
+    - {label: "Building and climate control (HVAC)"}
+    - {label: "Telecom and basestation control and status"}
+    - {label: "CAN bus standards such as CANopen, DeviceNet and CAN Kingdom"}
+  specs:
+    - {value: "3.0 to 3.6 V", label: "single supply", ref: supply}
+    - {value: "1 Mbit/s", label: "data rate, up to", ref: feat}
+    - {value: "120 nodes", label: "on one bus", ref: feat}
+    - {value: "16 kV", label: "bus pin ESD, HBM", ref: feat}
+    - {value: "370 µA", label: "standby current, typical", ref: feat}
+  system:
+    host: MCU
+    bus: "CAN controller TXD and RXD"
+    drives:
+      - {label: "CAN bus pair", detail: "CANH and CANL, differential", ref: pinout}
+    senses:
+      - {label: "Bus level", detail: "CANH and CANL to RXD", ref: blocks}
+
+# Headers the capability `api` and `registers` names are checked against.
+driver:
+  api: [inc/canopen_client.hpp, inc/canopen_client_types.hpp]
+  registers: [inc/canopen_client_types.hpp, inc/canopen_client_protocol.hpp]
+  # A protocol driver: the capability legend and the coverage table speak of the protocol, and each supported
+  # capability names the host tests that check it.
+  kind: protocol
+
+capabilities:
+  - {id: nmt, title: Start and stop nodes, icon: power, status: supported, ref: nmt, docs: api-guide.md,
+     what: "Sends the NMT commands that start, stop, pre-operate and reset one node or all of them",
+     api: [SendNmt], registers: [PreOperational, ResetNode, ResetCommunication], tests: [tests/test_lifecycle.cpp]}
+  - {id: sdo, title: Read and write objects, icon: tag, status: supported, ref: sdo, docs: api-guide.md,
+     what: "Reads and writes object dictionary entries, in one frame or in segments, with the node's abort code",
+     api: [SdoUpload, SdoDownload, SdoReadU8, SdoReadU16, SdoReadU32, SdoWriteU8, SdoWriteU16, SdoWriteU32,
+           SdoDownloadUnconfirmed], tests: [tests/test_sdo.cpp]}
+  - {id: health, title: "Heartbeat, guarding and emergencies", icon: alert, status: supported, ref: hb,
+     docs: api-guide.md,
+     what: "Watches node heartbeats and guarding replies, and queues the emergency messages nodes send",
+     api: [MonitorNode, UnmonitorNode, GetNodeStatus, ClearBootUp, GuardNode, Poll, PopEmcy],
+     tests: [tests/test_rx.cpp, tests/test_faults.cpp]}
+  - {id: sync, title: SYNC producer, icon: clock, status: supported, ref: sync, docs: api-guide.md,
+     what: "Sends the SYNC frame, once or on a period with the optional counter byte",
+     api: [SendSync, ConfigureSync, ServiceSync], tests: [tests/test_rx.cpp]}
+  - {id: pdo, title: Process data, icon: chain, status: supported, ref: pdo, docs: api-guide.md,
+     what: "Maps and enables a node's PDOs in the order the profile asks, reads TPDO samples and sends RPDOs",
+     api: [ConfigurePdo, DisablePdo, ReadPdoConfig, SubscribeTpdo, UnsubscribeTpdo, ReadTpdo, SendRpdo],
+     tests: [tests/test_pdo.cpp]}
+  - {id: drive, title: CiA 402 drive control, icon: motion, status: supported, ref: drive, docs: api-guide.md,
+     what: "Reads the drive state and walks it to enabled, disabled, quick stop or fault reset, and sets the mode",
+     note: "disable and quick stop are never refused for the drive state",
+     api: [ReadDriveState, ReadStatusword, DriveEnable, DriveDisable, DriveQuickStop, DriveResetFault,
+           SetDriveMode, ReadDriveMode],
+     registers: [ProfilePosition, Velocity, ProfileVelocity, CyclicSynchronousPosition],
+     tests: [tests/test_drive.cpp]}
+  - {id: settings, title: Node identity and settings, icon: settings, status: supported, ref: store,
+     docs: api-guide.md,
+     what: "Reads a node's device type and error register, sets its heartbeat time, stores or restores its parameters",
+     api: [ReadDeviceType, ReadErrorRegister, WriteHeartbeatProducerTime, StoreParameters, RestoreDefaults],
+     tests: [tests/test_sdo.cpp]}
+  - {id: raw, title: Raw frames, icon: gauge, status: supported, ref: cobid, docs: api-guide.md,
+     what: "Sends and reads any classic CAN frame and returns the raw reply of an SDO request",
+     api: [SendRawFrame, ReadRawFrame, ReadRawSdo, WriteRawSdo], tests: [tests/test_hardening.cpp]}
+  - {id: block, title: "Block transfer, FD and LSS", icon: lock, status: not-covered, ref: sdoblock, docs: contract.md,
+     what: "Block transfer, CAN FD, 29-bit identifiers, LSS, an NMT slave and an SDO server are not implemented"}
 
 hooks:
   - {id: send, call: "Send(const CanFrame&)", kind: other}

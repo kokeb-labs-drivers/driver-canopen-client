@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="772" viewBox="0 0 640 772" role="img" aria-labelledby="can-topology-title can-topology-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="can-topology-title">CANopen nodes on one CAN bus</title>
+<desc id="can-topology-desc">A CAN bus on which the MCU running this driver and the CANopen nodes share the CANH and CANL lines, each node with its own node ID, and a 120 Ω terminating resistor at each end of the pair.</desc>
+<rect x="0.5" y="0.5" width="639" height="771" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="44.4" font-size="13" font-weight="700" letter-spacing="1.2" fill="#7A360E">SEVERAL DEVICES</text>
+<text x="32" y="76.2" font-size="24" font-weight="700" fill="#0E1726">CANopen nodes on one CAN bus</text>
+<text x="32" y="102.7" font-size="15" fill="#566070">Sources: wiki Communication objects, p. 1; ti 11.2.1.1 CAN Termination, p. 26;</text>
+<text x="32" y="124.5" font-size="15" fill="#566070">ti 11.2.1.3 Bus Loading, Length and Number of Nodes, p. 28.</text>
+<rect x="32" y="140.4" width="576" height="1" fill="#E2E7EE"/>
+<path d="M515.3 194.6 L515.3 537.6" fill="none" stroke="#2B3442" stroke-width="2.2"/>
+<path d="M461.1 220.6 L515.3 220.6" fill="none" stroke="#2B3442" stroke-width="1.8"/>
+<path d="M461.1 312.6 L515.3 312.6" fill="none" stroke="#2B3442" stroke-width="1.8"/>
+<path d="M461.1 412.1 L515.3 412.1" fill="none" stroke="#2B3442" stroke-width="1.8" stroke-dasharray="5 4"/>
+<path d="M461.1 469.6 L515.3 469.6" fill="none" stroke="#2B3442" stroke-width="1.8"/>
+<path d="M571.8 194.6 L571.8 537.6" fill="none" stroke="#2B3442" stroke-width="2.2"/>
+<path d="M461.1 230.6 L571.8 230.6" fill="none" stroke="#2B3442" stroke-width="1.8"/>
+<path d="M461.1 322.6 L571.8 322.6" fill="none" stroke="#2B3442" stroke-width="1.8"/>
+<path d="M461.1 412.1 L571.8 412.1" fill="none" stroke="#2B3442" stroke-width="1.8" stroke-dasharray="5 4"/>
+<path d="M461.1 479.6 L571.8 479.6" fill="none" stroke="#2B3442" stroke-width="1.8"/>
+<rect x="32" y="204.6" width="429.1" height="74" rx="10" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="32" y="212.6" width="4" height="58" rx="2" fill="#2563EB"/>
+<rect x="32" y="296.6" width="429.1" height="74" rx="10" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<rect x="32" y="304.6" width="4" height="58" rx="2" fill="#0B7A72"/>
+<rect x="32" y="388.6" width="429.1" height="47" rx="10" fill="#FFFFFF" stroke="#738093" stroke-width="1" stroke-dasharray="6 4"/>
+<rect x="32" y="453.6" width="429.1" height="74" rx="10" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<rect x="32" y="461.6" width="4" height="58" rx="2" fill="#0B7A72"/>
+<rect x="32" y="589.8" width="576" height="152.1" rx="10" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="52" y="233.1" font-size="17" font-weight="700" fill="#1E429F">MCU</text>
+<text x="52" y="260.9" font-size="15" fill="#2B3442">CAN controller, SN65HVD230 and this driver</text>
+<text x="52" y="325.1" font-size="17" font-weight="700" fill="#0B5F59">Node</text>
+<text x="52" y="352.8" font-size="15" fill="#2B3442">node ID 1</text>
+<text x="52" y="417.1" font-size="17" font-weight="700" fill="#0E1726">…</text>
+<text x="52" y="482.1" font-size="17" font-weight="700" fill="#0B5F59">Node</text>
+<text x="52" y="509.8" font-size="15" fill="#2B3442">node ID up to 127</text>
+<text x="515.3" y="186.6" font-size="14" font-weight="700" text-anchor="middle" fill="#0E1726">CANH</text>
+<circle cx="515.3" cy="220.6" r="3.6" fill="#2B3442"/>
+<circle cx="515.3" cy="312.6" r="3.6" fill="#2B3442"/>
+<circle cx="515.3" cy="412.1" r="3.6" fill="#2B3442"/>
+<circle cx="515.3" cy="469.6" r="3.6" fill="#2B3442"/>
+<text x="571.8" y="186.6" font-size="14" font-weight="700" text-anchor="middle" fill="#0E1726">CANL</text>
+<circle cx="571.8" cy="230.6" r="3.6" fill="#2B3442"/>
+<circle cx="571.8" cy="322.6" r="3.6" fill="#2B3442"/>
+<circle cx="571.8" cy="412.1" r="3.6" fill="#2B3442"/>
+<circle cx="571.8" cy="479.6" r="3.6" fill="#2B3442"/>
+<rect x="519.3" y="191.6" width="48.5" height="10" rx="2" fill="#FFF5E3" stroke="#C26A05" stroke-width="1.6"/>
+<rect x="519.3" y="530.6" width="48.5" height="10" rx="2" fill="#FFF5E3" stroke="#C26A05" stroke-width="1.6"/>
+<text x="608" y="561.8" font-size="14" font-weight="600" text-anchor="end" fill="#8A3C0B">120 Ω at both ends</text>
+<text x="46" y="618.3" font-size="17" font-weight="700" fill="#334155">Limits</text>
+<text x="46" y="638.7" font-size="15" fill="#334155">Each end of the cable is terminated with 120 Ω, the cable's characteristic</text>
+<text x="46" y="660.5" font-size="15" fill="#334155">impedance (11.2.1.1, p. 26). Up to 120 SN65HVD23x transceivers on one</text>
+<text x="46" y="682.2" font-size="15" fill="#334155">bus segment (11.2.1.3, p. 28). ISO 11898: up to 1 Mbit/s, 40 m of bus, 0.3</text>
+<text x="46" y="704" font-size="15" fill="#334155">m stubs, 30 nodes (11.2.1.3, p. 28). Node IDs 1 to 127, 0 addresses every</text>
+<text x="46" y="725.7" font-size="15" fill="#334155">node (secondary source) (Communication objects, p. 1).</text>
+</svg>

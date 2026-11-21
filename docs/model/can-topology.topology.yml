@@ -1,0 +1,31 @@
+---
+# Model of the figure 'can-topology'. Edit this file; `kokeb-docs figures` draws it. Never edit the SVGs.
+# The bus and its termination come from the SN65HVD230 datasheet (document `ti`); the node ID range comes from a
+# secondary source (document `wiki`), because the CiA 301 specification was not obtained (docs/ambiguities.md).
+kind: topology
+id: can-topology
+title: CANopen nodes on one CAN bus
+kicker: Several devices
+alt: >-
+  A CAN bus on which the MCU running this driver and the CANopen nodes share the CANH and CANL lines, each node with
+  its own node ID, and a 120 Ω terminating resistor at each end of the pair.
+reads: >-
+  The MCU with its CAN controller and transceiver on top and the CANopen nodes under it connect to the rails CANH and
+  CANL on the right; the dashed card stands for the nodes in between. A terminator at each end of the pair matches
+  the cable.
+print: landscape
+sources:
+  - docs/model/can-topology.topology.yml
+style: bus
+host: {label: MCU, detail: "CAN controller, SN65HVD230 and this driver"}
+nodes:
+  - {label: Node, address: node ID 1, ref: nodeid}
+  - {more: true, label: "…"}
+  - {label: Node, address: node ID up to 127, ref: nodeid}
+shared: [CANH, CANL]
+ends: {label: "120 Ω", ref: term}
+facts:
+  - {text: "Each end of the cable is terminated with 120 Ω, the cable's characteristic impedance", ref: term}
+  - {text: "Up to 120 SN65HVD23x transceivers on one bus segment", ref: nodes}
+  - {text: "ISO 11898: up to 1 Mbit/s, 40 m of bus, 0.3 m stubs, 30 nodes", ref: nodes}
+  - {text: "Node IDs 1 to 127, 0 addresses every node (secondary source)", ref: nodeid}
