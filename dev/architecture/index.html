@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://kokeb-labs-drivers.github.io/driver-canopen-client/latest/architecture/">
       
       
-        <link rel="prev" href="../hardware/">
+        <link rel="prev" href="../bus/">
       
       
         <link rel="next" href="../contract/">
@@ -102,72 +102,6 @@
   <meta property="og:description" content="A generic, product-agnostic CANopen client: NMT master, SDO client, heartbeat, EMCY, SYNC, PDO helpers and a CiA 402 drive state machine over a classic CAN frame port.">
   <meta property="og:url" content="https://kokeb-labs-drivers.github.io/driver-canopen-client/latest/architecture/">
   <meta name="twitter:card" content="summary">
-  <script>
-(function () {
-  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
-  var SRC = "https://unpkg.com/mermaid@11.17.2/dist/mermaid.min.js",
-      SRI = "sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2", config = {}, real, loading;
-  var waiting = [], io = null, ahead = false, ENGAGE = ["scroll", "keydown", "pointerdown", "touchstart"];
-  var stub = {
-    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
-    render: function (id, text) {
-      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-kb-mermaid])");
-      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
-      if (el) el.setAttribute("data-kb-mermaid", "");
-      return near(el).then(load).then(function (m) { return m.render(id, text); });
-    }
-  };
-  function load() {
-    return loading || (loading = new Promise(function (resolve, reject) {
-      var s = document.createElement("script");
-      s.src = SRC;
-      s.integrity = SRI;
-      s.crossOrigin = "anonymous";
-      s.onload = function () {
-        real = window.mermaid;
-        window.mermaid = stub;
-        real.initialize(config);
-        resolve(real);
-      };
-      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
-      document.head.appendChild(s);
-    }));
-  }
-  // One observer for the diagrams still waiting: on the screen only until the reader engages, then a screen ahead.
-  function watch() {
-    if (io) io.disconnect();
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) release(function (w) { return w.el === e.target; });
-      });
-    }, { rootMargin: ahead ? "100% 0px" : "0px" });
-    waiting.forEach(function (w) { io.observe(w.el); });
-  }
-  function release(which) {
-    waiting = waiting.filter(function (w) {
-      if (!which(w)) return true;
-      io.unobserve(w.el);
-      w.go();
-      return false;
-    });
-  }
-  function near(el) {
-    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
-    return new Promise(function (resolve) {
-      waiting.push({ el: el, go: resolve });
-      if (io) io.observe(el); else watch();
-    });
-  }
-  function engaged() {
-    ENGAGE.forEach(function (t) { window.removeEventListener(t, engaged, true); });
-    ahead = true;
-    if (io) watch();
-  }
-  ENGAGE.forEach(function (t) { window.addEventListener(t, engaged, { capture: true, passive: true }); });
-  window.addEventListener("beforeprint", function () { if (io) release(function () { return true; }); });
-  window.mermaid = stub;
-})();
-</script>
 
   </head>
   
@@ -514,6 +448,8 @@
       
         
       
+        
+      
     
     
     
@@ -570,6 +506,8 @@
   
     
     
+      
+        
       
         
       
@@ -748,6 +686,34 @@
     
   
     Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ambiguities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ambiguities
   
 
     
@@ -996,7 +962,7 @@
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Top to bottom, each arrow is a call. Your application calls one object, whose public calls are listed from the umbrella header in inc/. The core turns each call into CAN frames (SDO requests, NMT commands, SYNC, PDOs) and hands them to the port contract (the CRTP base in inc/*_interface.hpp), which forwards them, at compile time, to the hooks of the port class you write; your port puts each frame on the bus and hands received frames back. The notes on the right say which layers stay the same on every MCU and which one you write. A library without a port contract has only the first two layers.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/df49c4d2e320cd47e0a425167ec92463fb55867c/inc/canopen_client.hpp"><code>inc/canopen_client.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/df49c4d2e320cd47e0a425167ec92463fb55867c/inc/canopen_client_can_interface.hpp"><code>inc/canopen_client_can_interface.hpp</code></a> <code>CanInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/df49c4d2e320cd47e0a425167ec92463fb55867c/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/inc/canopen_client.hpp"><code>inc/canopen_client.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/inc/canopen_client_can_interface.hpp"><code>inc/canopen_client_can_interface.hpp</code></a> <code>CanInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
 </details>
 <table>
 <thead>
@@ -1009,22 +975,22 @@
 <tbody>
 <tr>
 <td>Core</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/df49c4d2e320cd47e0a425167ec92463fb55867c/inc/canopen_client.hpp"><code>inc/canopen_client.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/df49c4d2e320cd47e0a425167ec92463fb55867c/src/canopen_client.ipp"><code>src/canopen_client.ipp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/inc/canopen_client.hpp"><code>inc/canopen_client.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/src/canopen_client.ipp"><code>src/canopen_client.ipp</code></a></td>
 <td><code>Client&lt;Port&gt;</code>: lifecycle, the one request in flight, SDO transfers, the receive router, node table, EMCY queue, PDO configuration, the drive state machine</td>
 </tr>
 <tr>
 <td>Protocol</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/df49c4d2e320cd47e0a425167ec92463fb55867c/inc/canopen_client_protocol.hpp"><code>inc/canopen_client_protocol.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/inc/canopen_client_protocol.hpp"><code>inc/canopen_client_protocol.hpp</code></a></td>
 <td>Pure <code>constexpr</code> frame builders and parsers: NMT, SDO, heartbeat, EMCY, SYNC, PDO, statusword decode; no state, no port</td>
 </tr>
 <tr>
 <td>Types</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/df49c4d2e320cd47e0a425167ec92463fb55867c/inc/canopen_client_types.hpp"><code>inc/canopen_client_types.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/inc/canopen_client_types.hpp"><code>inc/canopen_client_types.hpp</code></a></td>
 <td><code>Error</code>, <code>Result&lt;T&gt;</code>, <code>Config</code>, presets, identifiers, capacities</td>
 </tr>
 <tr>
 <td>Port contract</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/df49c4d2e320cd47e0a425167ec92463fb55867c/inc/canopen_client_can_interface.hpp"><code>inc/canopen_client_can_interface.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/inc/canopen_client_can_interface.hpp"><code>inc/canopen_client_can_interface.hpp</code></a></td>
 <td>The CRTP base, the <code>CanPort</code> and <code>CanRxPort</code> concepts</td>
 </tr>
 <tr>
@@ -1115,7 +1081,7 @@ sleeps only through the port's <code>Receive()</code> and takes no lock.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../hardware/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Hardware">
+          <a href="../bus/" class="md-footer__link md-footer__link--prev" aria-label="Previous: On the bus">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1125,7 +1091,7 @@ sleeps only through the port's <code>Receive()</code> and takes no lock.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Hardware
+                On the bus
               </div>
             </div>
           </a>

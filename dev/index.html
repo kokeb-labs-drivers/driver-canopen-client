@@ -100,72 +100,6 @@
   <meta property="og:description" content="A generic, product-agnostic CANopen client: NMT master, SDO client, heartbeat, EMCY, SYNC, PDO helpers and a CiA 402 drive state machine over a classic CAN frame port.">
   <meta property="og:url" content="https://kokeb-labs-drivers.github.io/driver-canopen-client/latest/">
   <meta name="twitter:card" content="summary">
-  <script>
-(function () {
-  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
-  var SRC = "https://unpkg.com/mermaid@11.17.2/dist/mermaid.min.js",
-      SRI = "sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2", config = {}, real, loading;
-  var waiting = [], io = null, ahead = false, ENGAGE = ["scroll", "keydown", "pointerdown", "touchstart"];
-  var stub = {
-    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
-    render: function (id, text) {
-      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-kb-mermaid])");
-      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
-      if (el) el.setAttribute("data-kb-mermaid", "");
-      return near(el).then(load).then(function (m) { return m.render(id, text); });
-    }
-  };
-  function load() {
-    return loading || (loading = new Promise(function (resolve, reject) {
-      var s = document.createElement("script");
-      s.src = SRC;
-      s.integrity = SRI;
-      s.crossOrigin = "anonymous";
-      s.onload = function () {
-        real = window.mermaid;
-        window.mermaid = stub;
-        real.initialize(config);
-        resolve(real);
-      };
-      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
-      document.head.appendChild(s);
-    }));
-  }
-  // One observer for the diagrams still waiting: on the screen only until the reader engages, then a screen ahead.
-  function watch() {
-    if (io) io.disconnect();
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) release(function (w) { return w.el === e.target; });
-      });
-    }, { rootMargin: ahead ? "100% 0px" : "0px" });
-    waiting.forEach(function (w) { io.observe(w.el); });
-  }
-  function release(which) {
-    waiting = waiting.filter(function (w) {
-      if (!which(w)) return true;
-      io.unobserve(w.el);
-      w.go();
-      return false;
-    });
-  }
-  function near(el) {
-    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
-    return new Promise(function (resolve) {
-      waiting.push({ el: el, go: resolve });
-      if (io) io.observe(el); else watch();
-    });
-  }
-  function engaged() {
-    ENGAGE.forEach(function (t) { window.removeEventListener(t, engaged, true); });
-    ahead = true;
-    if (io) watch();
-  }
-  ENGAGE.forEach(function (t) { window.addEventListener(t, engaged, { capture: true, passive: true }); });
-  window.addEventListener("beforeprint", function () { if (io) release(function () { return true; }); });
-  window.mermaid = stub;
-})();
-</script>
 
   </head>
   
@@ -537,10 +471,65 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-you-get" class="md-nav__link">
+  <a href="#what-it-does" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you get
+        What it does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-it-is-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where it is used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inside-the-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inside the device
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pins-and-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pins and wiring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#driver-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Driver coverage
       
     </span>
   </a>
@@ -574,6 +563,8 @@
   
     
     
+      
+        
       
         
       
@@ -637,6 +628,8 @@
   
     
     
+      
+        
       
         
       
@@ -851,10 +844,65 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-you-get" class="md-nav__link">
+  <a href="#what-it-does" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you get
+        What it does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-it-is-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where it is used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inside-the-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inside the device
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pins-and-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pins and wiring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#driver-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Driver coverage
       
     </span>
   </a>
@@ -900,7 +948,7 @@
 
 
 <div class="kb-hero">
-<p><span class="kb-kicker">Driver</span></p>
+<p><span class="kb-kicker">CAN transceiver</span></p>
 <h1 id="canopen_client-driver">CANOPEN_CLIENT Driver<a class="headerlink" href="#canopen_client-driver" title="Permanent link">&para;</a></h1>
 <p>A generic C++20 CANopen client over a classic CAN frame port: NMT master, SDO client, heartbeat, emergency,
 SYNC, PDOs and a CiA 402 drive state machine.</p>
@@ -908,27 +956,211 @@ SYNC, PDOs and a CiA 402 drive state machine.</p>
 <a class="md-button" href="api-guide/">API guide</a>
 <a class="md-button" href="https://github.com/kokeb-labs-drivers/driver-canopen-client">Source on GitHub</a></p>
 </div>
+<!-- generated: chip-summary -->
+<p>The <strong>SN65HVD230</strong> is a 3.3 V CAN transceiver, the reference physical layer of a CANopen node: it turns a CAN
+controller's TXD and RXD into the differential CANH and CANL signals of an ISO 11898-2 bus, and this driver speaks
+CANopen to the nodes on that bus (1 Features, 2 Applications, 3 Description, <a href="https://www.ti.com/lit/ds/symlink/sn65hvd230.pdf#page=1">p.
+1</a>).</p>
+<!-- /generated -->
+
+<figure class="kb-figure">
+<img src="diagrams/chip-hero.svg#only-light" alt="Overview of the SN65HVD230, a 3.3 V CAN transceiver, the reference physical layer of a CANopen node: it turns a CAN controller&#x27;s TXD and RXD into the differential CANH and CANL signals of an ISO 11898-2 bus, and this driver speaks CANopen to the nodes on that bus. A MCU talks to it over CAN controller TXD and RXD; it drives CAN bus pair; it reads back Bus level. Headline figures: 3.0 to 3.6 V single supply; 1 Mbit/s data rate, up to; 120 nodes on one bus; 16 kV bus pin ESD, HBM; 370 µA standby current, typical." width="1200" height="745"><img src="diagrams/chip-hero.dark.svg#only-dark" alt="Overview of the SN65HVD230, a 3.3 V CAN transceiver, the reference physical layer of a CANopen node: it turns a CAN controller&#x27;s TXD and RXD into the differential CANH and CANL signals of an ISO 11898-2 bus, and this driver speaks CANopen to the nodes on that bus. A MCU talks to it over CAN controller TXD and RXD; it drives CAN bus pair; it reads back Bus level. Headline figures: 3.0 to 3.6 V single supply; 1 Mbit/s data rate, up to; 120 nodes on one bus; 16 kV bus pin ESD, HBM; 370 µA standby current, typical." width="1200" height="745">
+<figcaption>SN65HVD230</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The SN65HVD230 in the middle, drawn as its SOIC-8 package. On the left the MCU that runs the driver, joined to it by CAN controller TXD and RXD. To the right, what the chip drives, in the order the power flows. Below it, what the chip reads back. The tiles at the bottom are the headline numbers, each with the datasheet section and page it comes from.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>.</p>
+</details>
+<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="diagrams/chip-capabilities.svg#only-light" alt="Capability map of the driver&#x27;s protocol: Start and stop nodes (supported): Sends the NMT commands that start, stop, pre-operate and reset one node or all of them; Read and write objects (supported): Reads and writes object dictionary entries, in one frame or in segments, with the node&#x27;s abort code; Heartbeat, guarding and emergencies (supported): Watches node heartbeats and guarding replies, and queues the emergency messages nodes send; SYNC producer (supported): Sends the SYNC frame, once or on a period with the optional counter byte; Process data (supported): Maps and enables a node&#x27;s PDOs in the order the profile asks, reads TPDO samples and sends RPDOs; CiA 402 drive control (supported): Reads the drive state and walks it to enabled, disabled, quick stop or fault reset, and sets the mode; Node identity and settings (supported): Reads a node&#x27;s device type and error register, sets its heartbeat time, stores or restores its parameters; Raw frames (supported): Sends and reads any classic CAN frame and returns the raw reply of an SDO request; Block transfer, FD and LSS (not covered): Block transfer, CAN FD, 29-bit identifiers, LSS, an NMT slave and an SDO server are not implemented." width="1200" height="1034" loading="lazy"><img src="diagrams/chip-capabilities.dark.svg#only-dark" alt="Capability map of the driver&#x27;s protocol: Start and stop nodes (supported): Sends the NMT commands that start, stop, pre-operate and reset one node or all of them; Read and write objects (supported): Reads and writes object dictionary entries, in one frame or in segments, with the node&#x27;s abort code; Heartbeat, guarding and emergencies (supported): Watches node heartbeats and guarding replies, and queues the emergency messages nodes send; SYNC producer (supported): Sends the SYNC frame, once or on a period with the optional counter byte; Process data (supported): Maps and enables a node&#x27;s PDOs in the order the profile asks, reads TPDO samples and sends RPDOs; CiA 402 drive control (supported): Reads the drive state and walks it to enabled, disabled, quick stop or fault reset, and sets the mode; Node identity and settings (supported): Reads a node&#x27;s device type and error register, sets its heartbeat time, stores or restores its parameters; Raw frames (supported): Sends and reads any classic CAN frame and returns the raw reply of an SDO request; Block transfer, FD and LSS (not covered): Block transfer, CAN FD, 29-bit identifiers, LSS, an NMT slave and an SDO server are not implemented." width="1200" height="1034" loading="lazy">
+<figcaption>What the driver does</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>Each card is one function of the SN65HVD230: an icon, its name and what it does for the application. The filled pill says how this driver covers it (legend below); the outlined pills are the protocol objects behind it. The coverage table in the README gives the driver calls and the datasheet section of each card.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>.</p>
+</details>
+<h2 id="where-it-is-used">Where it is used<a class="headerlink" href="#where-it-is-used" title="Permanent link">&para;</a></h2>
+<!-- generated: chip-uses -->
+<ul>
+<li>Industrial automation, control, sensors and drive systems</li>
+<li>Motor and robotic control</li>
+<li>Building and climate control (HVAC)</li>
+<li>Telecom and basestation control and status</li>
+<li>CAN bus standards such as CANopen, DeviceNet and CAN Kingdom</li>
+</ul>
+<p>Uses named by the datasheet (1 Features, 2 Applications, 3 Description, <a href="https://www.ti.com/lit/ds/symlink/sn65hvd230.pdf#page=1">p.
+1</a>).</p>
+<!-- /generated -->
+
+<h2 id="inside-the-device">Inside the device<a class="headerlink" href="#inside-the-device" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="diagrams/chip-blocks.svg#only-light" alt="Block diagram of the SN65HVD230: its function blocks, how they connect and which package pins reach each block." width="1200" height="541" loading="lazy"><img src="diagrams/chip-blocks.dark.svg#only-dark" alt="Block diagram of the SN65HVD230: its function blocks, how they connect and which package pins reach each block." width="1200" height="541" loading="lazy">
+<figcaption>Inside the SN65HVD230</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The SN65HVD230's function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>.</p>
+</details>
+<h2 id="pins-and-wiring">Pins and wiring<a class="headerlink" href="#pins-and-wiring" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="diagrams/chip-pinout.svg#only-light" alt="Pinout of the SN65HVD230 in SOIC-8, top view: 8 pins, each with its name, its electrical type as a colour and the driver hook that uses it." width="1046" height="441" loading="lazy"><img src="diagrams/chip-pinout.dark.svg#only-dark" alt="Pinout of the SN65HVD230 in SOIC-8, top view: 8 pins, each with its name, its electrical type as a colour and the driver hook that uses it." width="1046" height="441" loading="lazy">
+<figcaption>SN65HVD230 pinout, SOIC-8</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The SN65HVD230 seen from the top, in its SOIC-8 package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>.</p>
+</details>
+<figure class="kb-figure">
+<img src="diagrams/chip-wiring-typical.svg#only-light" alt="Wiring of the SN65HVD230 for the A CAN node: MCU with CAN controller CAN TX to D (Send(const CanFrame&amp;)); MCU with CAN controller CAN RX to R (Receive(CanFrame&amp;, timeout_us)); CANH to CAN bus CANH; CANL to CAN bus CANL. Supplies, grounds and the support parts are listed under the drawing." width="1200" height="646" loading="lazy"><img src="diagrams/chip-wiring-typical.dark.svg#only-dark" alt="Wiring of the SN65HVD230 for the A CAN node: MCU with CAN controller CAN TX to D (Send(const CanFrame&amp;)); MCU with CAN controller CAN RX to R (Receive(CanFrame&amp;, timeout_us)); CANH to CAN bus CANH; CANL to CAN bus CANL. Supplies, grounds and the support parts are listed under the drawing." width="1200" height="646" loading="lazy">
+<figcaption>Wiring: A CAN node</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The MCU with CAN controller on the left, the SN65HVD230 in the middle, the blocks it drives on the right. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>.</p>
+</details>
+<p>The reference circuit, the bus termination and the pins in full: <a href="hardware/">Hardware</a>.</p>
+<h2 id="quick-start">Quick start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<p>Wire the node as above, write the port (<a href="porting/">Porting</a>), then read a node's device type and start it:</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"canopen_client.hpp"</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kt">int</span><span class="w"> </span><span class="nf">read_node_and_start_it</span><span class="p">(</span><span class="n">MyPort</span><span class="o">&amp;</span><span class="w"> </span><span class="n">port</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device_type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="n">canopen_client</span><span class="o">::</span><span class="n">Client</span><span class="o">&lt;</span><span class="n">MyPort</span><span class="o">&gt;</span><span class="w"> </span><span class="n">client</span><span class="p">(</span><span class="n">port</span><span class="p">);</span><span class="w"> </span><span class="c1">// no I/O yet</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">EnsureInitialized</span><span class="p">();</span><span class="w"> </span><span class="o">!</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 1. CAN controller up</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">error</span><span class="p">);</span><span class="w">            </span><span class="c1">//    Bus: the port could not start it</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">ReadDeviceType</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w"> </span><span class="c1">//    2. SDO read of object 0x1000 from node 5</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">type</span><span class="p">.</span><span class="n">error</span><span class="p">);</span><span class="w"> </span><span class="c1">//    Timeout: nobody answered; SdoAbort: the node refused</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="n">device_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">type</span><span class="p">.</span><span class="n">value</span><span class="p">;</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">SendNmt</span><span class="p">(</span><span class="n">canopen_client</span><span class="o">::</span><span class="n">NmtCommand</span><span class="o">::</span><span class="n">Start</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">      </span><span class="o">!</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 3. node 5 to Operational</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">error</span><span class="p">);</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>The steps explained: <a href="quickstart/">Quickstart</a>.</p>
+<h2 id="driver-coverage">Driver coverage<a class="headerlink" href="#driver-coverage" title="Permanent link">&para;</a></h2>
+<!-- generated: chip-coverage -->
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>What the protocol does</th>
+<th>Driver API</th>
+<th>Objects</th>
+<th>Status</th>
+<th>Host test</th>
+<th>Datasheet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="api-guide/">Start and stop nodes</a></td>
+<td>Sends the NMT commands that start, stop, pre-operate and reset one node or all of them</td>
+<td><code>SendNmt</code></td>
+<td><code>PreOperational</code>, <code>ResetNode</code>, <code>ResetCommunication</code></td>
+<td>Supported</td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/tests/test_lifecycle.cpp"><code>test_lifecycle.cpp</code></a></td>
+<td>Network management (NMT), p. 1</td>
+</tr>
+<tr>
+<td><a href="api-guide/">Read and write objects</a></td>
+<td>Reads and writes object dictionary entries, in one frame or in segments, with the node's abort code</td>
+<td><code>SdoUpload</code>, <code>SdoDownload</code>, <code>SdoReadU8</code>, <code>SdoReadU16</code>, <code>SdoReadU32</code>, <code>SdoWriteU8</code>, <code>SdoWriteU16</code>, <code>SdoWriteU32</code>, <code>SdoDownloadUnconfirmed</code></td>
+<td>-</td>
+<td>Supported</td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/tests/test_sdo.cpp"><code>test_sdo.cpp</code></a></td>
+<td>SdoClient: initiate, upload, download, segments, p. 1</td>
+</tr>
+<tr>
+<td><a href="api-guide/">Heartbeat, guarding and emergencies</a></td>
+<td>Watches node heartbeats and guarding replies, and queues the emergency messages nodes send</td>
+<td><code>MonitorNode</code>, <code>UnmonitorNode</code>, <code>GetNodeStatus</code>, <code>ClearBootUp</code>, <code>GuardNode</code>, <code>Poll</code>, <code>PopEmcy</code></td>
+<td>-</td>
+<td>Supported</td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/tests/test_rx.cpp"><code>test_rx.cpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/tests/test_faults.cpp"><code>test_faults.cpp</code></a></td>
+<td>CO_HBconsumer.c, p. 1</td>
+</tr>
+<tr>
+<td><a href="api-guide/">SYNC producer</a></td>
+<td>Sends the SYNC frame, once or on a period with the optional counter byte</td>
+<td><code>SendSync</code>, <code>ConfigureSync</code>, <code>ServiceSync</code></td>
+<td>-</td>
+<td>Supported</td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/tests/test_rx.cpp"><code>test_rx.cpp</code></a></td>
+<td>CO_SYNC.h: SYNC frame and counter, p. 1</td>
+</tr>
+<tr>
+<td><a href="api-guide/">Process data</a></td>
+<td>Maps and enables a node's PDOs in the order the profile asks, reads TPDO samples and sends RPDOs</td>
+<td><code>ConfigurePdo</code>, <code>DisablePdo</code>, <code>ReadPdoConfig</code>, <code>SubscribeTpdo</code>, <code>UnsubscribeTpdo</code>, <code>ReadTpdo</code>, <code>SendRpdo</code></td>
+<td>-</td>
+<td>Supported</td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/tests/test_pdo.cpp"><code>test_pdo.cpp</code></a></td>
+<td>PDO map and communication records, p. 1</td>
+</tr>
+<tr>
+<td><a href="api-guide/">CiA 402 drive control</a></td>
+<td>Reads the drive state and walks it to enabled, disabled, quick stop or fault reset, and sets the mode (disable and quick stop are never refused for the drive state)</td>
+<td><code>ReadDriveState</code>, <code>ReadStatusword</code>, <code>DriveEnable</code>, <code>DriveDisable</code>, <code>DriveQuickStop</code>, <code>DriveResetFault</code>, <code>SetDriveMode</code>, <code>ReadDriveMode</code></td>
+<td><code>ProfilePosition</code>, <code>Velocity</code>, <code>ProfileVelocity</code>, <code>CyclicSynchronousPosition</code></td>
+<td>Supported</td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/tests/test_drive.cpp"><code>test_drive.cpp</code></a></td>
+<td>BaseNode402: states, masks, transitions, p. 1</td>
+</tr>
+<tr>
+<td><a href="api-guide/">Node identity and settings</a></td>
+<td>Reads a node's device type and error register, sets its heartbeat time, stores or restores its parameters</td>
+<td><code>ReadDeviceType</code>, <code>ReadErrorRegister</code>, <code>WriteHeartbeatProducerTime</code>, <code>StoreParameters</code>, <code>RestoreDefaults</code></td>
+<td>-</td>
+<td>Supported</td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/tests/test_sdo.cpp"><code>test_sdo.cpp</code></a></td>
+<td>CO_storage.c: signatures and sub-indices, p. 1</td>
+</tr>
+<tr>
+<td><a href="api-guide/">Raw frames</a></td>
+<td>Sends and reads any classic CAN frame and returns the raw reply of an SDO request</td>
+<td><code>SendRawFrame</code>, <code>ReadRawFrame</code>, <code>ReadRawSdo</code>, <code>WriteRawSdo</code></td>
+<td>-</td>
+<td>Supported</td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/tests/test_hardening.cpp"><code>test_hardening.cpp</code></a></td>
+<td>Pre-defined connection set (COB-IDs), p. 1</td>
+</tr>
+<tr>
+<td><a href="contract/">Block transfer, FD and LSS</a></td>
+<td>Block transfer, CAN FD, 29-bit identifiers, LSS, an NMT slave and an SDO server are not implemented</td>
+<td>-</td>
+<td>-</td>
+<td>Not covered</td>
+<td>-</td>
+<td>Service Data Object (SDO) protocol, p. 1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Supported</strong>: the driver implements it and the named host test checks it; <strong>Not covered</strong>: the protocol defines it and
+the driver leaves it out.</p>
+<p>From <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <code>kokeb-docs hardware --check</code> confirms that every API name is in
+<code>inc/canopen_client.hpp</code>, <code>inc/canopen_client_types.hpp</code> and every object in <code>inc/canopen_client_types.hpp</code>,
+<code>inc/canopen_client_protocol.hpp</code> and every named test exists.</p>
+<!-- /generated -->
+
 <p>The driver is not tied to a product or to a CAN controller. You give it a small class that sends one 11-bit frame,
 waits for one and reads a microsecond clock; it does the rest: the SDO transfer rules, heartbeat ageing, the
 emergency queue, PDO configuration in the order the profile prescribes and the drive's state transitions.</p>
-<div class="kb-chip">
-<div class="kb-chip__head">
-<span class="kb-chip__kicker">CAN node</span>
-<span class="kb-chip__name">CANopen client</span>
-<span class="kb-chip__vendor">Any CANopen node</span>
-</div>
-<dl>
-<dt>Bus</dt>
-<dd>Classic CAN, 11-bit identifiers, any bit rate your controller runs</dd>
-<dt>Services</dt>
-<dd>NMT, SDO (expedited and segmented), heartbeat, node guarding, EMCY, SYNC, TPDO and RPDO</dd>
-<dt>Profiles</dt>
-<dd>CANopen application layer; CiA 402 drive state machine</dd>
-<dt>Reference transceiver</dt>
-<dd>TI SN65HVD230, 3.0 V to 3.6 V supply (see <a href="hardware/">Hardware</a>)</dd>
-</dl>
-</div>
-<h2 id="what-you-get">What you get<a class="headerlink" href="#what-you-get" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>One object per bus</strong>, no I/O until <code>EnsureInitialized()</code>. See <a href="api-guide/">API guide</a>.</li>
 <li><strong>Errors you can act on</strong>: <code>Result&lt;T&gt;</code> with an <code>Error</code>, and the node's own SDO abort code. See

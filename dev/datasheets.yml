@@ -226,6 +226,12 @@ topics:
     page: 1
     driver: "`MakeNmtFrame()`, `SendNmt()`"
     docs: [api-guide, contract]
+  - topic: "Node ID: 7 bits of the 11-bit identifier, 0 is broadcast"
+    doc: wiki
+    section: "Communication objects"
+    page: 1
+    driver: "`SendNmt()` (node 0 for every node), every call that takes a node"
+    docs: [bus]
   - topic: SDO expedited and segmented transfer
     doc: py-sdoc
     section: "SdoClient: initiate, upload, download, segments"
@@ -315,7 +321,7 @@ topics:
     section: "11.2 Typical Application"
     page: 26
     driver: "`CanInterface`, `Send()`, `Receive()`"
-    docs: [hardware, quickstart, porting]
+    docs: [hardware, quickstart, porting, bus]
   - topic: Pin configuration
     doc: ti
     section: "7 Pin Configuration and Functions"
@@ -333,4 +339,28 @@ topics:
     section: "11.2.1.1 CAN Termination"
     page: 26
     driver: "`CanInterface::Receive()`, `RxStatus::Error`"
-    docs: [hardware, troubleshooting]
+    docs: [hardware, troubleshooting, bus]
+  - topic: "Bus length, stubs and number of nodes"
+    doc: ti
+    section: "11.2.1.3 Bus Loading, Length and Number of Nodes"
+    page: 28
+    driver: "-"
+    docs: [bus, hardware]
+  - topic: "Data rate up to 1 Mbit/s, up to 120 nodes"
+    doc: ti
+    section: "1 Features"
+    page: 1
+    driver: "-"
+    docs: [bus, hardware]
+  - topic: "Dominant and recessive bus output voltages"
+    doc: ti
+    section: "8.5 Electrical Characteristics: Driver"
+    page: 7
+    driver: "-"
+    docs: [bus]
+  - topic: "Loop delay, driver input to receiver output"
+    doc: ti
+    section: "8.9 Switching Characteristics: Device"
+    page: 8
+    driver: "-"
+    docs: [bus]

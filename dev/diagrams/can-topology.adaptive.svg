@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="772" viewBox="0 0 640 772" role="img" aria-labelledby="can-topology-title can-topology-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" class="fk">
+<title id="can-topology-title">CANopen nodes on one CAN bus</title>
+<desc id="can-topology-desc">A CAN bus on which the MCU running this driver and the CANopen nodes share the CANH and CANL lines, each node with its own node ID, and a 120 Ω terminating resistor at each end of the pair.</desc>
+<style>
+.fk{--fk-amber-strong:#C26A05;--fk-amber-text:#8A3C0B;--fk-amber-tint:#FFF5E3;--fk-blue-strong:#2563EB;--fk-blue-text:#1E429F;--fk-blue-tint:#EAF2FF;--fk-brand-text:#7A360E;--fk-canvas:#FFFFFF;--fk-card:#FFFFFF;--fk-frame:#E2E7EE;--fk-hair:#E2E7EE;--fk-ink:#0E1726;--fk-ink2:#2B3442;--fk-line:#738093;--fk-muted:#566070;--fk-slate-soft:#CBD5E1;--fk-slate-text:#334155;--fk-slate-tint:#F1F4F8;--fk-teal-strong:#0B7A72;--fk-teal-text:#0B5F59;--fk-teal-tint:#E6F6F4;}
+@media (prefers-color-scheme:dark){.fk{--fk-amber-strong:#FBBF24;--fk-amber-text:#FDE68A;--fk-amber-tint:#2C2310;--fk-blue-strong:#60A5FA;--fk-blue-text:#BFDBFE;--fk-blue-tint:#13233A;--fk-brand-text:#F8D27A;--fk-canvas:#0E131A;--fk-card:#151C26;--fk-frame:#283241;--fk-hair:#252F3C;--fk-ink:#E8EDF3;--fk-ink2:#D2DAE4;--fk-line:#6C7889;--fk-muted:#9AA6B5;--fk-slate-soft:#3A4656;--fk-slate-text:#E2E8F0;--fk-slate-tint:#1B232E;--fk-teal-strong:#2BB3A3;--fk-teal-text:#A7F3E6;--fk-teal-tint:#0F2A28;}}
+:root[data-theme="dark"] .fk,[data-md-color-scheme="slate"] .fk{--fk-amber-strong:#FBBF24;--fk-amber-text:#FDE68A;--fk-amber-tint:#2C2310;--fk-blue-strong:#60A5FA;--fk-blue-text:#BFDBFE;--fk-blue-tint:#13233A;--fk-brand-text:#F8D27A;--fk-canvas:#0E131A;--fk-card:#151C26;--fk-frame:#283241;--fk-hair:#252F3C;--fk-ink:#E8EDF3;--fk-ink2:#D2DAE4;--fk-line:#6C7889;--fk-muted:#9AA6B5;--fk-slate-soft:#3A4656;--fk-slate-text:#E2E8F0;--fk-slate-tint:#1B232E;--fk-teal-strong:#2BB3A3;--fk-teal-text:#A7F3E6;--fk-teal-tint:#0F2A28;}
+:root[data-theme="light"] .fk,[data-md-color-scheme="default"] .fk{--fk-amber-strong:#C26A05;--fk-amber-text:#8A3C0B;--fk-amber-tint:#FFF5E3;--fk-blue-strong:#2563EB;--fk-blue-text:#1E429F;--fk-blue-tint:#EAF2FF;--fk-brand-text:#7A360E;--fk-canvas:#FFFFFF;--fk-card:#FFFFFF;--fk-frame:#E2E7EE;--fk-hair:#E2E7EE;--fk-ink:#0E1726;--fk-ink2:#2B3442;--fk-line:#738093;--fk-muted:#566070;--fk-slate-soft:#CBD5E1;--fk-slate-text:#334155;--fk-slate-tint:#F1F4F8;--fk-teal-strong:#0B7A72;--fk-teal-text:#0B5F59;--fk-teal-tint:#E6F6F4;}
+.fk-f-amber-strong{fill:var(--fk-amber-strong)}.fk-s-amber-strong{stroke:var(--fk-amber-strong)}
+.fk-f-amber-text{fill:var(--fk-amber-text)}.fk-s-amber-text{stroke:var(--fk-amber-text)}
+.fk-f-amber-tint{fill:var(--fk-amber-tint)}.fk-s-amber-tint{stroke:var(--fk-amber-tint)}
+.fk-f-blue-strong{fill:var(--fk-blue-strong)}.fk-s-blue-strong{stroke:var(--fk-blue-strong)}
+.fk-f-blue-text{fill:var(--fk-blue-text)}.fk-s-blue-text{stroke:var(--fk-blue-text)}
+.fk-f-blue-tint{fill:var(--fk-blue-tint)}.fk-s-blue-tint{stroke:var(--fk-blue-tint)}
+.fk-f-brand-text{fill:var(--fk-brand-text)}.fk-s-brand-text{stroke:var(--fk-brand-text)}
+.fk-f-canvas{fill:var(--fk-canvas)}.fk-s-canvas{stroke:var(--fk-canvas)}
+.fk-f-card{fill:var(--fk-card)}.fk-s-card{stroke:var(--fk-card)}
+.fk-f-frame{fill:var(--fk-frame)}.fk-s-frame{stroke:var(--fk-frame)}
+.fk-f-hair{fill:var(--fk-hair)}.fk-s-hair{stroke:var(--fk-hair)}
+.fk-f-ink{fill:var(--fk-ink)}.fk-s-ink{stroke:var(--fk-ink)}
+.fk-f-ink2{fill:var(--fk-ink2)}.fk-s-ink2{stroke:var(--fk-ink2)}
+.fk-f-line{fill:var(--fk-line)}.fk-s-line{stroke:var(--fk-line)}
+.fk-f-muted{fill:var(--fk-muted)}.fk-s-muted{stroke:var(--fk-muted)}
+.fk-f-slate-soft{fill:var(--fk-slate-soft)}.fk-s-slate-soft{stroke:var(--fk-slate-soft)}
+.fk-f-slate-text{fill:var(--fk-slate-text)}.fk-s-slate-text{stroke:var(--fk-slate-text)}
+.fk-f-slate-tint{fill:var(--fk-slate-tint)}.fk-s-slate-tint{stroke:var(--fk-slate-tint)}
+.fk-f-teal-strong{fill:var(--fk-teal-strong)}.fk-s-teal-strong{stroke:var(--fk-teal-strong)}
+.fk-f-teal-text{fill:var(--fk-teal-text)}.fk-s-teal-text{stroke:var(--fk-teal-text)}
+.fk-f-teal-tint{fill:var(--fk-teal-tint)}.fk-s-teal-tint{stroke:var(--fk-teal-tint)}
+@media (forced-colors:active){.fk text{fill:CanvasText}.fk rect,.fk circle{fill:Canvas;stroke:CanvasText}.fk path{stroke:CanvasText}.fk marker path{fill:CanvasText;stroke:none}}
+</style>
+<rect x="0.5" y="0.5" width="639" height="771" rx="16" class="fk-f-canvas fk-s-frame"/>
+<text x="32" y="44.4" font-size="13" font-weight="700" letter-spacing="1.2" class="fk-f-brand-text">SEVERAL DEVICES</text>
+<text x="32" y="76.2" font-size="24" font-weight="700" class="fk-f-ink">CANopen nodes on one CAN bus</text>
+<text x="32" y="102.7" font-size="15" class="fk-f-muted">Sources: wiki Communication objects, p. 1; ti 11.2.1.1 CAN Termination, p. 26;</text>
+<text x="32" y="124.5" font-size="15" class="fk-f-muted">ti 11.2.1.3 Bus Loading, Length and Number of Nodes, p. 28.</text>
+<rect x="32" y="140.4" width="576" height="1" class="fk-f-hair"/>
+<path d="M515.3 194.6 L515.3 537.6" fill="none" stroke-width="2.2" class="fk-s-ink2"/>
+<path d="M461.1 220.6 L515.3 220.6" fill="none" stroke-width="1.8" class="fk-s-ink2"/>
+<path d="M461.1 312.6 L515.3 312.6" fill="none" stroke-width="1.8" class="fk-s-ink2"/>
+<path d="M461.1 412.1 L515.3 412.1" fill="none" stroke-width="1.8" stroke-dasharray="5 4" class="fk-s-ink2"/>
+<path d="M461.1 469.6 L515.3 469.6" fill="none" stroke-width="1.8" class="fk-s-ink2"/>
+<path d="M571.8 194.6 L571.8 537.6" fill="none" stroke-width="2.2" class="fk-s-ink2"/>
+<path d="M461.1 230.6 L571.8 230.6" fill="none" stroke-width="1.8" class="fk-s-ink2"/>
+<path d="M461.1 322.6 L571.8 322.6" fill="none" stroke-width="1.8" class="fk-s-ink2"/>
+<path d="M461.1 412.1 L571.8 412.1" fill="none" stroke-width="1.8" stroke-dasharray="5 4" class="fk-s-ink2"/>
+<path d="M461.1 479.6 L571.8 479.6" fill="none" stroke-width="1.8" class="fk-s-ink2"/>
+<rect x="32" y="204.6" width="429.1" height="74" rx="10" stroke-width="1.4" class="fk-f-blue-tint fk-s-blue-strong"/>
+<rect x="32" y="212.6" width="4" height="58" rx="2" class="fk-f-blue-strong"/>
+<rect x="32" y="296.6" width="429.1" height="74" rx="10" stroke-width="1.4" class="fk-f-teal-tint fk-s-teal-strong"/>
+<rect x="32" y="304.6" width="4" height="58" rx="2" class="fk-f-teal-strong"/>
+<rect x="32" y="388.6" width="429.1" height="47" rx="10" stroke-width="1" stroke-dasharray="6 4" class="fk-f-card fk-s-line"/>
+<rect x="32" y="453.6" width="429.1" height="74" rx="10" stroke-width="1.4" class="fk-f-teal-tint fk-s-teal-strong"/>
+<rect x="32" y="461.6" width="4" height="58" rx="2" class="fk-f-teal-strong"/>
+<rect x="32" y="589.8" width="576" height="152.1" rx="10" stroke-width="1" class="fk-f-slate-tint fk-s-slate-soft"/>
+<text x="52" y="233.1" font-size="17" font-weight="700" class="fk-f-blue-text">MCU</text>
+<text x="52" y="260.9" font-size="15" class="fk-f-ink2">CAN controller, SN65HVD230 and this driver</text>
+<text x="52" y="325.1" font-size="17" font-weight="700" class="fk-f-teal-text">Node</text>
+<text x="52" y="352.8" font-size="15" class="fk-f-ink2">node ID 1</text>
+<text x="52" y="417.1" font-size="17" font-weight="700" class="fk-f-ink">…</text>
+<text x="52" y="482.1" font-size="17" font-weight="700" class="fk-f-teal-text">Node</text>
+<text x="52" y="509.8" font-size="15" class="fk-f-ink2">node ID up to 127</text>
+<text x="515.3" y="186.6" font-size="14" font-weight="700" text-anchor="middle" class="fk-f-ink">CANH</text>
+<circle cx="515.3" cy="220.6" r="3.6" class="fk-f-ink2"/>
+<circle cx="515.3" cy="312.6" r="3.6" class="fk-f-ink2"/>
+<circle cx="515.3" cy="412.1" r="3.6" class="fk-f-ink2"/>
+<circle cx="515.3" cy="469.6" r="3.6" class="fk-f-ink2"/>
+<text x="571.8" y="186.6" font-size="14" font-weight="700" text-anchor="middle" class="fk-f-ink">CANL</text>
+<circle cx="571.8" cy="230.6" r="3.6" class="fk-f-ink2"/>
+<circle cx="571.8" cy="322.6" r="3.6" class="fk-f-ink2"/>
+<circle cx="571.8" cy="412.1" r="3.6" class="fk-f-ink2"/>
+<circle cx="571.8" cy="479.6" r="3.6" class="fk-f-ink2"/>
+<rect x="519.3" y="191.6" width="48.5" height="10" rx="2" stroke-width="1.6" class="fk-f-amber-tint fk-s-amber-strong"/>
+<rect x="519.3" y="530.6" width="48.5" height="10" rx="2" stroke-width="1.6" class="fk-f-amber-tint fk-s-amber-strong"/>
+<text x="608" y="561.8" font-size="14" font-weight="600" text-anchor="end" class="fk-f-amber-text">120 Ω at both ends</text>
+<text x="46" y="618.3" font-size="17" font-weight="700" class="fk-f-slate-text">Limits</text>
+<text x="46" y="638.7" font-size="15" class="fk-f-slate-text">Each end of the cable is terminated with 120 Ω, the cable's characteristic</text>
+<text x="46" y="660.5" font-size="15" class="fk-f-slate-text">impedance (11.2.1.1, p. 26). Up to 120 SN65HVD23x transceivers on one</text>
+<text x="46" y="682.2" font-size="15" class="fk-f-slate-text">bus segment (11.2.1.3, p. 28). ISO 11898: up to 1 Mbit/s, 40 m of bus, 0.3</text>
+<text x="46" y="704" font-size="15" class="fk-f-slate-text">m stubs, 30 nodes (11.2.1.3, p. 28). Node IDs 1 to 127, 0 addresses every</text>
+<text x="46" y="725.7" font-size="15" class="fk-f-slate-text">node (secondary source) (Communication objects, p. 1).</text>
+</svg>

@@ -102,72 +102,6 @@
   <meta property="og:description" content="A generic, product-agnostic CANopen client: NMT master, SDO client, heartbeat, EMCY, SYNC, PDO helpers and a CiA 402 drive state machine over a classic CAN frame port.">
   <meta property="og:url" content="https://kokeb-labs-drivers.github.io/driver-canopen-client/latest/diagrams/">
   <meta name="twitter:card" content="summary">
-  <script>
-(function () {
-  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
-  var SRC = "https://unpkg.com/mermaid@11.17.2/dist/mermaid.min.js",
-      SRI = "sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2", config = {}, real, loading;
-  var waiting = [], io = null, ahead = false, ENGAGE = ["scroll", "keydown", "pointerdown", "touchstart"];
-  var stub = {
-    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
-    render: function (id, text) {
-      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-kb-mermaid])");
-      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
-      if (el) el.setAttribute("data-kb-mermaid", "");
-      return near(el).then(load).then(function (m) { return m.render(id, text); });
-    }
-  };
-  function load() {
-    return loading || (loading = new Promise(function (resolve, reject) {
-      var s = document.createElement("script");
-      s.src = SRC;
-      s.integrity = SRI;
-      s.crossOrigin = "anonymous";
-      s.onload = function () {
-        real = window.mermaid;
-        window.mermaid = stub;
-        real.initialize(config);
-        resolve(real);
-      };
-      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
-      document.head.appendChild(s);
-    }));
-  }
-  // One observer for the diagrams still waiting: on the screen only until the reader engages, then a screen ahead.
-  function watch() {
-    if (io) io.disconnect();
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) release(function (w) { return w.el === e.target; });
-      });
-    }, { rootMargin: ahead ? "100% 0px" : "0px" });
-    waiting.forEach(function (w) { io.observe(w.el); });
-  }
-  function release(which) {
-    waiting = waiting.filter(function (w) {
-      if (!which(w)) return true;
-      io.unobserve(w.el);
-      w.go();
-      return false;
-    });
-  }
-  function near(el) {
-    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
-    return new Promise(function (resolve) {
-      waiting.push({ el: el, go: resolve });
-      if (io) io.observe(el); else watch();
-    });
-  }
-  function engaged() {
-    ENGAGE.forEach(function (t) { window.removeEventListener(t, engaged, true); });
-    ahead = true;
-    if (io) watch();
-  }
-  ENGAGE.forEach(function (t) { window.addEventListener(t, engaged, { capture: true, passive: true }); });
-  window.addEventListener("beforeprint", function () { if (io) release(function () { return true; }); });
-  window.mermaid = stub;
-})();
-</script>
 
   </head>
   
@@ -514,6 +448,8 @@
       
         
       
+        
+      
     
     
     
@@ -568,6 +504,8 @@
   
     
     
+      
+        
       
         
       
@@ -942,6 +880,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#one-dominant-bit-through-the-transceiver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One dominant bit through the transceiver
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#canopen-nodes-on-one-can-bus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CANopen nodes on one CAN bus
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#inside-the-sn65hvd230" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -953,10 +913,32 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-the-driver-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the driver does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sn65hvd230-a-can-node" class="md-nav__link">
     <span class="md-ellipsis">
       
         SN65HVD230: A CAN node
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sn65hvd230" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SN65HVD230
       
     </span>
   </a>
@@ -979,6 +961,17 @@
     <span class="md-ellipsis">
       
         SN65HVD230 pinout, SOIC-8
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wiring-a-can-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wiring: A CAN node
       
     </span>
   </a>
@@ -1027,15 +1020,63 @@
 <p>Every figure on this site is drawn by a Python module from facts extracted from the code, so it is rebuilt,
 not redrawn, when the code changes. CI runs <code>kokeb-docs figures --check</code> and fails when a
 committed figure no longer matches the code. Each figure below lists the files it is drawn from.</p>
+<h2 id="one-dominant-bit-through-the-transceiver">One dominant bit through the transceiver<a class="headerlink" href="#one-dominant-bit-through-the-transceiver" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="can-timing.svg#only-light" alt="CAN timing through the SN65HVD230: the controller pulls D low, the transceiver drives the bus dominant with CANH high and CANL low, and R follows after the loop delay, with the voltages and delays of the datasheet." width="640" height="1134"><img src="can-timing.dark.svg#only-dark" alt="CAN timing through the SN65HVD230: the controller pulls D low, the transceiver drives the bus dominant with CANH high and CANL low, and R follows after the loop delay, with the voltages and delays of the datasheet." width="640" height="1134">
+<figcaption>One dominant bit through the transceiver</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The four lanes are D, CANH, CANL and R, left to right in time. While D is high the bus is recessive and both lines rest near the middle; D low makes the bus dominant, CANH rising and CANL falling, and R, the receiver output to the controller, goes low after the loop delay. D high returns the bus to recessive and R follows after the second loop delay.</p>
+<p>Drawn from: <a href="../model/can-timing.timing.yml"><code>docs/model/can-timing.timing.yml</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../model/can-timing.timing.yml"><code>docs/model/can-timing.timing.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../model/can-timing.timing.yml"><code>docs/model/can-timing.timing.yml</code></a></li>
+</ul>
+<h2 id="canopen-nodes-on-one-can-bus">CANopen nodes on one CAN bus<a class="headerlink" href="#canopen-nodes-on-one-can-bus" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="can-topology.svg#only-light" alt="A CAN bus on which the MCU running this driver and the CANopen nodes share the CANH and CANL lines, each node with its own node ID, and a 120 Ω terminating resistor at each end of the pair." width="640" height="772" loading="lazy"><img src="can-topology.dark.svg#only-dark" alt="A CAN bus on which the MCU running this driver and the CANopen nodes share the CANH and CANL lines, each node with its own node ID, and a 120 Ω terminating resistor at each end of the pair." width="640" height="772" loading="lazy">
+<figcaption>CANopen nodes on one CAN bus</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The MCU with its CAN controller and transceiver on top and the CANopen nodes under it connect to the rails CANH and CANL on the right; the dashed card stands for the nodes in between. A terminator at each end of the pair matches the cable.</p>
+<p>Drawn from: <a href="../model/can-topology.topology.yml"><code>docs/model/can-topology.topology.yml</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../model/can-topology.topology.yml"><code>docs/model/can-topology.topology.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../model/can-topology.topology.yml"><code>docs/model/can-topology.topology.yml</code></a></li>
+</ul>
 <h2 id="inside-the-sn65hvd230">Inside the SN65HVD230<a class="headerlink" href="#inside-the-sn65hvd230" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
-<img src="chip-blocks.svg#only-light" alt="Block diagram of the SN65HVD230: its function blocks, how they connect and which package pins reach each block." width="1200" height="541"><img src="chip-blocks.dark.svg#only-dark" alt="Block diagram of the SN65HVD230: its function blocks, how they connect and which package pins reach each block." width="1200" height="541">
+<img src="chip-blocks.svg#only-light" alt="Block diagram of the SN65HVD230: its function blocks, how they connect and which package pins reach each block." width="1200" height="541" loading="lazy"><img src="chip-blocks.dark.svg#only-dark" alt="Block diagram of the SN65HVD230: its function blocks, how they connect and which package pins reach each block." width="1200" height="541" loading="lazy">
 <figcaption>Inside the SN65HVD230</figcaption>
 </figure>
 
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The SN65HVD230's function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+</ul>
+<h2 id="what-the-driver-does">What the driver does<a class="headerlink" href="#what-the-driver-does" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-capabilities.svg#only-light" alt="Capability map of the driver&#x27;s protocol: Start and stop nodes (supported): Sends the NMT commands that start, stop, pre-operate and reset one node or all of them; Read and write objects (supported): Reads and writes object dictionary entries, in one frame or in segments, with the node&#x27;s abort code; Heartbeat, guarding and emergencies (supported): Watches node heartbeats and guarding replies, and queues the emergency messages nodes send; SYNC producer (supported): Sends the SYNC frame, once or on a period with the optional counter byte; Process data (supported): Maps and enables a node&#x27;s PDOs in the order the profile asks, reads TPDO samples and sends RPDOs; CiA 402 drive control (supported): Reads the drive state and walks it to enabled, disabled, quick stop or fault reset, and sets the mode; Node identity and settings (supported): Reads a node&#x27;s device type and error register, sets its heartbeat time, stores or restores its parameters; Raw frames (supported): Sends and reads any classic CAN frame and returns the raw reply of an SDO request; Block transfer, FD and LSS (not covered): Block transfer, CAN FD, 29-bit identifiers, LSS, an NMT slave and an SDO server are not implemented." width="1200" height="1034" loading="lazy"><img src="chip-capabilities.dark.svg#only-dark" alt="Capability map of the driver&#x27;s protocol: Start and stop nodes (supported): Sends the NMT commands that start, stop, pre-operate and reset one node or all of them; Read and write objects (supported): Reads and writes object dictionary entries, in one frame or in segments, with the node&#x27;s abort code; Heartbeat, guarding and emergencies (supported): Watches node heartbeats and guarding replies, and queues the emergency messages nodes send; SYNC producer (supported): Sends the SYNC frame, once or on a period with the optional counter byte; Process data (supported): Maps and enables a node&#x27;s PDOs in the order the profile asks, reads TPDO samples and sends RPDOs; CiA 402 drive control (supported): Reads the drive state and walks it to enabled, disabled, quick stop or fault reset, and sets the mode; Node identity and settings (supported): Reads a node&#x27;s device type and error register, sets its heartbeat time, stores or restores its parameters; Raw frames (supported): Sends and reads any classic CAN frame and returns the raw reply of an SDO request; Block transfer, FD and LSS (not covered): Block transfer, CAN FD, 29-bit identifiers, LSS, an NMT slave and an SDO server are not implemented." width="1200" height="1034" loading="lazy">
+<figcaption>What the driver does</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>Each card is one function of the SN65HVD230: an icon, its name and what it does for the application. The filled pill says how this driver covers it (legend below); the outlined pills are the protocol objects behind it. The coverage table in the README gives the driver calls and the datasheet section of each card.</p>
 <p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
@@ -1052,6 +1093,22 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+</ul>
+<h2 id="sn65hvd230">SN65HVD230<a class="headerlink" href="#sn65hvd230" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-hero.svg#only-light" alt="Overview of the SN65HVD230, a 3.3 V CAN transceiver, the reference physical layer of a CANopen node: it turns a CAN controller&#x27;s TXD and RXD into the differential CANH and CANL signals of an ISO 11898-2 bus, and this driver speaks CANopen to the nodes on that bus. A MCU talks to it over CAN controller TXD and RXD; it drives CAN bus pair; it reads back Bus level. Headline figures: 3.0 to 3.6 V single supply; 1 Mbit/s data rate, up to; 120 nodes on one bus; 16 kV bus pin ESD, HBM; 370 µA standby current, typical." width="1200" height="745" loading="lazy"><img src="chip-hero.dark.svg#only-dark" alt="Overview of the SN65HVD230, a 3.3 V CAN transceiver, the reference physical layer of a CANopen node: it turns a CAN controller&#x27;s TXD and RXD into the differential CANH and CANL signals of an ISO 11898-2 bus, and this driver speaks CANopen to the nodes on that bus. A MCU talks to it over CAN controller TXD and RXD; it drives CAN bus pair; it reads back Bus level. Headline figures: 3.0 to 3.6 V single supply; 1 Mbit/s data rate, up to; 120 nodes on one bus; 16 kV bus pin ESD, HBM; 370 µA standby current, typical." width="1200" height="745" loading="lazy">
+<figcaption>SN65HVD230</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The SN65HVD230 in the middle, drawn as its SOIC-8 package. On the left the MCU that runs the driver, joined to it by CAN controller TXD and RXD. To the right, what the chip drives, in the order the power flows. Below it, what the chip reads back. The tiles at the bottom are the headline numbers, each with the datasheet section and page it comes from.</p>
 <p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
@@ -1091,6 +1148,22 @@ committed figure no longer matches the code. Each figure below lists the files i
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
 </ul>
+<h2 id="wiring-a-can-node">Wiring: A CAN node<a class="headerlink" href="#wiring-a-can-node" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-wiring-typical.svg#only-light" alt="Wiring of the SN65HVD230 for the A CAN node: MCU with CAN controller CAN TX to D (Send(const CanFrame&amp;)); MCU with CAN controller CAN RX to R (Receive(CanFrame&amp;, timeout_us)); CANH to CAN bus CANH; CANL to CAN bus CANL. Supplies, grounds and the support parts are listed under the drawing." width="1200" height="646" loading="lazy"><img src="chip-wiring-typical.dark.svg#only-dark" alt="Wiring of the SN65HVD230 for the A CAN node: MCU with CAN controller CAN TX to D (Send(const CanFrame&amp;)); MCU with CAN controller CAN RX to R (Receive(CanFrame&amp;, timeout_us)); CANH to CAN bus CANH; CANL to CAN bus CANL. Supplies, grounds and the support parts are listed under the drawing." width="1200" height="646" loading="lazy">
+<figcaption>Wiring: A CAN node</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The MCU with CAN controller on the left, the SN65HVD230 in the middle, the blocks it drives on the right. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+</ul>
 <h2 id="the-layers-one-of-them-yours">The layers, one of them yours<a class="headerlink" href="#the-layers-one-of-them-yours" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
 <img src="driver-layers.svg#only-light" alt="Layer diagram: your application calls the Client core, which sends CAN frames through the CAN port contract to the port class you write, which drives the CAN controller; the core and the contract are the same on every MCU." width="1200" height="1275" loading="lazy"><img src="driver-layers.dark.svg#only-dark" alt="Layer diagram: your application calls the Client core, which sends CAN frames through the CAN port contract to the port class you write, which drives the CAN controller; the core and the contract are the same on every MCU." width="1200" height="1275" loading="lazy">
@@ -1100,13 +1173,13 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Top to bottom, each arrow is a call. Your application calls one object, whose public calls are listed from the umbrella header in inc/. The core turns each call into CAN frames (SDO requests, NMT commands, SYNC, PDOs) and hands them to the port contract (the CRTP base in inc/*_interface.hpp), which forwards them, at compile time, to the hooks of the port class you write; your port puts each frame on the bus and hands received frames back. The notes on the right say which layers stay the same on every MCU and which one you write. A library without a port contract has only the first two layers.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/df49c4d2e320cd47e0a425167ec92463fb55867c/inc/canopen_client.hpp"><code>inc/canopen_client.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/df49c4d2e320cd47e0a425167ec92463fb55867c/inc/canopen_client_can_interface.hpp"><code>inc/canopen_client_can_interface.hpp</code></a> <code>CanInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/df49c4d2e320cd47e0a425167ec92463fb55867c/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/inc/canopen_client.hpp"><code>inc/canopen_client.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/inc/canopen_client_can_interface.hpp"><code>inc/canopen_client_can_interface.hpp</code></a> <code>CanInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
 </details>
-<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/df49c4d2e320cd47e0a425167ec92463fb55867c/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a></p>
+<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a></p>
 <p>Drawn from:</p>
 <ul>
-<li><code>public calls</code> in <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/df49c4d2e320cd47e0a425167ec92463fb55867c/inc/canopen_client.hpp"><code>inc/canopen_client.hpp</code></a></li>
-<li><code>CanInterface</code> in <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/df49c4d2e320cd47e0a425167ec92463fb55867c/inc/canopen_client_can_interface.hpp"><code>inc/canopen_client_can_interface.hpp</code></a></li>
+<li><code>public calls</code> in <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/inc/canopen_client.hpp"><code>inc/canopen_client.hpp</code></a></li>
+<li><code>CanInterface</code> in <a href="https://github.com/kokeb-labs-drivers/driver-canopen-client/blob/c3692a078c9c02993361b6b33484853e7aa11962/inc/canopen_client_can_interface.hpp"><code>inc/canopen_client_can_interface.hpp</code></a></li>
 </ul>
 
 
